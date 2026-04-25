@@ -95,7 +95,7 @@ This project follows a \textbf{Headless CMS} architecture:
 
 \begin{itemize}[leftmargin=1.5em]
     \item \textbf{Backend (CMS):} WordPress -- used exclusively for content
-          management via the REST API. Each developer runs a local instance.
+          management via the REST API. Each developer runs a local instance using Laragon.
     \item \textbf{Frontend:} React (Vite + TypeScript) -- the actual website
           that end-users interact with. It consumes the WordPress REST API.
 \end{itemize}
@@ -105,7 +105,6 @@ This project follows a \textbf{Headless CMS} architecture:
 \begin{lstlisting}
 ro.uvt.ri/
 |-- .gitignore          # Ignores WP core, node_modules, env files
-|-- .wp-env.json        # WordPress environment configuration
 |-- README.md           # Quick-start instructions
 |-- docs/               # This guide and other documentation
 |   +-- developer-guide.tex
@@ -120,8 +119,7 @@ ro.uvt.ri/
 
 \begin{warningbox}
 The \texttt{wordpress/} folder on your local machine is \textbf{not tracked by Git}.
-Each developer sets up their own local WordPress instance using
-\texttt{wp-env} (Docker) or a local server stack such as Laragon or XAMPP.
+Each developer sets up their own local WordPress instance using a local server stack such as Laragon.
 \end{warningbox}
 
 % ──────────────────────────────────────────────────────────────────────────────
@@ -135,47 +133,51 @@ Before cloning the repository, make sure the following tools are installed:
           \url{https://git-scm.com/downloads}
     \item \textbf{Node.js} (v18 or newer, LTS recommended) --
           \url{https://nodejs.org/}
-    \item \textbf{Docker Desktop} (required for \texttt{wp-env}) --
-          \url{https://www.docker.com/products/docker-desktop/}
+    \item \textbf{Laragon} (or similar XAMPP/WAMP stack) --
+          \url{https://laragon.org/}
 \end{enumerate}
-
-\begin{tipbox}
-If you prefer not to use Docker, you can use \textbf{Laragon} (Windows)
-or \textbf{MAMP/XAMPP} instead. See Section~\ref{sec:alt-wp} for the
-alternative WordPress setup.
-\end{tipbox}
 
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Initial Setup (First Time Only)}
 % ──────────────────────────────────────────────────────────────────────────────
 
-\subsection{Step 1 -- Clone the Repository}
+\subsection{Step 1 -- Clone the Repository into Laragon}
+
+Open your terminal and navigate to your Laragon \texttt{www} directory (e.g., \texttt{C:\textbackslash laragon\textbackslash www}):
 
 \begin{lstlisting}
+cd C:\laragon\www
 git clone https://github.com/Q-UW9/ro.uvt.ri.git
 cd ro.uvt.ri
 \end{lstlisting}
 
-\subsection{Step 2 -- Start WordPress (via wp-env + Docker)}
-\label{sec:wp-env-setup}
+\subsection{Step 2 -- Set Up WordPress locally}
 
-Make sure \textbf{Docker Desktop is running}, then execute:
+Because the WordPress core is ignored in Git (to keep the repo clean), you need to set up a fresh WordPress install inside the project:
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item Download WordPress from \url{https://wordpress.org/download/}.
+    \item Extract the contents. Move the files into \texttt{ro.uvt.ri\textbackslash wordpress\textbackslash ro.uvt.ri}.
+    \item Open Laragon and start all services (\textbf{Start All}).
+    \item Open Laragon's database manager (e.g., HeidiSQL) and create a database named \texttt{ro\_uvt\_ri}.
+    \item Go to \texttt{wordpress/ro.uvt.ri/} and rename \texttt{wp-config-sample.php} to \texttt{wp-config.php}.
+    \item Update the database credentials in \texttt{wp-config.php}:
+\end{enumerate}
 
 \begin{lstlisting}
-npm -g install @wordpress/env
-wp-env start
+define( 'DB_NAME',     'ro_uvt_ri' );
+define( 'DB_USER',     'root' );
+define( 'DB_PASSWORD', '' ); // Default Laragon password is empty
+define( 'DB_HOST',     'localhost' );
 \end{lstlisting}
 
-This will:
-\begin{itemize}[leftmargin=1.5em]
-    \item Download the WordPress core automatically.
-    \item Create a local MySQL database inside Docker.
-    \item Expose WordPress at \texttt{http://localhost:8888}.
-    \item Provide an admin dashboard at \texttt{http://localhost:8888/wp-admin/}
-          (default credentials: \texttt{admin} / \texttt{password}).
-\end{itemize}
+\begin{enumerate}[leftmargin=1.5em, resume]
+    \item In your browser, go to \texttt{http://ro.uvt.ri.test/wordpress/ro.uvt.ri/} and complete the WordPress installation.
+\end{enumerate}
 
 \subsection{Step 3 -- Install Frontend Dependencies}
+
+Open a terminal in the \texttt{frontend} folder:
 
 \begin{lstlisting}
 cd frontend
@@ -188,7 +190,7 @@ Create a \texttt{.env.local} file inside the \texttt{frontend/} directory:
 
 \begin{lstlisting}
 # frontend/.env.local
-VITE_WP_API_URL=http://localhost:8888/wp-json
+VITE_WP_API_URL=http://ro.uvt.ri.test/wordpress/ro.uvt.ri/wp-json
 \end{lstlisting}
 
 \begin{warningbox}
@@ -206,46 +208,23 @@ The React application will start at \texttt{http://localhost:5173}. \\
 You can now open both URLs side by side:
 
 \begin{itemize}[leftmargin=1.5em]
-    \item \textbf{Add content:}
-          \texttt{http://localhost:8888/wp-admin/}
-    \item \textbf{View the website:}
-          \texttt{http://localhost:5173}
+    \item \textbf{Backend (CMS):} \texttt{http://ro.uvt.ri.test/wordpress/ro.uvt.ri/wp-admin/}
+    \item \textbf{Frontend Website:} \texttt{http://localhost:5173}
 \end{itemize}
 
 % ──────────────────────────────────────────────────────────────────────────────
-\section{Alternative: WordPress via Laragon / XAMPP}
+\section{Alternative: WordPress via wp-env (Docker)}
 \label{sec:alt-wp}
 % ──────────────────────────────────────────────────────────────────────────────
 
-If Docker is not available, you can set up WordPress manually:
-
-\begin{enumerate}[leftmargin=1.5em]
-    \item Download WordPress from
-          \url{https://wordpress.org/download/}.
-    \item Extract it into your local server's web root
-          (e.g., \texttt{C:\textbackslash laragon\textbackslash www\textbackslash ro.uvt.ri}).
-    \item Create a MySQL database
-          (e.g., \texttt{ro\_uvt\_ri}) using phpMyAdmin or HeidiSQL.
-    \item Copy \texttt{wp-config-sample.php} to \texttt{wp-config.php}
-          and update the database credentials:
-\end{enumerate}
+If you have Docker Desktop installed, you can use \texttt{wp-env} to manage WordPress instead of Laragon.
 
 \begin{lstlisting}
-define( 'DB_NAME',     'ro_uvt_ri' );
-define( 'DB_USER',     'root' );
-define( 'DB_PASSWORD', '' );
-define( 'DB_HOST',     'localhost' );
+npm -g install @wordpress/env
+wp-env start
 \end{lstlisting}
 
-\begin{enumerate}[leftmargin=1.5em, resume]
-    \item Open \texttt{http://ro.uvt.ri.test/wp-admin/} in your browser
-          to complete the WordPress installation wizard.
-    \item Update \texttt{frontend/.env.local} to point to your local URL:
-\end{enumerate}
-
-\begin{lstlisting}
-VITE_WP_API_URL=http://ro.uvt.ri.test/wp-json
-\end{lstlisting}
+This will spin up a local WordPress instance on \texttt{http://localhost:8888}. Update your frontend \texttt{.env.local} to use \texttt{http://localhost:8888/wp-json}.
 
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Daily Workflow}
@@ -257,8 +236,8 @@ VITE_WP_API_URL=http://ro.uvt.ri.test/wp-json
 # 1. Pull the latest changes
 git pull origin main
 
-# 2. Start the WordPress backend (Docker method)
-wp-env start
+# 2. Make sure Laragon is running
+# (Click "Start All" in the Laragon control panel)
 
 # 3. Start the React frontend
 cd frontend
@@ -305,13 +284,6 @@ If new dependencies were added by a teammate, you may need to re-run
 pulling.
 \end{tipbox}
 
-\subsection{Ending a Work Session}
-
-\begin{lstlisting}
-# Stop the WordPress backend (Docker method)
-wp-env stop
-\end{lstlisting}
-
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Useful Commands Reference}
 % ──────────────────────────────────────────────────────────────────────────────
@@ -321,10 +293,6 @@ wp-env stop
 \hline
 \textbf{Command} & \textbf{Description} \\
 \hline\hline
-\texttt{wp-env start} & Start the local WordPress instance (Docker) \\
-\texttt{wp-env stop} & Stop the local WordPress instance \\
-\texttt{wp-env clean all} & Reset WordPress to a fresh install \\
-\hline
 \texttt{cd frontend \&\& npm install} & Install frontend dependencies \\
 \texttt{cd frontend \&\& npm run dev} & Start React dev server (port 5173) \\
 \texttt{cd frontend \&\& npm run build} & Build production bundle \\
@@ -341,40 +309,20 @@ wp-env stop
 \section{Troubleshooting}
 % ──────────────────────────────────────────────────────────────────────────────
 
-\subsection{``Permission Denied'' on Windows}
+\subsection{``Permission Denied'' on Windows Git Add}
 
-If Git reports \texttt{dubious ownership} errors:
+If Git reports \texttt{dubious ownership} errors or fails to index files:
 \begin{lstlisting}
-git config --global --add safe.directory 'D:/path/to/ro.uvt.ri'
+git config --global --add safe.directory 'C:/laragon/www/ro.uvt.ri'
 \end{lstlisting}
-
-\subsection{Port Conflicts}
-
-If port 8888 or 5173 is already in use:
-\begin{itemize}[leftmargin=1.5em]
-    \item For WordPress: edit \texttt{.wp-env.json} and add a custom port
-          mapping.
-    \item For React: Vite will automatically try the next available port
-          (5174, 5175, etc.).
-\end{itemize}
+Also ensure Laragon is stopped when performing heavy Git operations.
 
 \subsection{CORS Errors When Fetching from WordPress}
 
 Install and activate the
 \href{https://wordpress.org/plugins/wp-graphql/}{WP GraphQL} or a CORS
 plugin on your local WordPress instance. Alternatively, configure the
-Vite proxy in \texttt{frontend/vite.config.ts}:
-
-\begin{lstlisting}
-// vite.config.ts
-export default defineConfig({
-  server: {
-    proxy: {
-      '/wp-json': 'http://localhost:8888'
-    }
-  }
-})
-\end{lstlisting}
+Vite proxy in \texttt{frontend/vite.config.ts} to point to \texttt{http://ro.uvt.ri.test}.
 
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Summary}
@@ -383,8 +331,8 @@ export default defineConfig({
 \begin{center}
 \fbox{\parbox{0.85\textwidth}{
 \centering
-\textbf{Clone} $\rightarrow$
-\textbf{wp-env start} $\rightarrow$
+\textbf{Clone to Laragon} $\rightarrow$
+\textbf{Setup WP locally} $\rightarrow$
 \textbf{npm install} $\rightarrow$
 \textbf{npm run dev} $\rightarrow$
 \textbf{Start coding!}
