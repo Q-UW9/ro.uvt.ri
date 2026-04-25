@@ -1,0 +1,26 @@
+# The "Lean Headless" Gitignore
+
+# 1. Ignore the local WordPress installation
+# We use .wp-env.json and `npx wp-env start` to handle the backend
+wordpress/
+.wp-env/
+
+# 2. Environment Variables (Security)
+.env
+.env.*
+!.env.example
+
+# 3. Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# 4. Logs and Editor files
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.sw?
