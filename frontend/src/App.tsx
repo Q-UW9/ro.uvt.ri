@@ -1,13 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Post from "./pages/Post";
+import UnderConstruction from "./pages/UnderConstruction";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/:slug" element={<Post />} />
+        <Route path="/" element={<UnderConstruction />} />
       </Routes>
     </BrowserRouter>
   );
