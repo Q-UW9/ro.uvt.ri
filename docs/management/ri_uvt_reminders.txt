@@ -1,0 +1,98 @@
+RI.UVT.RO REDESIGN — IMPORTANT REMINDERS SCRIPT
+
+CORE PRINCIPLE
+- This is a PRODUCT BUILD, not just a redesign.
+- Flow: UNDERSTAND → STRUCTURE → BUILD → POPULATE → VALIDATE
+
+----------------------------------------
+
+TEAM MINDSET
+- No isolated work — everything is collaborative.
+- Every role touches implementation.
+- Reuse > improvisation.
+- Structure decisions come BEFORE content population.
+
+----------------------------------------
+
+TEAM RESPONSIBILITIES
+
+TEAM A (Strategy: Roles 1,2,3)
+- Define structure early.
+- Lock sitemap, hierarchy, navigation.
+- Decide static vs dynamic content.
+
+TEAM B (System: Roles 4,5)
+- Build design system BEFORE scaling pages.
+- Create reusable components and templates.
+- Ensure consistency across UI.
+
+TEAM C (Content + Dynamic: Roles 6,7)
+- Never hardcode content unnecessarily.
+- Use reusable blocks and structured layouts.
+- Content must follow structure, not break it.
+
+TEAM D (QA: Role 8 + everyone)
+- Testing is CONTINUOUS, not last-minute.
+- Fix issues immediately when found.
+- Validate accessibility and responsiveness early.
+
+----------------------------------------
+
+TIMELINE CHECKPOINTS
+
+WEEK 1–2 (DEFINE)
+- Audit done
+- User flows clear
+- Sitemap defined
+- You KNOW what you're building
+
+WEEK 3–4 (BUILD SYSTEM)
+- Design system DONE
+- WordPress base WORKING
+- Header, footer, templates exist
+- Not mockups — REAL system
+
+WEEK 5–6 (BUILD CONTENT)
+- Pages populated with REAL content
+- Reusable blocks implemented
+- Dynamic structures working
+
+WEEK 7–8 (VALIDATE)
+- Bugs tracked and fixed
+- Accessibility checked
+- Performance optimized
+- Project ready for delivery
+
+----------------------------------------
+
+CRITICAL RULES
+
+- Do NOT start building pages before structure is stable.
+- Do NOT duplicate components — reuse them.
+- Do NOT delay QA until the end.
+- Do NOT let content break layout consistency.
+- ALWAYS think: “Can this be reused?”
+
+----------------------------------------
+
+FINAL DELIVERABLE CHECK
+
+You must have:
+- Audit document
+- Sitemap
+- Design system
+- Working WordPress site
+- Reusable templates & blocks
+- Completed key pages
+- Clean, structured content
+- QA & accessibility validation
+- Final documentation
+
+----------------------------------------
+
+FINAL REMINDER
+
+If the system is weak → everything breaks later.
+If the system is strong → everything scales easily.
+
+BUILD SYSTEMS, NOT PAGES.
