@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+body {
+  background-color: white;
+  color: #111827;
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
