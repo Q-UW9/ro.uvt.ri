@@ -27,3 +27,6 @@ npm-debug.log*
 
 # 5. Docs
 docs/week2/architecture
+
+# 6. AI
+.claude
