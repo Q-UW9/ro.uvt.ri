@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\Projekte\\\\UVeTeu\\\\Year 2\\\\tp\\\\ro.uvt.ri\\\\docs\" -Recurse -Force)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
