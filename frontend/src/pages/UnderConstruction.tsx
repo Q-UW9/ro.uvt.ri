@@ -1,4 +1,4 @@
-import { s } from "./UnderConstruction.styles";
+import { s } from "./UnderConstruction.styles.";
 
 function UnderConstruction() {
   return (
