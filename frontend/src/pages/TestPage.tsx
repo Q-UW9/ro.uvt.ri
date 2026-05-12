@@ -1,7 +1,7 @@
 import { PageLayout } from '../components/templates/PageLayout/PageLayout'
 import { Typography } from '../components/atoms/Typography/Typography'
 import { Button } from '../components/atoms/Button/Button'
-import { SectionHeader } from '../components/molechules/SectionHeader/SectionHeader'
+import { SectionHeader } from '../components/molecules/SectionHeader/SectionHeader'
 import { AccordionSection } from '../components/organisms/AccordionSection/AccordionSection'
 
 const accordionItems = [
