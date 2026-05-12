@@ -163,11 +163,12 @@ This file was already present in main at the time of this merge (identical conte
 
 ### Role 6 — Outstanding issues
 
+> **Note on plugin activation and CPT/taxonomy state:** WordPress plugin activation, CPTUI post type and taxonomy definitions, and ACF field groups are all stored in the **MySQL database** (`wp_options` table). They do not appear as files in git. Role 6 reports having activated both plugins and registered CPTs and taxonomies in their local Laragon setup — this is credible and consistent with the tool usage. However, none of this configuration has been exported, so it exists only on Role 6's machine. The actions below reflect what is needed to make that work shareable.
+
 | Issue | Severity | Action needed |
 |-------|----------|---------------|
-| ACF and CPTUI are in `wp-content/plugins/` but not yet activated or configured | High | Role 6 must activate both plugins in WordPress admin and begin CPT registration |
-| No CPTs created yet (`call`, `story`, `resource`, `programme`, `people`) | High | Core Week 5 deliverable |
-| No ACF field groups configured | High | Required before REST API can expose structured content |
+| CPTUI CPT and taxonomy config exists only in Role 6's local MySQL — not exported | High | Export via CPT UI → Tools → Export → save JSON into `wordpress/ro.uvt.ri/cptui-export.json` in the repo |
+| ACF field groups exist only in Role 6's local MySQL — not exported | High | Enable ACF local JSON sync: create `wp-content/themes/[theme]/acf-json/` folder; ACF will auto-save field groups as `.json` files that can be committed |
 | WordPress located at wrong path in role fork (repo root instead of `wordpress/`) | Medium | Role 6 must reorganise their local fork to match main's structure before next PR |
 | `TestPage.tsx` in role6 fork still contains the `molechules` typo | Low | Role 6 should pull from main to sync the fix |
 

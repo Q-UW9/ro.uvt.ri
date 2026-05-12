@@ -184,7 +184,7 @@ Role 5's implementation work is valuable and substantially correct. However, it 
 
 ## Role 6 — WordPress Developer: API and Content Types
 
-Role 6 installed the required WordPress plugins but produced none of the required documentation. The `TestPage.tsx` and `globals.css` attributed to Role 6 are frontend contributions, not the backend planning work assigned to this role.
+Role 6 installed the required WordPress plugins and reports having activated them and registered CPTs and taxonomies in their local Laragon setup. However, WordPress plugin activation and CPTUI/ACF configuration are stored in the MySQL database — they do not appear as files in git. No CPTUI export JSON and no ACF field group JSON files were committed to the repo. The configuration exists only on Role 6's machine. The `TestPage.tsx` and `globals.css` attributed to Role 6 are frontend contributions, not the backend planning work assigned to this role.
 
 ### Tasks
 
@@ -214,12 +214,13 @@ Role 6 installed the required WordPress plugins but produced none of the require
 
 | Artifact | Notes |
 |----------|-------|
-| ACF plugin installed | Now in `wp-content/plugins/` and tracked by git |
-| CPTUI plugin installed | Now in `wp-content/plugins/` and tracked by git |
+| ACF plugin installed and (reportedly) activated | Files in `wp-content/plugins/`; activation state is in local MySQL only — not exportable as a file |
+| CPTUI plugin installed and (reportedly) activated | Files in `wp-content/plugins/`; activation state is in local MySQL only |
+| CPTs and taxonomies (reportedly) registered via CPTUI | Stored in local MySQL only — no CPTUI export JSON committed to repo |
 | `pages/TestPage.tsx` | Frontend component test — outside Role 6's scope |
 | `styles/globals.css` | Frontend CSS baseline — outside Role 6's scope |
 
-Role 6 set up the tools needed for Week 4–5 work, which is useful, but produced none of the backend planning documentation that was their Week 3 deliverable.
+Role 6 set up and locally configured the tools needed for Week 4–5 work, which is useful, but that configuration is trapped in their local database. The required next step is exporting it (CPTUI JSON + ACF local JSON sync). No backend planning documentation was produced.
 
 ---
 
