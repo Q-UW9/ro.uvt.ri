@@ -177,7 +177,19 @@ This file was already present in main at the time of this merge (identical conte
 
 The following changes were made to `ro.uvt.ri/` (main) during this merge:
 
-### 1. `.gitignore` updated — WordPress core ignored, plugins tracked
+### 1. ACF and CPTUI plugin folders copied into main
+
+**Source:** `roles/role6/ro.uvt.ri/wp-content/plugins/`  
+**Destination:** `ro.uvt.ri/wordpress/ro.uvt.ri/wp-content/plugins/`
+
+```
+advanced-custom-fields/   ← copied from role6
+custom-post-type-ui/      ← copied from role6
+```
+
+These were physically present in Role 6's local fork. Copying them into main's `wordpress/` folder is the first step; the `.gitignore` change below is what makes them actually visible to git.
+
+### 2. `.gitignore` updated — WordPress core ignored, plugins tracked
 
 **File:** `ro.uvt.ri/.gitignore`
 
@@ -198,7 +210,7 @@ The original `wordpress/` blanket ignore was replaced with granular rules that e
 
 This makes the ACF and CPTUI plugin folders (already present in `wordpress/ro.uvt.ri/wp-content/plugins/`) visible to git for the first time.
 
-### 2. `TestPage.tsx` import path corrected
+### 3. `TestPage.tsx` import path corrected
 
 **File:** `ro.uvt.ri/frontend/src/pages/TestPage.tsx`
 
@@ -209,7 +221,7 @@ This makes the ACF and CPTUI plugin folders (already present in `wordpress/ro.uv
 
 The `molechules` directory does not exist in main. The correct path is `molecules/`. This was a typo originating in Role 6's local fork that had propagated into main.
 
-### 3. `/test` route added to `App.tsx`
+### 4. `/test` route added to `App.tsx`
 
 **File:** `ro.uvt.ri/frontend/src/App.tsx`
 
