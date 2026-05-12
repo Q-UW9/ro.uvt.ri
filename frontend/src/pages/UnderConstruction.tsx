@@ -1,8 +1,6 @@
-import { Navbar } from '../components/organisms/Navbar/Navbar'
 import { HeroSection } from '../components/organisms/HeroSection/HeroSection'
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
-import { Footer } from '../components/organisms/Footer/Footer'
-
+import { PageLayout } from '../components/templates/PageLayout/PageLayout'
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { Card } from '../components/molecules/Card/Card'
 
@@ -41,8 +39,7 @@ function UnderConstruction() {
   ]
 
   return (
-    <>
-      <Navbar />
+    <PageLayout>
 
       <HeroSection
         title="Welcome to UVT RI"
@@ -86,8 +83,7 @@ function UnderConstruction() {
         </div>
       </div>
 
-      <Footer />
-    </>
+    </PageLayout>
   )
 }
 

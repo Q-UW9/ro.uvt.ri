@@ -1,43 +1,39 @@
 import clsx from 'clsx'
 
 interface TypographyProps {
-  variant?:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'body'
-    | 'caption'
-
   children: React.ReactNode
+  variant?: 'h1' | 'h2' | 'h3' | 'body' | 'caption'
   className?: string
 }
 
-const styles = {
+const variants = {
   h1: 'text-5xl font-bold leading-tight',
   h2: 'text-4xl font-bold leading-tight',
-  h3: 'text-2xl font-semibold',
+  h3: 'text-2xl font-semibold leading-snug',
   body: 'text-base leading-7',
   caption: 'text-sm text-gray-500',
 }
 
 export function Typography({
-  variant = 'body',
   children,
+  variant = 'body',
   className,
 }: TypographyProps) {
-<<<<<<< HEAD
-  const Component = variant
-=======
-  const Component = variant === 'body'
-    ? 'p'
-    : variant === 'caption'
-    ? 'span'
-    : variant
->>>>>>> ba646335e604c4c7254f64ece240316625d70c16
+  const Component =
+    variant === 'h1'
+      ? 'h1'
+      : variant === 'h2'
+      ? 'h2'
+      : variant === 'h3'
+      ? 'h3'
+      : 'p'
 
   return (
     <Component
-      className={clsx(styles[variant], className)}
+      className={clsx(
+        variants[variant],
+        className
+      )}
     >
       {children}
     </Component>
