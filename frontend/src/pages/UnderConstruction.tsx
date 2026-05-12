@@ -2,9 +2,13 @@ import { Navbar } from '../components/organisms/Navbar/Navbar'
 import { HeroSection } from '../components/organisms/HeroSection/HeroSection'
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
 import { Footer } from '../components/organisms/Footer/Footer'
+
+import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { Card } from '../components/molecules/Card/Card'
 
-import { s } from './UnderConstruction.styles'
+import { cardsData } from '../data/cards'
+
+import { s } from './UnderConstruction.styles.js'
 
 function UnderConstruction() {
   const demoTabs = [
@@ -36,26 +40,6 @@ function UnderConstruction() {
     },
   ]
 
-  const demoCards = [
-    {
-      title: 'Erasmus Opportunities',
-      description:
-        'Explore international mobility and exchange programs.',
-    },
-
-    {
-      title: 'Admissions 2026',
-      description:
-        'Learn about the latest admissions requirements and deadlines.',
-    },
-
-    {
-      title: 'International Students',
-      description:
-        'Resources and support for international applicants.',
-    },
-  ]
-
   return (
     <>
       <Navbar />
@@ -67,7 +51,22 @@ function UnderConstruction() {
         secondaryButtonText="Learn More"
       />
 
-      <TabsSection tabs={demoTabs} />
+      <div className="mx-auto max-w-[1280px] px-6">
+        <TabsSection tabs={demoTabs} />
+      </div>
+
+      <div className="mx-auto max-w-[1280px] px-6 py-16">
+        <ContentGrid columns={3}>
+          {cardsData.map((card) => (
+            <Card
+              key={card.id}
+              title={card.title}
+              description={card.description}
+              buttonText={card.buttonText}
+            />
+          ))}
+        </ContentGrid>
+      </div>
 
       <div className={s.container}>
         <div className={s.card}>
