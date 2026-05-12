@@ -1,0 +1,720 @@
+
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Core packages ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{pagecolor}
+\usepackage{fvextra}
+\usepackage{fancyvrb}
+\usepackage{seqsplit}
+\usepackage{amssymb}
+
+% ---------- Typography ----------
+\setstretch{1.15}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{25pt}
+
+% ---------- RI.UVT color palette ----------
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+% ---------- Links ----------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uvtBlue,
+    urlcolor=uvtBlue,
+    citecolor=uvtBlue,
+    pdftitle={Week 4 Implementation Plan},
+    pdfauthor={Team Q-UW9}
+}
+
+% ---------- Headings ----------
+\titleformat{\section}
+{\Large\bfseries\color{uvtBlue}}
+{\thesection.}
+{0.5em}
+{}
+
+\titleformat{\subsection}
+{\large\bfseries\color{uvtDarkBlue}}
+{\thesubsection}
+{0.5em}
+{}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries\color{uvtBlue}}
+{\thesubsubsection}
+{0.5em}
+{}
+
+\titlespacing*{\section}{0pt}{1.2em}{0.5em}
+\titlespacing*{\subsection}{0pt}{0.9em}{0.35em}
+\titlespacing*{\subsubsection}{0pt}{0.7em}{0.25em}
+
+% ---------- Header and footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Week 4 Plan}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.25em,topsep=0.25em}
+
+% ---------- Boxes ----------
+\newtcolorbox{yellowbox}{
+    colback=uvtYellow!92!white,
+    colframe=uvtYellow,
+    arc=2mm,
+    boxrule=0pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{infobox}{
+    colback=uvtLightBlue,
+    colframe=uvtBlue,
+    arc=2mm,
+    boxrule=0.5pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{phasebox}{
+    colback=softGray,
+    colframe=uvtBlue,
+    arc=2mm,
+    boxrule=0.4pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt
+}
+
+% ---------- Code blocks ----------
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}
+\DefineVerbatimEnvironment{Verbatim}{Verbatim}{breaklines,breakanywhere}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\pathcell}[1]{\begingroup\ttfamily\footnotesize\seqsplit{#1}\endgroup}
+
+\begin{document}
+
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+
+    \vspace*{2cm}
+
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em]
+    Week 4 Implementation Plan\par}
+
+    \vspace{0.8cm}
+
+    {\Large Frontend Foundation + Backend Structure\\
+    Direcția de Relații Internaționale\\
+    West University of Timișoara\par}
+
+    \vspace{1.5cm}
+
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Focus:} Move from planning into implementation by establishing frontend foundations, reusable components, WordPress structure, REST API preparation, and shared implementation standards.
+    \end{yellowbox}
+
+    \vspace{0.8cm}
+    {\large Active Roles: Role 1, Role 2, Role 4, Role 5, Role 6\par}
+
+    \vfill
+
+    {\large Technology Stack: WordPress CMS + REST API + React/Next.js + TypeScript + Tailwind CSS\\
+    Team Q-UW9}
+
+    \vspace{1cm}
+\end{titlepage}
+
+\nopagecolor
+\color{textGray}
+
+\tableofcontents
+\newpage
+
+\begin{infobox}
+\textbf{Document standard:} This file follows the RI.UVT.RO document styling system: institutional UVT blue hierarchy, yellow accent rules, readable spacing, structured role sections, and technical code-safe formatting.
+\end{infobox}
+
+\section{Week 4 Implementation Plan --- Frontend Foundation and Backend Structure}\label{week-4-implementation-plan-frontend-foundation-and-backend-structure}
+
+\textbf{Project:} RI.UVT.RO Redesign\\
+\textbf{Phase:} Week 4 / Phase 3\\
+\textbf{Focus:} Frontend Foundation + Backend Structure\\
+\textbf{Institutional Context:} West University of Timișoara --- International Relations Department\\
+\textbf{Active Teams:} Team A, Team B, Team C\\
+\textbf{Active Roles:} Role 1, Role 2, Role 4, Role 5, Role 6
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Week 4 Objective}\label{week-4-objective}
+
+Week 4 moves the project from architecture definition into active system construction. The team should establish the technical and visual foundation that later pages, content models, and API integrations will build on.
+
+The week focuses on:
+
+\begin{itemize}
+\tightlist
+\item
+  the frontend project foundation;
+\item
+  reusable component architecture;
+\item
+  WordPress backend structure;
+\item
+  REST API preparation;
+\item
+  shared implementation standards;
+\item
+  accessibility-aligned frontend behavior;
+\item
+  multilingual and locale-aware structure.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Combined Week 4 Output Checklist}\label{combined-week-4-output-checklist}
+
+By the end of Week 4, the project should have the following baseline outputs:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Functional frontend project scaffold.
+\item
+  \(\square\) Locale-aware routing structure.
+\item
+  \(\square\) Shared component architecture.
+\item
+  \(\square\) Design token system implementation.
+\item
+  \(\square\) Initial reusable UI library.
+\item
+  \(\square\) WordPress CPT and taxonomy structure.
+\item
+  \(\square\) Structured field configuration.
+\item
+  \(\square\) REST API preparation.
+\item
+  \(\square\) Shared layout templates.
+\item
+  \(\square\) Accessibility-aligned implementation standards.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Implementation Sequencing Rule}\label{implementation-sequencing-rule}
+
+The implementation order must remain system-first, not page-first.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Design tokens} before visual components.
+\item
+  \textbf{Atoms} before molecules.
+\item
+  \textbf{Molecules} before organisms.
+\item
+  \textbf{Templates} before full pages.
+\item
+  \textbf{API helpers} before page-level data usage.
+\item
+  \textbf{Content model} before final frontend integration.
+\end{enumerate}
+
+This prevents the team from creating isolated one-off pages that cannot be reused later.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Role 1 --- Project Manager + Frontend Lead}\label{role-1-project-manager-frontend-lead}
+
+\subsubsection{Phase 3 Responsibility}\label{phase-3-responsibility}
+
+System coordination and implementation oversight.
+
+\subsubsection{System Coordination Tasks}\label{system-coordination-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Coordinate the transition from planning documents into active implementation.
+\item
+  \(\square\) Validate consistency between frontend routes and WordPress structure.
+\item
+  \(\square\) Validate consistency between component architecture and user flows.
+\item
+  \(\square\) Supervise implementation priorities for reusable systems.
+\item
+  \(\square\) Coordinate communication between frontend and backend contributors.
+\end{itemize}
+
+\subsubsection{Implementation Standards Tasks}\label{implementation-standards-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Ensure architecture remains aligned with accessibility goals.
+\item
+  \(\square\) Ensure architecture remains aligned with multilingual routing.
+\item
+  \(\square\) Ensure architecture remains aligned with REST API structure.
+\item
+  \(\square\) Ensure architecture remains aligned with long-term maintainability.
+\end{itemize}
+
+\subsubsection{Sequencing Tasks}\label{sequencing-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Validate implementation order: atoms before molecules.
+\item
+  \(\square\) Validate implementation order: molecules before organisms.
+\item
+  \(\square\) Validate implementation order: templates before pages.
+\item
+  \(\square\) Prevent premature page-specific implementation.
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Week 4 implementation supervision.
+\item
+  \(\square\) Frontend consistency validation notes.
+\item
+  \(\square\) Shared implementation standards.
+\item
+  \(\square\) Team coordination updates.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Role 2 --- UX Researcher + Frontend Contributor}\label{role-2-ux-researcher-frontend-contributor}
+
+\subsubsection{Phase 3 Responsibility}\label{phase-3-responsibility-1}
+
+UX validation during implementation.
+
+\subsubsection{UX Validation Tasks}\label{ux-validation-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Validate implemented layouts against planned user journeys.
+\item
+  \(\square\) Ensure homepage entry points remain visible.
+\item
+  \(\square\) Ensure homepage entry points remain audience-oriented.
+\item
+  \(\square\) Verify route clarity.
+\item
+  \(\square\) Verify navigation hierarchy.
+\item
+  \(\square\) Verify CTA visibility.
+\item
+  \(\square\) Verify content grouping.
+\item
+  \(\square\) Verify responsive usability.
+\end{itemize}
+
+\subsubsection{Component Review Tasks}\label{component-review-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Review reusable components for readability.
+\item
+  \(\square\) Review reusable components for accessibility.
+\item
+  \(\square\) Review reusable components for mobile usability.
+\item
+  \(\square\) Review reusable components for consistency with user flows.
+\item
+  \(\square\) Ensure document-heavy sections become workflow-oriented layouts.
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) UX validation notes.
+\item
+  \(\square\) Navigation consistency review.
+\item
+  \(\square\) Mobile usability feedback.
+\item
+  \(\square\) CTA and workflow alignment feedback.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Role 4 --- UI Designer + Frontend Implementer}\label{role-4-ui-designer-frontend-implementer}
+
+\subsubsection{Phase 3 Responsibility}\label{phase-3-responsibility-2}
+
+Design system implementation.
+
+\subsubsection{Design Token Tasks}\label{design-token-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Implement color tokens.
+\item
+  \(\square\) Implement typography tokens.
+\item
+  \(\square\) Implement spacing tokens.
+\item
+  \(\square\) Implement responsive breakpoint rules.
+\end{itemize}
+
+\subsubsection{UI Atom Tasks}\label{ui-atom-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Build Button atom.
+\item
+  \(\square\) Build Typography atom.
+\item
+  \(\square\) Build Divider atom.
+\item
+  \(\square\) Build Icon atom.
+\item
+  \(\square\) Build LanguageSwitcher atom.
+\end{itemize}
+
+\subsubsection{Responsive Visual Behavior Tasks}\label{responsive-visual-behavior-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Test desktop visual behavior.
+\item
+  \(\square\) Test tablet visual behavior.
+\item
+  \(\square\) Test mobile visual behavior.
+\item
+  \(\square\) Check spacing consistency across breakpoints.
+\item
+  \(\square\) Check layout readability across breakpoints.
+\end{itemize}
+
+\subsubsection{Accessibility-Friendly Visual Pattern Tasks}\label{accessibility-friendly-visual-pattern-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Implement visible focus states.
+\item
+  \(\square\) Check readable contrast.
+\item
+  \(\square\) Check hover states.
+\item
+  \(\square\) Check active states.
+\item
+  \(\square\) Align all visual implementation with the approved design system.
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables-2}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Tailwind design token implementation.
+\item
+  \(\square\) Core UI atoms.
+\item
+  \(\square\) Responsive styling system.
+\item
+  \(\square\) Accessibility-compliant visual patterns.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Role 5 --- React Developer}\label{role-5-react-developer}
+
+\subsubsection{Phase 3 Responsibility}\label{phase-3-responsibility-3}
+
+Frontend foundation and component implementation.
+
+\subsubsection{Frontend Scaffold Tasks}\label{frontend-scaffold-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Initialize Next.js project.
+\item
+  \(\square\) Configure TypeScript.
+\item
+  \(\square\) Configure Tailwind CSS.
+\item
+  \(\square\) Configure locale routing.
+\item
+  \(\square\) Create frontend folder structure.
+\end{itemize}
+
+\subsubsection{Atomic Component Implementation Tasks}\label{atomic-component-implementation-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Implement atoms.
+\item
+  \(\square\) Implement molecules.
+\item
+  \(\square\) Implement shared layout shells.
+\item
+  \(\square\) Implement routing structure.
+\end{itemize}
+
+\subsubsection{Reusable Organism Tasks}\label{reusable-organism-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Build Navbar.
+\item
+  \(\square\) Build Footer.
+\item
+  \(\square\) Build SectionHeader.
+\item
+  \(\square\) Build AccordionSection.
+\item
+  \(\square\) Build DocumentDownloadList.
+\end{itemize}
+
+\subsubsection{Page Template Tasks}\label{page-template-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Prepare PageLayout.
+\item
+  \(\square\) Prepare InnerPageTemplate.
+\item
+  \(\square\) Prepare HomePageTemplate.
+\end{itemize}
+
+\subsubsection{Architecture Separation Rules}\label{architecture-separation-rules}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Keep presentation separate from fetching.
+\item
+  \(\square\) Keep fetching separate from routing.
+\item
+  \(\square\) Keep routing separate from templates.
+\item
+  \(\square\) Avoid direct API fetching inside presentational components.
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables-3}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Frontend project scaffold.
+\item
+  \(\square\) Shared component implementation.
+\item
+  \(\square\) Layout shell implementation.
+\item
+  \(\square\) Locale-aware routing foundation.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Role 6 --- WordPress Developer}\label{role-6-wordpress-developer}
+
+\subsubsection{Phase 3 Responsibility}\label{phase-3-responsibility-4}
+
+CMS structure and REST API preparation.
+
+\subsubsection{CMS Structure Tasks}\label{cms-structure-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Configure Pages.
+\item
+  \(\square\) Configure Posts.
+\item
+  \(\square\) Configure Custom Post Types.
+\item
+  \(\square\) Configure Taxonomies.
+\end{itemize}
+
+\subsubsection{Initial CPT Tasks}\label{initial-cpt-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Create \texttt{calls} CPT.
+\item
+  \(\square\) Create \texttt{stories} CPT.
+\item
+  \(\square\) Create \texttt{resources} CPT.
+\item
+  \(\square\) Create \texttt{programmes} CPT.
+\item
+  \(\square\) Decide whether \texttt{people} CPT is necessary.
+\item
+  \(\square\) Create \texttt{people} CPT if approved.
+\end{itemize}
+
+\subsubsection{Structured Field Tasks}\label{structured-field-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Prepare CTA group fields.
+\item
+  \(\square\) Prepare process step fields.
+\item
+  \(\square\) Prepare document repeater fields.
+\item
+  \(\square\) Prepare FAQ section fields.
+\item
+  \(\square\) Prepare contact card fields.
+\end{itemize}
+
+\subsubsection{REST API Compatibility Tasks}\label{rest-api-compatibility-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Prepare endpoint structure.
+\item
+  \(\square\) Prepare locale handling.
+\item
+  \(\square\) Prepare taxonomy exposure.
+\item
+  \(\square\) Prepare structured response consistency.
+\item
+  \(\square\) Remove legacy or duplicate structural content where possible.
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables-4}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Initial WordPress structure.
+\item
+  \(\square\) CPT configuration.
+\item
+  \(\square\) Structured field setup.
+\item
+  \(\square\) REST API exposure preparation.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Suggested File Outputs}\label{suggested-file-outputs}
+
+The following files should be created or updated during the Week 4 implementation cycle:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) \texttt{frontend-scaffold-notes.md}
+\item
+  \(\square\) \texttt{locale-routing-structure.md}
+\item
+  \(\square\) \texttt{component-architecture-week-4.md}
+\item
+  \(\square\) \texttt{design-token-implementation.md}
+\item
+  \(\square\) \texttt{ui-atoms-checklist.md}
+\item
+  \(\square\) \texttt{wordpress-cpt-taxonomy-setup.md}
+\item
+  \(\square\) \texttt{structured-fields-setup.md}
+\item
+  \(\square\) \texttt{rest-api-preparation.md}
+\item
+  \(\square\) \texttt{layout-template-implementation.md}
+\item
+  \(\square\) \texttt{accessibility-implementation-standards.md}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Definition of Done}\label{definition-of-done}
+
+Week 4 is complete when:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\square\) Frontend app runs locally.
+\item
+  \(\square\) Tailwind and TypeScript are configured.
+\item
+  \(\square\) Locale-aware routing foundation exists.
+\item
+  \(\square\) Shared layout shells exist.
+\item
+  \(\square\) Core atoms and first organisms exist.
+\item
+  \(\square\) WordPress has initial CPT and taxonomy structure.
+\item
+  \(\square\) Structured fields are prepared.
+\item
+  \(\square\) REST API preparation is documented.
+\item
+  \(\square\) Implementation rules are clear for Week 5.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Week 5 Handoff Notes}\label{week-5-handoff-notes}
+
+At the end of Week 4, the team should be ready to move from foundations into integration. Week 5 should focus on connecting the frontend route structure to real WordPress data, validating REST responses, expanding page templates, and testing the reusable component system against real content.
+
+\end{document}

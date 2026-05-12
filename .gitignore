@@ -1,8 +1,13 @@
 # The "Lean Headless" Gitignore
 
-# 1. Ignore the local WordPress installation
-# We use .wp-env.json and `npx wp-env start` to handle the backend
-wordpress/
+# 1. WordPress — ignore core, track only wp-content/plugins/ and wp-content/themes/
+# Copy the contents of wordpress/ro.uvt.ri/ into C:/laragon/www/ro.uvt.ri/ for local dev
+wordpress/ro.uvt.ri/wp-admin/
+wordpress/ro.uvt.ri/wp-includes/
+wordpress/ro.uvt.ri/wp-content/uploads/
+wordpress/ro.uvt.ri/*.php
+wordpress/ro.uvt.ri/license.txt
+wordpress/ro.uvt.ri/readme.html
 .wp-env/
 
 # 2. Environment Variables (Security)

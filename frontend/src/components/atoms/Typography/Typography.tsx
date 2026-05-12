@@ -25,7 +25,15 @@ export function Typography({
   children,
   className,
 }: TypographyProps) {
+<<<<<<< HEAD
   const Component = variant
+=======
+  const Component = variant === 'body'
+    ? 'p'
+    : variant === 'caption'
+    ? 'span'
+    : variant
+>>>>>>> ba646335e604c4c7254f64ece240316625d70c16
 
   return (
     <Component

@@ -6,11 +6,16 @@ import { Typography } from '../../atoms/Typography/Typography'
 interface CardProps {
   title: string
   description: string
+<<<<<<< HEAD
 
   imageUrl?: string
 
   buttonText?: string
 
+=======
+  imageUrl?: string
+  buttonText?: string
+>>>>>>> ba646335e604c4c7254f64ece240316625d70c16
   className?: string
 }
 
@@ -28,7 +33,11 @@ export function Card({
         className
       )}
     >
+<<<<<<< HEAD
       {/* Optional Image */}
+=======
+      {/* Optional image */}
+>>>>>>> ba646335e604c4c7254f64ece240316625d70c16
       {imageUrl && (
         <div className="h-52 w-full overflow-hidden bg-gray-100">
           <img
