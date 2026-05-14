@@ -6,7 +6,7 @@ import { Card } from '../components/molecules/Card/Card'
 
 import { cardsData } from '../data/cards'
 
-import { s } from './UnderConstruction.styles.js'
+import { s } from './UnderConstruction.styles'
 
 function UnderConstruction() {
   const demoTabs = [
