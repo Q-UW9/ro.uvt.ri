@@ -1,13 +1,33 @@
 import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 
 import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 
 const navLinks = [
-  'About',
-  'Admissions',
-  'Erasmus',
-  'Research',
-  'Contact',
+  {
+    label: 'Home',
+    to: '/',
+  },
+
+  {
+    label: 'Admissions',
+    to: '/admissions',
+  },
+
+  {
+    label: 'Erasmus',
+    to: '/erasmus',
+  },
+
+  {
+    label: 'Research',
+    to: '/research',
+  },
+
+  {
+    label: 'Contact',
+    to: '/contact',
+  },
 ]
 
 export function Navbar() {
@@ -16,22 +36,25 @@ export function Navbar() {
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <div className="text-xl font-bold text-uvt-blue">
+        <Link
+          to="/"
+          className="text-xl font-bold text-uvt-blue"
+        >
           UVT RI
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
+            <Link
+              key={link.label}
+              to={link.to}
               className={clsx(
                 'text-sm font-medium text-gray-700 transition-colors hover:text-uvt-blue'
               )}
             >
-              {link}
-            </a>
+              {link.label}
+            </Link>
           ))}
 
           <LanguageSwitcher />
