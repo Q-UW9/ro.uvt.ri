@@ -1,9 +1,10 @@
-import { HeroSection } from '../components/organisms/HeroSection/HeroSection'
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { PageLayout } from '../components/templates/PageLayout/PageLayout'
 import { PageTransition } from '../components/templates/PageTransition/PageTransition'
+
+import { SectionRenderer } from '../components/templates/SectionRenderer/SectionRenderer'
 
 import { Card } from '../components/molecules/Card/Card'
 
@@ -11,10 +12,11 @@ import { Divider } from '../components/atoms/Divider/Divider'
 import { Icon } from '../components/atoms/Icon/Icon'
 
 import { homeSections } from '../data/homeSections'
+import { homePageData } from '../data/homePageData'
 
 import { s } from './UnderConstruction.styles'
 
-function UnderConstruction(){
+function UnderConstruction() {
 
 const demoTabs=[
 
@@ -25,7 +27,7 @@ content:<p>Admissions info here.</p>
 
 {
 label:'Erasmus',
-content:<p>Erasmus info here.</p>
+content:<p>Erasmus details here.</p>
 },
 
 {
@@ -41,20 +43,8 @@ return(
 
 <PageLayout>
 
-<HeroSection
-
-title="Study Internationally at UVT"
-
-subtitle="Discover admissions, mobility programs, academic opportunities and student life."
-
-primaryButtonText="Apply"
-
-secondaryButtonText="Explore Erasmus"
-
-primaryButtonLink="/admissions"
-
-secondaryButtonLink="/erasmus"
-
+<SectionRenderer
+sections={homePageData}
 />
 
 <section className="mx-auto max-w-[1280px] px-6 py-20">
@@ -70,7 +60,6 @@ Explore Opportunities
 {homeSections.map((card)=>(
 
 <Card
-
 key={card.id}
 
 title={card.title}
