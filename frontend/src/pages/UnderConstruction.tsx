@@ -45,18 +45,27 @@ function UnderConstruction() {
 
   return (
     <PageLayout>
+
       <HeroSection
         title="Welcome to UVT RI"
+
         subtitle="Building a reusable frontend architecture for the university platform."
-        primaryButtonText="Get Started"
-        secondaryButtonText="Learn More"
+
+        primaryButtonText="Admissions"
+
+        secondaryButtonText="Erasmus"
+
+        primaryButtonLink="/admissions"
+
+        secondaryButtonLink="/erasmus"
       />
 
-      <div className="mx-auto max-w-[1280px] px-6">
-        <TabsSection tabs={demoTabs} />
-      </div>
-
       <div className="mx-auto max-w-[1280px] px-6 py-16">
+
+        <h2 className="mb-8 text-3xl font-bold">
+          Explore UVT
+        </h2>
+
         <ContentGrid columns={3}>
           {cardsData.map((card) => (
             <Card
@@ -67,6 +76,13 @@ function UnderConstruction() {
             />
           ))}
         </ContentGrid>
+
+      </div>
+
+      <div className="mx-auto max-w-[1280px] px-6 py-16">
+
+        <TabsSection tabs={demoTabs} />
+
       </div>
 
       <div className="mx-auto max-w-[1280px] space-y-8 px-6 py-12">
@@ -74,15 +90,20 @@ function UnderConstruction() {
         <Divider />
 
         <div className="flex gap-6 text-3xl">
+
           <Icon name="globe" />
+
           <Icon name="graduate" />
+
           <Icon name="mail" />
+
         </div>
 
       </div>
 
       <div className={s.container}>
         <div className={s.card}>
+
           <div className={s.icon}>
             🚧
           </div>
@@ -98,8 +119,10 @@ function UnderConstruction() {
           <p className={s.subtitle}>
             The site is under construction. Please check back soon.
           </p>
+
         </div>
       </div>
+
     </PageLayout>
   )
 }
