@@ -1,54 +1,62 @@
 import clsx from 'clsx'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-interface ButtonProps {
-  children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'ghost'
+interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode
+  variant?: 'primary' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
-  className?: string
-  type?: 'button' | 'submit' | 'reset'
-  disabled?: boolean
-  onClick?: () => void
-}
-
-const variants = {
-  primary:
-    'bg-uvt-blue text-white hover:bg-uvt-navy',
-
-  secondary:
-    'bg-uvt-gold text-black hover:opacity-90',
-
-  ghost:
-    'border border-gray-300 bg-white text-black hover:bg-gray-100',
-}
-
-const sizes = {
-  sm: 'px-3 py-2 text-sm',
-  md: 'px-5 py-3 text-base',
-  lg: 'px-7 py-4 text-lg',
 }
 
 export function Button({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant='primary',
+  size='md',
   className,
-  type = 'button',
-  disabled = false,
-  onClick,
+  ...props
 }: ButtonProps) {
   return (
     <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
       className={clsx(
-        'rounded-lg font-medium transition-all duration-200',
-        'focus:outline-none focus:ring-2 focus:ring-uvt-blue focus:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:opacity-50',
-        variants[variant],
-        sizes[size],
+
+        'rounded-xl font-medium transition-all duration-200',
+        'focus:outline-none focus:ring-2 focus:ring-blue-300',
+        'active:scale-95',
+
+        /* Primary */
+        variant === 'primary' &&
+          `
+          bg-blue-600
+          text-white
+
+          hover:bg-blue-700
+          active:bg-blue-800
+          shadow-sm
+          hover:shadow-md
+          `,
+
+        /* Secondary */
+        variant === 'secondary' &&
+          `
+          border border-blue-600
+          text-blue-600
+          bg-white
+
+          hover:bg-blue-50
+          active:bg-blue-100
+          `,
+
+        /* Sizes */
+        size === 'sm' && 'px-4 py-2 text-sm',
+
+        size === 'md' && 'px-6 py-3',
+
+        size === 'lg' && 'px-8 py-4 text-lg',
+
         className
       )}
+
+      {...props}
     >
       {children}
     </button>
