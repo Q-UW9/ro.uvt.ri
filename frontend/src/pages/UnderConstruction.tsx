@@ -12,25 +12,28 @@ import { Icon } from '../components/atoms/Icon/Icon'
 
 import { homeSections } from '../data/homeSections'
 
-import { s } from './UnderConstruction.styles.js'
+import { s } from './UnderConstruction.styles'
 
-function UnderConstruction() {
-  const demoTabs = [
-    {
-      label:'Admissions',
-      content:<p>Admissions information here.</p>
-    },
+function UnderConstruction(){
 
-    {
-      label:'Erasmus',
-      content:<p>Erasmus details here.</p>
-    },
+const demoTabs=[
 
-    {
-      label:'Contact',
-      content:<p>Contact information here.</p>
-    }
-  ]
+{
+label:'Admissions',
+content:<p>Admissions info here.</p>
+},
+
+{
+label:'Erasmus',
+content:<p>Erasmus info here.</p>
+},
+
+{
+label:'Contact',
+content:<p>Contact info here.</p>
+}
+
+]
 
 return(
 
@@ -40,13 +43,13 @@ return(
 
 <HeroSection
 
-title="Welcome to UVT RI"
+title="Study Internationally at UVT"
 
-subtitle="Building a reusable frontend architecture for the university platform."
+subtitle="Discover admissions, mobility programs, academic opportunities and student life."
 
-primaryButtonText="Admissions"
+primaryButtonText="Apply"
 
-secondaryButtonText="Erasmus"
+secondaryButtonText="Explore Erasmus"
 
 primaryButtonLink="/admissions"
 
@@ -54,10 +57,12 @@ secondaryButtonLink="/erasmus"
 
 />
 
-<div className="mx-auto max-w-[1280px] px-6 py-16">
+<section className="mx-auto max-w-[1280px] px-6 py-20">
 
-<h2 className="mb-8 text-3xl font-bold">
-Explore UVT
+<h2 className="mb-10 text-4xl font-bold">
+
+Explore Opportunities
+
 </h2>
 
 <ContentGrid columns={3}>
@@ -82,19 +87,29 @@ route={card.route}
 
 </ContentGrid>
 
-</div>
+</section>
 
-<div className="mx-auto max-w-[1280px] px-6 py-16">
+<section className="bg-gray-50 py-20">
+
+<div className="mx-auto max-w-[1280px] px-6">
+
+<h2 className="mb-10 text-4xl font-bold">
+
+Student Resources
+
+</h2>
 
 <TabsSection tabs={demoTabs}/>
 
 </div>
 
-<div className="mx-auto max-w-[1280px] space-y-8 px-6 py-12">
+</section>
+
+<section className="mx-auto max-w-[1280px] space-y-8 px-6 py-16">
 
 <Divider/>
 
-<div className="flex gap-6 text-3xl">
+<div className="flex gap-6 text-4xl">
 
 <Icon name="globe"/>
 
@@ -104,10 +119,9 @@ route={card.route}
 
 </div>
 
-</div>
+</section>
 
 <div className={s.container}>
-
 <div className={s.card}>
 
 <div className={s.icon}>
@@ -129,7 +143,6 @@ Please check back soon.
 </p>
 
 </div>
-
 </div>
 
 </PageLayout>
