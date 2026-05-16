@@ -9,7 +9,7 @@ import { Card } from '../components/molecules/Card/Card'
 import { Divider } from '../components/atoms/Divider/Divider'
 import { Icon } from '../components/atoms/Icon/Icon'
 
-import { cardsData } from '../data/cards'
+import { homeSections } from '../data/homeSections'
 
 import { s } from './UnderConstruction.styles'
 
@@ -48,18 +48,16 @@ function UnderConstruction() {
 
       <HeroSection
         title="Welcome to UVT RI"
-
         subtitle="Building a reusable frontend architecture for the university platform."
 
         primaryButtonText="Admissions"
-
         secondaryButtonText="Erasmus"
 
         primaryButtonLink="/admissions"
-
         secondaryButtonLink="/erasmus"
       />
 
+      {/* Quick Access Section */}
       <div className="mx-auto max-w-[1280px] px-6 py-16">
 
         <h2 className="mb-8 text-3xl font-bold">
@@ -67,40 +65,38 @@ function UnderConstruction() {
         </h2>
 
         <ContentGrid columns={3}>
-          {cardsData.map((card) => (
+          {homeSections.map((card) => (
             <Card
               key={card.id}
               title={card.title}
               description={card.description}
               buttonText={card.buttonText}
+              route={card.route}
             />
           ))}
         </ContentGrid>
 
       </div>
 
+      {/* Tabs */}
       <div className="mx-auto max-w-[1280px] px-6 py-16">
-
         <TabsSection tabs={demoTabs} />
-
       </div>
 
+      {/* Icons Section */}
       <div className="mx-auto max-w-[1280px] space-y-8 px-6 py-12">
 
         <Divider />
 
         <div className="flex gap-6 text-3xl">
-
           <Icon name="globe" />
-
           <Icon name="graduate" />
-
           <Icon name="mail" />
-
         </div>
 
       </div>
 
+      {/* Under Construction */}
       <div className={s.container}>
         <div className={s.card}>
 
@@ -113,11 +109,13 @@ function UnderConstruction() {
           </h1>
 
           <p className={s.text}>
-            Site-ul este în construcție. Vă rugăm reveniți curând.
+            Site-ul este în construcție.
+            Vă rugăm reveniți curând.
           </p>
 
           <p className={s.subtitle}>
-            The site is under construction. Please check back soon.
+            The site is under construction.
+            Please check back soon.
           </p>
 
         </div>

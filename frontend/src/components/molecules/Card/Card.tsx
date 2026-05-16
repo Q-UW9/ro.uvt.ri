@@ -1,62 +1,39 @@
-import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 
 import { Button } from '../../atoms/Button/Button'
-import { Typography } from '../../atoms/Typography/Typography'
 
 interface CardProps {
   title: string
   description: string
-  imageUrl?: string
   buttonText?: string
-  className?: string
+  route?: string
 }
 
 export function Card({
   title,
   description,
-  imageUrl,
   buttonText,
-  className,
-}: CardProps) {
+  route='/'
+}:CardProps) {
   return (
-    <article
-      className={clsx(
-        'overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md',
-        className
+    <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+      <h3 className="mb-4 text-2xl font-semibold">
+        {title}
+      </h3>
+
+      <p className="mb-6 text-gray-600">
+        {description}
+      </p>
+
+      {buttonText && (
+        <Link to={route}>
+          <Button>
+            {buttonText}
+          </Button>
+        </Link>
       )}
-    >
-      {/* Optional image */}
-      {imageUrl && (
-        <div className="h-52 w-full overflow-hidden bg-gray-100">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      )}
 
-      {/* Content */}
-      <div className="space-y-4 p-6">
-        <Typography variant="h3">
-          {title}
-        </Typography>
-
-        <Typography
-          variant="body"
-          className="text-gray-600"
-        >
-          {description}
-        </Typography>
-
-        {buttonText && (
-          <div className="pt-2">
-            <Button variant="primary">
-              {buttonText}
-            </Button>
-          </div>
-        )}
-      </div>
-    </article>
+    </div>
   )
 }
