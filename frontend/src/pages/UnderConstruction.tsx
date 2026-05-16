@@ -3,6 +3,7 @@ import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { PageLayout } from '../components/templates/PageLayout/PageLayout'
+import { PageTransition } from '../components/templates/PageTransition/PageTransition'
 
 import { Card } from '../components/molecules/Card/Card'
 
@@ -11,118 +12,132 @@ import { Icon } from '../components/atoms/Icon/Icon'
 
 import { homeSections } from '../data/homeSections'
 
-import { s } from './UnderConstruction.styles'
+import { s } from './UnderConstruction.styles.js'
 
 function UnderConstruction() {
   const demoTabs = [
     {
-      label: 'Admissions',
-      content: (
-        <p>
-          Admissions information will appear here.
-        </p>
-      ),
+      label:'Admissions',
+      content:<p>Admissions information here.</p>
     },
 
     {
-      label: 'Erasmus',
-      content: (
-        <p>
-          Erasmus exchange details will appear here.
-        </p>
-      ),
+      label:'Erasmus',
+      content:<p>Erasmus details here.</p>
     },
 
     {
-      label: 'Contact',
-      content: (
-        <p>
-          Contact information will appear here.
-        </p>
-      ),
-    },
+      label:'Contact',
+      content:<p>Contact information here.</p>
+    }
   ]
 
-  return (
-    <PageLayout>
+return(
 
-      <HeroSection
-        title="Welcome to UVT RI"
-        subtitle="Building a reusable frontend architecture for the university platform."
+<PageTransition>
 
-        primaryButtonText="Admissions"
-        secondaryButtonText="Erasmus"
+<PageLayout>
 
-        primaryButtonLink="/admissions"
-        secondaryButtonLink="/erasmus"
-      />
+<HeroSection
 
-      {/* Quick Access Section */}
-      <div className="mx-auto max-w-[1280px] px-6 py-16">
+title="Welcome to UVT RI"
 
-        <h2 className="mb-8 text-3xl font-bold">
-          Explore UVT
-        </h2>
+subtitle="Building a reusable frontend architecture for the university platform."
 
-        <ContentGrid columns={3}>
-          {homeSections.map((card) => (
-            <Card
-              key={card.id}
-              title={card.title}
-              description={card.description}
-              buttonText={card.buttonText}
-              route={card.route}
-            />
-          ))}
-        </ContentGrid>
+primaryButtonText="Admissions"
 
-      </div>
+secondaryButtonText="Erasmus"
 
-      {/* Tabs */}
-      <div className="mx-auto max-w-[1280px] px-6 py-16">
-        <TabsSection tabs={demoTabs} />
-      </div>
+primaryButtonLink="/admissions"
 
-      {/* Icons Section */}
-      <div className="mx-auto max-w-[1280px] space-y-8 px-6 py-12">
+secondaryButtonLink="/erasmus"
 
-        <Divider />
+/>
 
-        <div className="flex gap-6 text-3xl">
-          <Icon name="globe" />
-          <Icon name="graduate" />
-          <Icon name="mail" />
-        </div>
+<div className="mx-auto max-w-[1280px] px-6 py-16">
 
-      </div>
+<h2 className="mb-8 text-3xl font-bold">
+Explore UVT
+</h2>
 
-      {/* Under Construction */}
-      <div className={s.container}>
-        <div className={s.card}>
+<ContentGrid columns={3}>
 
-          <div className={s.icon}>
-            🚧
-          </div>
+{homeSections.map((card)=>(
 
-          <h1 className={s.title}>
-            Site în lucru
-          </h1>
+<Card
 
-          <p className={s.text}>
-            Site-ul este în construcție.
-            Vă rugăm reveniți curând.
-          </p>
+key={card.id}
 
-          <p className={s.subtitle}>
-            The site is under construction.
-            Please check back soon.
-          </p>
+title={card.title}
 
-        </div>
-      </div>
+description={card.description}
 
-    </PageLayout>
-  )
+buttonText={card.buttonText}
+
+route={card.route}
+
+/>
+
+))}
+
+</ContentGrid>
+
+</div>
+
+<div className="mx-auto max-w-[1280px] px-6 py-16">
+
+<TabsSection tabs={demoTabs}/>
+
+</div>
+
+<div className="mx-auto max-w-[1280px] space-y-8 px-6 py-12">
+
+<Divider/>
+
+<div className="flex gap-6 text-3xl">
+
+<Icon name="globe"/>
+
+<Icon name="graduate"/>
+
+<Icon name="mail"/>
+
+</div>
+
+</div>
+
+<div className={s.container}>
+
+<div className={s.card}>
+
+<div className={s.icon}>
+🚧
+</div>
+
+<h1 className={s.title}>
+Site în lucru
+</h1>
+
+<p className={s.text}>
+Site-ul este în construcție.
+Vă rugăm reveniți curând.
+</p>
+
+<p className={s.subtitle}>
+The site is under construction.
+Please check back soon.
+</p>
+
+</div>
+
+</div>
+
+</PageLayout>
+
+</PageTransition>
+
+)
+
 }
 
 export default UnderConstruction

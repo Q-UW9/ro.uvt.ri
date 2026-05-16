@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 
@@ -32,10 +32,9 @@ const navLinks = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
 
-        {/* Logo */}
         <Link
           to="/"
           className="text-xl font-bold text-uvt-blue"
@@ -43,30 +42,43 @@ export function Navbar() {
           UVT RI
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex">
+
           {navLinks.map((link) => (
-            <Link
+
+            <NavLink
               key={link.label}
               to={link.to}
-              className={clsx(
-                'text-sm font-medium text-gray-700 transition-colors hover:text-uvt-blue'
-              )}
+
+              className={({isActive})=>
+
+              clsx(
+                'text-sm font-medium transition-colors',
+
+                isActive
+                  ? 'text-uvt-blue'
+                  : 'text-gray-700 hover:text-uvt-blue'
+              )
+
+              }
+
             >
               {link.label}
-            </Link>
+            </NavLink>
+
           ))}
 
-          <LanguageSwitcher />
+          <LanguageSwitcher/>
+
         </nav>
 
-        {/* Mobile */}
         <button
           type="button"
           className="rounded-lg border border-gray-200 px-4 py-2 text-sm md:hidden"
         >
           Menu
         </button>
+
       </div>
     </header>
   )
