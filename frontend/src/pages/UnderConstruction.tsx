@@ -1,9 +1,9 @@
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
+import { NewsSection } from '../components/organisms/NewsSection/NewsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { PageLayout } from '../components/templates/PageLayout/PageLayout'
 import { PageTransition } from '../components/templates/PageTransition/PageTransition'
-
 import { SectionRenderer } from '../components/templates/SectionRenderer/SectionRenderer'
 
 import { Card } from '../components/molecules/Card/Card'
@@ -13,10 +13,11 @@ import { Icon } from '../components/atoms/Icon/Icon'
 
 import { homeSections } from '../data/homeSections'
 import { homePageData } from '../data/homePageData'
+import { announcements } from '../data/announcements'
 
 import { s } from './UnderConstruction.styles'
 
-function UnderConstruction() {
+function UnderConstruction(){
 
 const demoTabs=[
 
@@ -32,7 +33,7 @@ content:<p>Erasmus details here.</p>
 
 {
 label:'Contact',
-content:<p>Contact info here.</p>
+content:<p>Contact information here.</p>
 }
 
 ]
@@ -78,6 +79,10 @@ route={card.route}
 
 </section>
 
+<NewsSection
+items={announcements}
+/>
+
 <section className="bg-gray-50 py-20">
 
 <div className="mx-auto max-w-[1280px] px-6">
@@ -111,6 +116,7 @@ Student Resources
 </section>
 
 <div className={s.container}>
+
 <div className={s.card}>
 
 <div className={s.icon}>
@@ -132,6 +138,7 @@ Please check back soon.
 </p>
 
 </div>
+
 </div>
 
 </PageLayout>
