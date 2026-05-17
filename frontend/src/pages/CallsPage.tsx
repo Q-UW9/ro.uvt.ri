@@ -1,11 +1,11 @@
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 
-function ContactPage() {
+function CallsPage() {
   return (
-    <InnerPageTemplate title="Contact">
+    <InnerPageTemplate title="Calls">
       <p>Content coming soon.</p>
     </InnerPageTemplate>
   )
 }
 
-export default ContactPage
+export default CallsPage

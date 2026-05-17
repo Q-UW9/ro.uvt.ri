@@ -1,11 +1,11 @@
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 
-function ContactPage() {
+function IntlUkrainePage() {
   return (
-    <InnerPageTemplate title="Contact">
+    <InnerPageTemplate title="International Students — Ukraine">
       <p>Content coming soon.</p>
     </InnerPageTemplate>
   )
 }
 
-export default ContactPage
+export default IntlUkrainePage

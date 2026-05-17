@@ -1,11 +1,11 @@
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 
-function ContactPage() {
+function ErasmusPartnerCountriesPage() {
   return (
-    <InnerPageTemplate title="Contact">
+    <InnerPageTemplate title="Erasmus — Partner Countries">
       <p>Content coming soon.</p>
     </InnerPageTemplate>
   )
 }
 
-export default ContactPage
+export default ErasmusPartnerCountriesPage
