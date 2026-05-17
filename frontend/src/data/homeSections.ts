@@ -1,28 +1,72 @@
 export const homeSections = [
   {
-    id: 1,
-    title: 'Admissions',
+    id:1,
+    title:'International Applicants',
     description:
-      'Explore admission requirements and application information.',
-    buttonText: 'Explore',
-    route: '/admissions',
+      'Find the correct admission pathway and requirements.',
+
+    buttonText:'Open',
+
+    route:'/international-students'
   },
 
   {
-    id: 2,
-    title: 'Erasmus',
+    id:2,
+    title:'Incoming Erasmus Students',
+
     description:
-      'Discover exchange opportunities and mobility programs.',
-    buttonText: 'Learn More',
-    route: '/erasmus',
+      'Explore study opportunities at UVT.',
+
+    buttonText:'Open',
+
+    route:'/erasmus/incoming'
   },
 
   {
-    id: 3,
-    title: 'Research',
+    id:3,
+    title:'Outgoing Erasmus Students',
+
     description:
-      'Explore research initiatives and academic projects.',
-    buttonText: 'Read More',
-    route: '/research',
+      'Mobility opportunities for current UVT students.',
+
+    buttonText:'Open',
+
+    route:'/erasmus/outgoing'
   },
+
+  {
+    id:4,
+    title:'Staff Mobility',
+
+    description:
+      'Teaching and training mobility information.',
+
+    buttonText:'Open',
+
+    route:'/erasmus/staff'
+  },
+
+  {
+    id:5,
+    title:'Partnerships',
+
+    description:
+      'Institution collaboration and agreements.',
+
+    buttonText:'Open',
+
+    route:'/partnerships'
+  },
+
+  {
+    id:6,
+    title:'Contact Us',
+
+    description:
+      'Find support and contact guidance.',
+
+    buttonText:'Open',
+
+    route:'/contact'
+  }
 ]
