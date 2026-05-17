@@ -1,0 +1,496 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{statusGreen}{HTML}{1B7A3A}
+\definecolor{statusRed}{HTML}{C0392B}
+\definecolor{statusOrange}{HTML}{B7580A}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uvtBlue,
+    urlcolor=uvtBlue,
+    citecolor=uvtBlue
+}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------- Icons and checkbox ----------
+\usepackage{fontawesome5}
+\usepackage{amssymb}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{
+    sharp corners=south,
+    boxrule=0pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{bluebox}{
+    colback=uvtLightBlue,
+    colframe=uvtBlue,
+    borderline west={4pt}{0pt}{uvtBlue}
+}
+
+\newtcolorbox{yellowbox}{
+    colback=uvtYellow!16,
+    colframe=uvtYellow,
+    borderline west={4pt}{0pt}{uvtYellow}
+}
+
+\newtcolorbox{darkbox}{
+    colback=uvtDarkBlue,
+    coltext=white,
+    colframe=uvtDarkBlue
+}
+
+\newtcolorbox{redbox}{
+    colback=statusRed!8,
+    colframe=statusRed,
+    borderline west={4pt}{0pt}{statusRed}
+}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Role 6 Week 4 Review}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{softGray},
+    frame=single,
+    rulecolor=\color{softGray},
+    breaklines=true,
+    columns=fullflexible
+}
+
+\color{textGray}
+
+% ==========================================================
+\begin{document}
+% ==========================================================
+
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+
+    \vspace*{2cm}
+
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em]
+    Role 6 --- Week 4 Review (Updated)\par}
+
+    \vspace{0.8cm}
+
+    {\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+    West University of Timi\c{s}oara\par}
+
+    \vspace{1.5cm}
+
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Focus:} Updated assessment of Role 6 Week 4 deliverables.
+        CPTs and ACF field groups were created and REST-enabled. However,
+        field names are inconsistent with the plan throughout, CPT archive
+        settings are wrong, taxonomies are unverified, global field groups
+        are absent, and documentation files are unusable stubs.
+        1 item fully done. 9 partial. 9 missing or wrong.
+    \end{yellowbox}
+
+    \vfill
+
+    {\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[0.4em]
+    Team Q-UW9 \quad|\quad Reviewed: 2026-05-17}
+
+    \vspace{1cm}
+\end{titlepage}
+
+\nopagecolor
+\color{textGray}
+
+\tableofcontents
+\newpage
+
+% ==========================================================
+\section{What Was Done Correctly}
+% ==========================================================
+
+\begin{longtable}{@{}p{5cm}p{4.5cm}p{3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Evidence} & \textbf{Notes} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Evidence} & \textbf{Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+4 CPTs registered with \texttt{show\_in\_rest: true} & \texttt{cptui-export.json} & programmes, calls, stories, resources \\
+CPTUI export committed & \texttt{cptui-export.json} at repo root & Importable \\
+ACF field group for calls & \texttt{group\_6a087f7aa179c.json} & \texttt{show\_in\_rest: 1} \checkmark \\
+ACF field group for programmes & \texttt{group\_6a010285605db.json} & \texttt{show\_in\_rest: 1} \checkmark \\
+ACF field group for resources & \texttt{group\_6a0880749381c.json} & \texttt{show\_in\_rest: 1} \checkmark \\
+ACF field group for stories & \texttt{group\_6a08815042fd6.json} & \texttt{show\_in\_rest: 1} \checkmark \\
+ACF Local JSON Sync enabled & \texttt{acf-json/} in \texttt{twentytwentyfive} theme & 4 JSON files committed \\
+REST enabled on all field groups & \texttt{show\_in\_rest: 1} in all 4 files & ACF REST exposure active \\
+5 documentation files created & \texttt{docs/week4/} folder & Files present \\
+4 taxonomies listed in doc & \texttt{wordpress-cpt-taxonomy-setup.md} & audience, programme-family, content-topic, academic-year \\
+\end{longtable}
+
+% ==========================================================
+\section{What Is Wrong or Incomplete}
+% ==========================================================
+
+\subsection{Folder Structure --- Not Fixed}
+
+WordPress files remain at the root of \texttt{roles/role6/ro.uvt.ri/} instead of inside
+\texttt{wordpress/ro.uvt.ri/}. This was Step 1 in the plan and is still unresolved.
+\texttt{cptui-export.json} is committed at the repo root rather than at
+\texttt{wordpress/ro.uvt.ri/cptui-export.json}.
+
+\subsection{ACF Field Names Do Not Match the Plan}
+
+\begin{darkbox}
+This is the most critical issue. Field names are the contract between the WordPress backend
+and Role 5's API helpers. Every field group has been built with different names than the
+plan specifies. If Role 5 writes API helpers from the plan's names, the frontend will
+receive \texttt{undefined} for every ACF field.
+\end{darkbox}
+
+\vspace{0.8em}
+\noindent\textbf{Calls --- \texttt{group\_6a087f7aa179c.json}}
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{4cm}p{4.2cm}p{4.1cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{deadline} (date picker) & \texttt{application\_deadline} & \textcolor{statusRed}{\textbf{Name mismatch}} \\
+\texttt{eligibility} (textarea) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\texttt{application\_steps} (repeater) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\texttt{documents} (repeater) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+--- & \texttt{financial\_support} (text) & \textcolor{statusOrange}{Undocumented addition} \\
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Programmes --- \texttt{group\_6a010285605db.json}}
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{4cm}p{4.2cm}p{4.1cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{duration} (text) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\texttt{language} (text) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\texttt{partner\_institution} (text) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\texttt{application\_deadline} (date) & \texttt{field\_1:\_deadline} (date) & \textcolor{statusRed}{\textbf{Broken field name}} \\
+--- & \texttt{country} (select, empty) & \textcolor{statusOrange}{Not in plan} \\
+--- & \texttt{coordinator\_email} (email) & \textcolor{statusOrange}{Not in plan} \\
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Resources --- \texttt{group\_6a0880749381c.json}}
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{4cm}p{4.2cm}p{4.1cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{file\_url} (url) & \texttt{download\_url} (url) & \textcolor{statusRed}{\textbf{Name mismatch}} \\
+\texttt{file\_type} (select, 4 values) & \texttt{document\_type} (select, malformed) & \textcolor{statusRed}{\textbf{Mismatch + choices broken}} \\
+\texttt{audience\_notes} (textarea) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Stories --- \texttt{group\_6a08815042fd6.json}}
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{4cm}p{4.2cm}p{4.1cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Plan specifies} & \textbf{Actual in JSON} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{author} (text) & \texttt{testimonial\_author} (text) & \textcolor{statusRed}{\textbf{Name mismatch}} \\
+\texttt{story\_date} (date picker) & \texttt{study\_destination} (text) & \textcolor{statusRed}{\textbf{Wrong field entirely}} \\
+\texttt{pull\_quote} (textarea) & --- & \textcolor{statusRed}{\textbf{Missing}} \\
+\end{longtable}
+
+\subsection{CPT Configuration Defects}
+
+\begin{longtable}{@{}p{3.2cm}p{3.5cm}p{3.5cm}p{2.1cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Setting} & \textbf{Plan requires} & \textbf{Actual} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Setting} & \textbf{Plan requires} & \textbf{Actual} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{has\_archive} & \texttt{true} for all & \texttt{false} for all 4 & \textcolor{statusRed}{\textbf{Wrong}} \\
+\texttt{supports} & title, editor, thumbnail, excerpt & title, editor, thumbnail & \textcolor{statusRed}{\textbf{Missing excerpt}} \\
+Taxonomy attachments & audience + per-CPT others & Empty on all CPTs & \textcolor{statusRed}{\textbf{Not attached}} \\
+\texttt{people} CPT & Pending Role 1 decision & Not present & \textcolor{statusRed}{\textbf{Missing}} \\
+\end{longtable}
+
+\subsection{Taxonomies --- Not Verified as Registered}
+
+\texttt{wordpress-cpt-taxonomy-setup.md} lists the 4 taxonomies by name, but there is no
+taxonomy export in the CPTUI file and the \texttt{taxonomies} arrays in all CPTs are empty.
+There is no evidence the taxonomies were actually registered in WordPress --- only that they
+were named in a text file. A CPTUI taxonomy export must exist for the configuration to be
+replicable by teammates.
+
+\subsection{No Global ACF Field Groups}
+
+The plan requires 5 global field groups for use across WP Pages. None of the 4
+\texttt{acf-json/} files correspond to global groups.
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{4cm}p{8.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Group} & \textbf{Status} \\
+\midrule
+CTA block & \textcolor{statusRed}{\textbf{Not created}} \\
+Process steps & \textcolor{statusRed}{\textbf{Not created}} \\
+FAQ section & \textcolor{statusRed}{\textbf{Not created}} \\
+Contact card & \textcolor{statusRed}{\textbf{Not created}} \\
+Document repeater & \textcolor{statusRed}{\textbf{Not created}} \\
+\bottomrule
+\end{tabular}
+
+\subsection{Documentation Files Are Superficial Stubs}
+
+\noindent\textbf{\texttt{wordpress-content-structure-notes.md} --- 8 lines.}
+Two-sentence strategy statement only. No route table, no taxonomy mapping, no coverage of
+the Erasmus or International Students section trees.
+
+\vspace{0.5em}
+\noindent\textbf{\texttt{rest-api-exposure-checklist.md} --- 4 bullet points.}
+High-level checkboxes only. No endpoint URLs, no field names, no query parameter
+documentation. Role 5 cannot write API helpers from this document.
+
+\vspace{0.5em}
+\noindent\textbf{\texttt{static-vs-dynamic-content.md} --- 8 lines.}
+Lists 3 static slugs and 4 dynamic base endpoints. No mixed routes. No detail routes.
+Fewer than a quarter of sitemap routes covered.
+
+\vspace{0.5em}
+\noindent\textbf{\texttt{wordpress-cpt-taxonomy-setup.md} --- Taxonomies only.}
+No CPT settings, no REST configuration record, no attachment mapping.
+
+\vspace{0.5em}
+\noindent\textbf{\texttt{structured-fields-setup.md} --- Wrong field names.}
+Documents fields that differ from both the plan and the actual ACF JSON. Cannot serve as
+the reference document for Role 5.
+
+\subsection{Frontend API Helpers --- Not Extended}
+
+\texttt{frontend/src/api/wordpress.js} is unchanged from Week 3. Only \texttt{getPosts()}
+and \texttt{getPost(slug)} exist. No CPT helpers were added.
+
+\subsection{Test Entries --- Unverifiable}
+
+No test content entries are committed (database-only). The ACF field name mismatches mean
+that even if entries existed, the response shape would not match what Role 5 expects.
+
+% ==========================================================
+\section{Deliverables Scorecard}
+% ==========================================================
+
+\begin{longtable}{@{}p{5.2cm}p{1.4cm}p{2.2cm}p{3.5cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Deliverable} & \textbf{Req'd} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Deliverable} & \textbf{Req'd} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Folder structure fixed & Yes & \textcolor{statusRed}{\textbf{No}} & WP still at root \\
+\texttt{cptui-export.json} committed & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Wrong path; no taxonomy export \\
+\texttt{call} CPT with REST & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Archive false; no taxonomies attached \\
+\texttt{story} CPT with REST & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Same issues \\
+\texttt{resource} CPT with REST & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Same issues \\
+\texttt{programme} CPT with REST & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Same issues \\
+\texttt{people} CPT & Decision req'd & \textcolor{statusRed}{\textbf{Missing}} & Not created \\
+Taxonomies registered & Yes & \textcolor{statusOrange}{\textbf{Unverified}} & Listed in doc; no export; not attached \\
+ACF field groups (4 CPTs) & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Created + REST enabled; field names wrong \\
+\texttt{acf-json/} committed & Yes & \textcolor{statusGreen}{\textbf{Done}} & 4 files in correct theme folder \\
+Global ACF field groups (5) & Yes & \textcolor{statusRed}{\textbf{Missing}} & None created \\
+REST endpoints verified & Yes & \textcolor{statusRed}{\textbf{Unknown}} & No verification record \\
+Test entries per CPT & Yes & \textcolor{statusRed}{\textbf{Missing}} & No evidence \\
+\texttt{wordpress-content-structure-notes.md} & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Too thin \\
+\texttt{rest-api-exposure-checklist.md} & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Unusable as contract \\
+\texttt{static-vs-dynamic-content.md} & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Incomplete \\
+\texttt{wordpress-cpt-taxonomy-setup.md} & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Taxonomies only; no CPT config \\
+\texttt{structured-fields-setup.md} & Yes & \textcolor{statusOrange}{\textbf{Partial}} & Wrong field names \\
+Frontend CPT API helpers & Yes & \textcolor{statusRed}{\textbf{Missing}} & \texttt{wordpress.js} unchanged \\
+\end{longtable}
+
+\vspace{0.5em}
+\begin{darkbox}
+\textbf{1 fully done} (acf-json/ committed) \quad\textbf{9 partial} \quad\textbf{9 missing or wrong}
+\end{darkbox}
+
+% ==========================================================
+\section{Work to Finish}
+% ==========================================================
+
+Tasks are ordered by dependency. Later groups should not start before the preceding group
+is complete.
+
+\subsection{Group 1 --- Fix Structural Issues (No WordPress Required)}
+
+\begin{itemize}
+    \item[$\square$] Move WordPress files into \texttt{wordpress/ro.uvt.ri/} in the role fork. Pull updated \texttt{.gitignore} from main.
+    \item[$\square$] Move \texttt{cptui-export.json} to \texttt{wordpress/ro.uvt.ri/cptui-export.json}.
+    \item[$\square$] Rewrite \texttt{rest-api-exposure-checklist.md} with every endpoint URL, required field name, ACF exposure flag, and query params. The current version cannot serve as a contract for Role 5.
+    \item[$\square$] Rewrite \texttt{wordpress-content-structure-notes.md} with the full route table covering all sitemap routes mapped to content type.
+    \item[$\square$] Rewrite \texttt{static-vs-dynamic-content.md} covering all routes including nested Erasmus and International Students routes and all dynamic detail routes.
+    \item[$\square$] Rewrite \texttt{structured-fields-setup.md} to match agreed ACF field names exactly (coordinate with Group 2 first).
+\end{itemize}
+
+\subsection{Group 2 --- Fix ACF Field Names and CPT Config (Requires Laragon)}
+
+\begin{yellowbox}
+\textbf{Coordinate with Role 5 first.} Agree field names before making any changes.
+Renaming after Role 5 has written helpers will break the integration.
+\end{yellowbox}
+
+\begin{itemize}
+    \item[$\square$] Fix Calls group: rename \texttt{application\_deadline} \textrightarrow{} \texttt{deadline}; add \texttt{eligibility} (textarea), \texttt{application\_steps} (repeater), \texttt{documents} (repeater). Decide on \texttt{financial\_support}.
+    \item[$\square$] Fix Programmes group: fix broken name \texttt{field\_1:\_deadline} \textrightarrow{} \texttt{application\_deadline}; add \texttt{duration}, \texttt{language}, \texttt{partner\_institution}. Decide on \texttt{country} and \texttt{coordinator\_email}.
+    \item[$\square$] Fix Resources group: rename \texttt{download\_url} \textrightarrow{} \texttt{file\_url}; rename \texttt{document\_type} \textrightarrow{} \texttt{file\_type}; fix select choices (PDF, DOCX, XLS, Other as separate values); add \texttt{audience\_notes} (textarea).
+    \item[$\square$] Fix Stories group: rename \texttt{testimonial\_author} \textrightarrow{} \texttt{author}; replace \texttt{study\_destination} with \texttt{story\_date} (date picker); add \texttt{pull\_quote} (textarea).
+    \item[$\square$] Re-save all field groups to regenerate \texttt{acf-json/} files. Commit updated JSON files.
+    \item[$\square$] Fix all 4 CPTs in CPTUI: set \texttt{has\_archive: true}; add \texttt{excerpt} to supports.
+    \item[$\square$] Attach taxonomies: \texttt{audience} to all CPTs; \texttt{programme-family} to programmes; \texttt{content-topic} to resources and stories; \texttt{academic-year} to calls and resources.
+    \item[$\square$] Re-export CPTUI config (post types + taxonomies) to \texttt{wordpress/ro.uvt.ri/cptui-export.json}. Commit.
+    \item[$\square$] Decide on \texttt{people} CPT with Role 1. Register if approved.
+\end{itemize}
+
+\subsection{Group 3 --- Create Missing Global Field Groups (Requires Group 2)}
+
+\begin{itemize}
+    \item[$\square$] Create CTA block: \texttt{heading} (text), \texttt{body} (textarea), \texttt{button\_label} (text), \texttt{button\_url} (url). REST enabled.
+    \item[$\square$] Create Process steps: \texttt{steps} repeater \textrightarrow{} \texttt{step\_title} (text) + \texttt{step\_description} (textarea). REST enabled.
+    \item[$\square$] Create FAQ section: \texttt{faqs} repeater \textrightarrow{} \texttt{question} (text) + \texttt{answer} (textarea). REST enabled.
+    \item[$\square$] Create Contact card: \texttt{name}, \texttt{role}, \texttt{email}, \texttt{phone}. REST enabled.
+    \item[$\square$] Create Document repeater: \texttt{label} (text) + \texttt{file\_url} (url). REST enabled.
+    \item[$\square$] Re-save all groups to write \texttt{acf-json/} files. Commit 5 new JSON files.
+\end{itemize}
+
+\subsection{Group 4 --- Verify and Test (Requires Groups 2 and 3)}
+
+\begin{itemize}
+    \item[$\square$] Verify \texttt{/wp-json/wp/v2/calls}, \texttt{/stories}, \texttt{/resources}, \texttt{/programmes} all return 200 with \texttt{acf} key.
+    \item[$\square$] Verify taxonomy terms appear in CPT REST responses.
+    \item[$\square$] Verify field names in REST responses match \texttt{rest-api-exposure-checklist.md}.
+    \item[$\square$] Create at least one published test entry per CPT with all fields populated.
+\end{itemize}
+
+\subsection{Group 5 --- Frontend API Helpers (Parallel to Group 3, After Field Names Agreed)}
+
+\begin{itemize}
+    \item[$\square$] Add to \texttt{frontend/src/api/wordpress.js}: \texttt{getPages()}, \texttt{getPage(slug)}, \texttt{getCalls(params?)}, \texttt{getCall(slug)}, \texttt{getProgrammes(params?)}, \texttt{getProgramme(slug)}, \texttt{getResources(params?)}, \texttt{getResource(slug)}, \texttt{getStories(params?)}, \texttt{getStory(slug)}.
+    \item[$\square$] Use field names exactly as agreed in the fixed \texttt{rest-api-exposure-checklist.md}.
+\end{itemize}
+
+\end{document}

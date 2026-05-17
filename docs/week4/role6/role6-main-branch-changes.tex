@@ -1,0 +1,574 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{statusGreen}{HTML}{1B7A3A}
+\definecolor{statusRed}{HTML}{C0392B}
+\definecolor{statusOrange}{HTML}{B7580A}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uvtBlue,
+    urlcolor=uvtBlue,
+    citecolor=uvtBlue
+}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------- Icons and checkbox ----------
+\usepackage{fontawesome5}
+\usepackage{amssymb}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{
+    sharp corners=south,
+    boxrule=0pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{bluebox}{
+    colback=uvtLightBlue,
+    colframe=uvtBlue,
+    borderline west={4pt}{0pt}{uvtBlue}
+}
+
+\newtcolorbox{yellowbox}{
+    colback=uvtYellow!16,
+    colframe=uvtYellow,
+    borderline west={4pt}{0pt}{uvtYellow}
+}
+
+\newtcolorbox{darkbox}{
+    colback=uvtDarkBlue,
+    coltext=white,
+    colframe=uvtDarkBlue
+}
+
+\newtcolorbox{redbox}{
+    colback=statusRed!8,
+    colframe=statusRed,
+    borderline west={4pt}{0pt}{statusRed}
+}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Role 6 Main Branch Changes}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{softGray},
+    frame=single,
+    rulecolor=\color{softGray},
+    breaklines=true,
+    columns=fullflexible
+}
+
+\color{textGray}
+
+% ==========================================================
+\begin{document}
+% ==========================================================
+
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+
+    \vspace*{2cm}
+
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em]
+    Role 6 --- Main Branch Changes (Updated)\par}
+
+    \vspace{0.8cm}
+
+    {\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+    West University of Timi\c{s}oara\par}
+
+    \vspace{1.5cm}
+
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Focus:} Updated specification of what currently exists in the role6
+        branch, what field name conflicts exist between the committed ACF JSON and the
+        plan, and the complete list of corrections and additions required before any PR
+        into main can be merged.
+    \end{yellowbox}
+
+    \vfill
+
+    {\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[0.4em]
+    Team Q-UW9 \quad|\quad Generated: 2026-05-17}
+
+    \vspace{1cm}
+\end{titlepage}
+
+\nopagecolor
+\color{textGray}
+
+\tableofcontents
+\newpage
+
+% ==========================================================
+\section{What Currently Exists in the Role6 Branch}
+% ==========================================================
+
+\subsection{WordPress Backend}
+
+\noindent\textbf{\texttt{cptui-export.json}} --- present at repo root (wrong path). CPT configuration as committed:
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{3cm}p{2.5cm}p{2.5cm}p{3cm}p{1.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{CPT} & \textbf{show\_in\_rest} & \textbf{has\_archive} & \textbf{Taxonomies} & \textbf{excerpt} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{CPT} & \textbf{show\_in\_rest} & \textbf{has\_archive} & \textbf{Taxonomies} & \textbf{excerpt} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{programmes} & \texttt{true} & \textcolor{statusRed}{\texttt{false}} & \textcolor{statusRed}{None} & \textcolor{statusRed}{No} \\
+\texttt{calls} & \texttt{true} & \textcolor{statusRed}{\texttt{false}} & \textcolor{statusRed}{None} & \textcolor{statusRed}{No} \\
+\texttt{stories} & \texttt{true} & \textcolor{statusRed}{\texttt{false}} & \textcolor{statusRed}{None} & \textcolor{statusRed}{No} \\
+\texttt{resources} & \texttt{true} & \textcolor{statusRed}{\texttt{false}} & \textcolor{statusRed}{None} & \textcolor{statusRed}{No} \\
+\end{longtable}
+
+No taxonomy export in the file. No \texttt{people} CPT.
+
+\vspace{0.8em}
+\noindent\textbf{ACF field groups} --- 4 files in \texttt{wp-content/themes/twentytwentyfive/acf-json/}. All have \texttt{show\_in\_rest: 1}. Field names as actually committed:
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{3cm}p{3.5cm}p{5.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Group title} & \textbf{CPT rule} & \textbf{Fields in JSON} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Group title} & \textbf{CPT rule} & \textbf{Fields in JSON} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Call Details & \texttt{post\_type == calls} & \texttt{application\_deadline} (date), \texttt{financial\_support} (text) \\
+Programme Details & \texttt{post\_type == programmes} & \texttt{field\_1:\_deadline} (date --- broken), \texttt{country} (select, empty), \texttt{coordinator\_email} (email) \\
+Resource Details & \texttt{post\_type == resources} & \texttt{download\_url} (url), \texttt{document\_type} (select, malformed) \\
+Story Details & \texttt{post\_type == stories} & \texttt{testimonial\_author} (text), \texttt{study\_destination} (text) \\
+\end{longtable}
+
+\subsection{Documentation}
+
+\begin{longtable}{@{}p{6cm}p{1.5cm}p{4.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{File} & \textbf{Lines} & \textbf{Quality} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{File} & \textbf{Lines} & \textbf{Quality} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{wordpress-content-structure-notes.md} & 8 & Strategy statement only; no route table \\
+\texttt{rest-api-exposure-checklist.md} & 6 & 4 checkbox statements; no URLs, no field names \\
+\texttt{static-vs-dynamic-content.md} & 12 & 3 static + 4 dynamic entries; incomplete \\
+\texttt{wordpress-cpt-taxonomy-setup.md} & 8 & Taxonomy descriptions only; no CPT config \\
+\texttt{structured-fields-setup.md} & 6 & Field names inconsistent with ACF JSON and plan \\
+\end{longtable}
+
+\subsection{Frontend}
+
+\texttt{frontend/src/api/wordpress.js} is unchanged from Week 3. Only \texttt{getPosts()} and \texttt{getPost(slug)}.
+
+% ==========================================================
+\section{Field Name Conflicts: Role6 vs Plan}
+% ==========================================================
+
+\begin{darkbox}
+These conflicts must be reconciled and frozen before Role 5 writes any API helpers.
+Changing field names after the helpers are written breaks the frontend integration.
+\end{darkbox}
+
+\subsection{Calls}
+
+\begin{longtable}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{1.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Deadline & \texttt{deadline} & \texttt{application\_deadline} & Rename or accept \\
+Eligibility & \texttt{eligibility} & --- & Add \\
+Application steps & \texttt{application\_steps} & --- & Add \\
+Documents & \texttt{documents} & --- & Add \\
+Financial support & --- & \texttt{financial\_support} & Keep or remove \\
+\end{longtable}
+
+\subsection{Programmes}
+
+\begin{longtable}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{1.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Duration & \texttt{duration} & --- & Add \\
+Language & \texttt{language} & --- & Add \\
+Partner institution & \texttt{partner\_institution} & --- & Add \\
+Application deadline & \texttt{application\_deadline} & \texttt{field\_1:\_deadline} & Fix broken name \\
+Country & --- & \texttt{country} & Keep or remove \\
+Coordinator email & --- & \texttt{coordinator\_email} & Keep or remove \\
+\end{longtable}
+
+\subsection{Resources}
+
+\begin{longtable}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{1.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+File URL & \texttt{file\_url} & \texttt{download\_url} & Rename \\
+File type & \texttt{file\_type} & \texttt{document\_type} & Rename + fix choices \\
+Audience notes & \texttt{audience\_notes} & --- & Add \\
+\end{longtable}
+
+\subsection{Stories}
+
+\begin{longtable}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{1.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Field} & \textbf{Plan name} & \textbf{Role6 JSON name} & \textbf{Verdict} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Author & \texttt{author} & \texttt{testimonial\_author} & Rename \\
+Story date & \texttt{story\_date} & \texttt{study\_destination} & Replace entirely \\
+Pull quote & \texttt{pull\_quote} & --- & Add \\
+\end{longtable}
+
+% ==========================================================
+\section{What Must Be Fixed Before Merging to Main}
+% ==========================================================
+
+\subsection{Folder Structure}
+
+Move the WordPress installation into \texttt{wordpress/ro.uvt.ri/} to match the main branch
+convention. Move \texttt{cptui-export.json} to \texttt{wordpress/ro.uvt.ri/cptui-export.json}.
+
+\subsection{CPTUI Configuration Fixes}
+
+The following changes must be made in WordPress admin and re-exported.
+
+All 4 existing CPTs: set \texttt{has\_archive: true}; add \texttt{excerpt} to supports.
+
+\vspace{0.8em}
+\noindent\textbf{Taxonomy attachments to add via CPTUI:}
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{4cm}p{8.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Taxonomy} & \textbf{Attach to} \\
+\midrule
+\texttt{audience} & calls, stories, resources, programmes \\
+\texttt{programme-family} & programmes \\
+\texttt{content-topic} & resources, stories \\
+\texttt{academic-year} & calls, resources \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8em}
+Register \texttt{people} CPT if approved by Role 1, with \texttt{show\_in\_rest: true}.
+After all changes, re-export both post types and taxonomies to
+\texttt{wordpress/ro.uvt.ri/cptui-export.json} and commit.
+
+\subsection{ACF Field Group Corrections}
+
+Field names must be agreed with Role 5 before applying. Recommended resolution: align to
+plan names for consistency with documentation.
+
+\vspace{0.8em}
+\noindent\textbf{Calls group --- rework:}
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{3.5cm}p{3.5cm}p{5.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Action} & \textbf{Field name} & \textbf{Type} \\
+\midrule
+Rename from \texttt{application\_deadline} & \texttt{deadline} & Date picker \\
+Add & \texttt{eligibility} & Textarea \\
+Add & \texttt{application\_steps} & Repeater \textrightarrow{} text sub-field \\
+Add & \texttt{documents} & Repeater \textrightarrow{} label (text) + url (url) \\
+Decide: keep or remove & \texttt{financial\_support} & Text \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8em}
+\noindent\textbf{Programmes group --- rework:}
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{3.5cm}p{3.5cm}p{5.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Action} & \textbf{Field name} & \textbf{Type} \\
+\midrule
+Fix from \texttt{field\_1:\_deadline} & \texttt{application\_deadline} & Date picker \\
+Add & \texttt{duration} & Text \\
+Add & \texttt{language} & Text \\
+Add & \texttt{partner\_institution} & Text \\
+Decide: keep or remove & \texttt{country} & Select \\
+Decide: keep or remove & \texttt{coordinator\_email} & Email \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8em}
+\noindent\textbf{Resources group --- rework:}
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{3.5cm}p{3.5cm}p{5.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Action} & \textbf{Field name} & \textbf{Type} \\
+\midrule
+Rename from \texttt{download\_url} & \texttt{file\_url} & URL \\
+Rename + fix choices & \texttt{file\_type} & Select: PDF / DOCX / XLS / Other \\
+Add & \texttt{audience\_notes} & Textarea \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8em}
+\noindent\textbf{Stories group --- rework:}
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{3.5cm}p{3.5cm}p{5.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Action} & \textbf{Field name} & \textbf{Type} \\
+\midrule
+Rename from \texttt{testimonial\_author} & \texttt{author} & Text \\
+Replace \texttt{study\_destination} & \texttt{story\_date} & Date picker \\
+Add & \texttt{pull\_quote} & Textarea \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.8em}
+After all changes: re-save each group to regenerate \texttt{acf-json/*.json} files.
+Commit updated files.
+
+\subsection{New Global ACF Field Groups}
+
+Five field groups must be created for use across WP Pages. All with \texttt{show\_in\_rest: 1}.
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{3.5cm}p{8.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Group} & \textbf{Fields} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Group} & \textbf{Fields} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+CTA block & \texttt{heading} (text), \texttt{body} (textarea), \texttt{button\_label} (text), \texttt{button\_url} (url) \\
+Process steps & \texttt{steps} repeater \textrightarrow{} \texttt{step\_title} (text) + \texttt{step\_description} (textarea) \\
+FAQ section & \texttt{faqs} repeater \textrightarrow{} \texttt{question} (text) + \texttt{answer} (textarea) \\
+Contact card & \texttt{name} (text), \texttt{role} (text), \texttt{email} (email), \texttt{phone} (text) \\
+Document repeater & \texttt{label} (text) + \texttt{file\_url} (url) \\
+\end{longtable}
+
+Re-save to write \texttt{acf-json/} files. Commit 5 new JSON files.
+
+\subsection{Documentation Rewrites}
+
+All 5 files must be substantially rewritten. \texttt{rest-api-exposure-checklist.md} is the
+most critical --- it is the contract document Role 5 uses to write API helpers.
+
+\vspace{0.8em}
+\noindent\textbf{Required endpoint table for \texttt{rest-api-exposure-checklist.md}:}
+
+\vspace{0.4em}
+\begin{longtable}{@{}p{4.5cm}p{2cm}p{2.5cm}p{3.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Endpoint} & \textbf{Type} & \textbf{ACF fields} & \textbf{Query params} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Endpoint} & \textbf{Type} & \textbf{ACF fields} & \textbf{Query params} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{/wp-json/wp/v2/pages} & Default WP & No & \texttt{?slug=} \\
+\texttt{/wp-json/wp/v2/posts} & Default WP & No & \texttt{?slug=}, \texttt{?per\_page=} \\
+\texttt{/wp-json/wp/v2/calls} & CPT & Yes & \texttt{?slug=}, \texttt{?audience=}, \texttt{?academic-year=} \\
+\texttt{/wp-json/wp/v2/stories} & CPT & Yes & \texttt{?slug=}, \texttt{?audience=}, \texttt{?content-topic=} \\
+\texttt{/wp-json/wp/v2/resources} & CPT & Yes & \texttt{?slug=}, \texttt{?audience=}, \texttt{?content-topic=}, \texttt{?academic-year=} \\
+\texttt{/wp-json/wp/v2/programmes} & CPT & Yes & \texttt{?slug=}, \texttt{?audience=}, \texttt{?programme-family=} \\
+\end{longtable}
+
+For each CPT endpoint the \texttt{acf} object must list the exact field names as agreed
+and frozen after Section 3 above is resolved.
+
+\subsection{Frontend API Helpers}
+
+\begin{redbox}
+\textbf{Do not write these until field names are finalised and committed.}
+\end{redbox}
+
+\begin{lstlisting}
+// Pages
+getPages()                     // GET /wp-json/wp/v2/pages
+getPage(slug)                  // GET /wp-json/wp/v2/pages?slug={slug}
+
+// Calls
+getCalls(params?)              // GET /wp-json/wp/v2/calls
+getCall(slug)                  // GET /wp-json/wp/v2/calls?slug={slug}
+
+// Programmes
+getProgrammes(params?)         // GET /wp-json/wp/v2/programmes
+getProgramme(slug)             // GET /wp-json/wp/v2/programmes?slug={slug}
+
+// Resources
+getResources(params?)          // GET /wp-json/wp/v2/resources
+getResource(slug)              // GET /wp-json/wp/v2/resources?slug={slug}
+
+// Stories
+getStories(params?)            // GET /wp-json/wp/v2/stories
+getStory(slug)                 // GET /wp-json/wp/v2/stories?slug={slug}
+\end{lstlisting}
+
+\texttt{params} must support taxonomy filter keys: \texttt{audience}, \texttt{programme-family},
+\texttt{content-topic}, \texttt{academic-year}.
+
+\subsection{Test Entries}
+
+At least one published entry per CPT with all fields populated.
+
+\vspace{0.4em}
+\begin{tabular}{@{}p{3cm}p{9.3cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{CPT} & \textbf{Minimum} \\
+\midrule
+\texttt{calls} & 1 \\
+\texttt{stories} & 1 \\
+\texttt{resources} & 1 \\
+\texttt{programmes} & 1 \\
+\texttt{people} & 1 (if approved) \\
+\bottomrule
+\end{tabular}
+
+% ==========================================================
+\section{Merge Readiness Checklist}
+% ==========================================================
+
+\begin{itemize}
+    \item[$\square$] WordPress in \texttt{wordpress/ro.uvt.ri/} --- folder structure matches main
+    \item[$\square$] \texttt{cptui-export.json} at \texttt{wordpress/ro.uvt.ri/cptui-export.json} --- includes post types \textbf{and} taxonomies
+    \item[$\square$] All 4 CPTs: \texttt{has\_archive: true}, \texttt{excerpt} in supports, taxonomies attached
+    \item[$\square$] ACF field names agreed with Role 5 and frozen
+    \item[$\square$] All 4 CPT field groups reworked to agreed names with missing fields added
+    \item[$\square$] All 5 global field groups created with REST enabled
+    \item[$\square$] \texttt{acf-json/*.json} updated --- 9 files total (4 CPT + 5 global)
+    \item[$\square$] All 5 documentation files rewritten to full specification
+    \item[$\square$] \texttt{rest-api-exposure-checklist.md} usable as a contract document by Role 5
+    \item[$\square$] Frontend \texttt{api/wordpress.js} updated with all CPT helpers
+    \item[$\square$] REST endpoints verified returning 200 with \texttt{acf} key and correct field names
+    \item[$\square$] Taxonomy terms appearing in CPT REST responses
+    \item[$\square$] At least one published test entry per CPT
+\end{itemize}
+
+\end{document}

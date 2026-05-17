@@ -1,0 +1,509 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{statusGreen}{HTML}{1B7A3A}
+\definecolor{statusRed}{HTML}{C0392B}
+\definecolor{statusOrange}{HTML}{B7580A}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uvtBlue,
+    urlcolor=uvtBlue,
+    citecolor=uvtBlue
+}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------- Icons and checkbox ----------
+\usepackage{fontawesome5}
+\usepackage{amssymb}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{
+    sharp corners=south,
+    boxrule=0pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{bluebox}{
+    colback=uvtLightBlue,
+    colframe=uvtBlue,
+    borderline west={4pt}{0pt}{uvtBlue}
+}
+
+\newtcolorbox{yellowbox}{
+    colback=uvtYellow!16,
+    colframe=uvtYellow,
+    borderline west={4pt}{0pt}{uvtYellow}
+}
+
+\newtcolorbox{darkbox}{
+    colback=uvtDarkBlue,
+    coltext=white,
+    colframe=uvtDarkBlue
+}
+
+\newtcolorbox{redbox}{
+    colback=statusRed!8,
+    colframe=statusRed,
+    borderline west={4pt}{0pt}{statusRed}
+}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Role 5 --- Week 4 Plan}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{softGray},
+    frame=single,
+    rulecolor=\color{softGray},
+    breaklines=true,
+    columns=fullflexible
+}
+
+\color{textGray}
+
+% ==========================================================
+\begin{document}
+% ==========================================================
+
+% ---------- Cover ----------
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+
+    \vspace*{2cm}
+
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em]
+    Role 5 --- Week 4 Plan\par}
+
+    \vspace{0.8cm}
+
+    {\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+    West University of Timi\c{s}oara\par}
+
+    \vspace{1.5cm}
+
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Role:} React Developer\\[0.3em]
+        \textbf{Focus:} Produce three missing planning documents, resolve the
+        Vite vs Next.js architecture question, build the DocumentDownloadList organism,
+        implement the full route tree, and build InnerPageTemplate and HomePageTemplate.
+        CPT API helpers are gated on Role 6.
+    \end{yellowbox}
+
+    \vfill
+
+    {\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[0.4em]
+    Team Q-UW9 \quad|\quad Week 4}
+
+    \vspace{1cm}
+\end{titlepage}
+
+\nopagecolor
+\color{textGray}
+
+% ---------- TOC ----------
+\tableofcontents
+\newpage
+
+% ==========================================================
+\section{Context Entering Week 4}
+% ==========================================================
+
+Role 5 built the component library ahead of scope in Week 3. The implementation is
+substantially correct and has been merged into main. However, all three required planning
+documents were not produced. These must be written at the start of Week 4 before any new
+implementation continues.
+
+\subsection{What Is Built and in Main}
+
+\begin{longtable}{@{}llp{5cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Path} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Path} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Button & \texttt{atoms/Button/Button.tsx} & Done --- 3 variants, 3 sizes, focus ring \\
+Typography & \texttt{atoms/Typography/Typography.tsx} & Done --- h1--h3, body, caption \\
+Card & \texttt{molecules/Card/Card.tsx} & Done \\
+SectionHeader & \texttt{molecules/SectionHeader/SectionHeader.tsx} & Done \\
+Navbar & \texttt{organisms/Navbar/Navbar.tsx} & Done --- mobile menu is a stub \\
+Footer & \texttt{organisms/Footer/Footer.tsx} & Done \\
+HeroSection & \texttt{organisms/HeroSection/HeroSection.tsx} & Done \\
+AccordionSection & \texttt{organisms/AccordionSection/AccordionSection.tsx} & Done --- \texttt{aria-expanded} wired \\
+TabsSection & \texttt{organisms/TabsSection/TabsSection.tsx} & Done \\
+PageLayout & \texttt{templates/PageLayout/PageLayout.tsx} & Done \\
+ContentGrid & \texttt{templates/ContentGrid/ContentGrid.tsx} & Done \\
+Container & \texttt{layouts/Container.tsx} & Done \\
+\end{longtable}
+
+\subsection{What Is Missing}
+
+\begin{itemize}
+    \item DocumentDownloadList organism
+    \item InnerPageTemplate
+    \item HomePageTemplate
+    \item Full route tree (only \texttt{/} and \texttt{/test} exist)
+    \item Locale routing
+    \item CPT API helpers (blocked on Role 6)
+\end{itemize}
+
+\begin{yellowbox}
+\textbf{Open decision:} The architecture document specifies Next.js 14. The actual project
+uses Vite + React Router. Role 1 must resolve this before locale routing or the full route
+tree is built.
+\end{yellowbox}
+
+% ==========================================================
+\section{Priority Order This Week}
+% ==========================================================
+
+\begin{enumerate}
+    \item Produce three W3 carry-over documents --- blocks route and template implementation
+    \item Await Vite vs Next.js decision from Role 1
+    \item Build DocumentDownloadList organism
+    \item Implement full route tree
+    \item Build InnerPageTemplate and HomePageTemplate
+    \item Add CPT API helpers --- blocked until Role 6 provides \texttt{rest-api-exposure-checklist.md}
+\end{enumerate}
+
+\begin{darkbox}
+Do not start the locale routing implementation until Role 1 records the Vite vs Next.js
+decision. Do not write CPT API helpers until Role 6 has produced
+\texttt{rest-api-exposure-checklist.md} and field names are confirmed. Changing field names
+after the helpers are written breaks the integration.
+\end{darkbox}
+
+% ==========================================================
+\section{Week 3 Carry-Overs --- Priority Zero}
+% ==========================================================
+
+% ----------------------------------------------------------
+\subsection{React Route Strategy Document}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/react-route-strategy.md}
+
+Map every route in \texttt{01\_Sitemap.md} to a React route path. For each route specify
+the path, whether it is static or dynamic, whether it requires a \texttt{:slug} parameter,
+which page template it uses, and which organisms it composes.
+
+\vspace{0.5em}
+\begin{longtable}{@{}lllp{3.5cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Path} & \textbf{Type} & \textbf{Template} & \textbf{Notes} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Path} & \textbf{Type} & \textbf{Template} & \textbf{Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{/} & Mixed & HomePageTemplate & Static shell + dynamic CPT blocks \\
+\texttt{/about} & Static & InnerPageTemplate & WP Page \\
+\texttt{/erasmus} & Mixed & InnerPageTemplate & Landing + nested links \\
+\texttt{/erasmus/incoming-students} & Static & InnerPageTemplate & WP Page \\
+\texttt{/erasmus/outgoing-students} & Static & InnerPageTemplate & WP Page \\
+\texttt{/erasmus/incoming-staff} & Static & InnerPageTemplate & WP Page \\
+\texttt{/erasmus/outgoing-staff} & Static & InnerPageTemplate & WP Page \\
+\texttt{/international-students} & Static & InnerPageTemplate & WP Page \\
+\texttt{/international-students/*} & Static & InnerPageTemplate & Nested WP Pages \\
+\texttt{/partnerships} & Static & InnerPageTemplate & WP Page \\
+\texttt{/news} & Dynamic list & InnerPageTemplate & WP Posts archive \\
+\texttt{/calls} & Dynamic list & InnerPageTemplate & CPT \texttt{call} archive \\
+\texttt{/calls/:slug} & Dynamic detail & InnerPageTemplate & Single call \\
+\texttt{/stories} & Dynamic list & InnerPageTemplate & CPT \texttt{story} archive \\
+\texttt{/stories/:slug} & Dynamic detail & InnerPageTemplate & Single story \\
+\texttt{/resources} & Dynamic list & InnerPageTemplate & CPT \texttt{resource} archive \\
+\texttt{/resources/:slug} & Dynamic detail & InnerPageTemplate & Single resource \\
+\texttt{/programmes} & Dynamic list & InnerPageTemplate & CPT \texttt{programme} archive \\
+\texttt{/programmes/:slug} & Dynamic detail & InnerPageTemplate & Single programme \\
+\texttt{/contact} & Static & InnerPageTemplate & WP Page \\
+\texttt{*} & --- & --- & 404 fallback \\
+\end{longtable}
+
+% ----------------------------------------------------------
+\subsection{Component Planning Document}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/component-architecture-week4.md}
+
+Document what was built, why, and how components relate to each other:
+
+\begin{itemize}
+    \item Full list of all components with file paths and a one-line description of responsibility
+    \item Which components are global vs page-specific
+    \item Naming conventions: PascalCase, folder-per-component, \texttt{index.ts} barrel exports or direct imports --- document the pattern actually used
+    \item How atoms compose into molecules, molecules into organisms, organisms into templates --- give one worked example
+    \item Props interface summary for each component (key props only: variant, size, children, className pattern)
+    \item Rules for adding new components: when to create a new atom vs extend an existing one
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Page Template Planning Draft}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/page-template-planning.md}
+
+Specify what each page template does, what organisms it composes, and what data it requires.
+
+\vspace{0.8em}
+\noindent\textbf{HomePageTemplate:}
+
+\begin{itemize}
+    \item Organisms: Navbar, HeroSection, ContentGrid (featured calls or programmes), SectionHeader, Footer
+    \item Data: static hero content from WP Page, dynamic CPT entries for featured sections
+    \item Layout: full-width hero, then max-width container sections
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{InnerPageTemplate:}
+
+\begin{itemize}
+    \item Organisms: Navbar, SectionHeader (page title), main content area, optional AccordionSection or DocumentDownloadList, Footer
+    \item Data: WP Page content (static pages) or CPT entry (dynamic detail pages)
+    \item Layout: max-width container with consistent side margins
+\end{itemize}
+
+\begin{bluebox}
+\textbf{Note:} This document must be reviewed by Role 2 (\texttt{page-template-alignment-feedback.md})
+before templates are built.
+\end{bluebox}
+
+% ==========================================================
+\section{Week 4 Implementation Tasks}
+% ==========================================================
+
+\subsection{Missing Organism: DocumentDownloadList}
+
+\textbf{File:} \texttt{organisms/DocumentDownloadList/DocumentDownloadList.tsx}
+
+Required for resource pages and call pages where users need to download forms and documents.
+
+\begin{itemize}
+    \item[$\square$] Props: \texttt{documents: Array<\{ label: string; url: string; fileType?: string \}>}
+    \item[$\square$] Renders a list of download links with a file type indicator (PDF, DOCX, etc.)
+    \item[$\square$] Each link must open in a new tab and have a clear download affordance
+    \item[$\square$] Must be accessible: descriptive link text, not just ``Download''
+    \item[$\square$] Will be connected to the \texttt{documents} ACF field on the \texttt{call} CPT and \texttt{file\_url} on the \texttt{resource} CPT
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Route Implementation}
+% ----------------------------------------------------------
+
+Once the route strategy document is written and reviewed by Role 1:
+
+\begin{itemize}
+    \item[$\square$] Implement homepage route --- replace \texttt{UnderConstruction} placeholder with HomePageTemplate stub
+    \item[$\square$] Implement top-level section routes: \texttt{/erasmus}, \texttt{/international-students}, \texttt{/partnerships}, \texttt{/about}, \texttt{/contact}, \texttt{/news}, \texttt{/calls}, \texttt{/stories}, \texttt{/resources}, \texttt{/programmes}
+    \item[$\square$] Implement nested Erasmus routes: \texttt{/erasmus/incoming-students}, \texttt{/erasmus/outgoing-students}, \texttt{/erasmus/incoming-staff}, \texttt{/erasmus/outgoing-staff}
+    \item[$\square$] Implement dynamic detail routes: \texttt{/calls/:slug}, \texttt{/stories/:slug}, \texttt{/resources/:slug}, \texttt{/programmes/:slug}
+    \item[$\square$] Implement 404 fallback route
+    \item[$\square$] Connect each route to a page file in \texttt{pages/} --- one file per route
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Page Templates}
+% ----------------------------------------------------------
+
+\begin{itemize}
+    \item[$\square$] Build \texttt{InnerPageTemplate} --- review \texttt{page-template-planning.md} and Role 2's \texttt{page-template-alignment-feedback.md} before building
+    \item[$\square$] Build \texttt{HomePageTemplate} --- same prerequisite
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Locale Routing}
+% ----------------------------------------------------------
+
+\begin{itemize}
+    \item[$\square$] Resolve Vite vs Next.js with Role 1 first
+    \item[$\square$] Once decided: implement locale routing structure (React Router nested routes pattern if staying on Vite)
+    \item[$\square$] LanguageSwitcher atom from Role 4 must exist before locale routing is wired
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{API Layer}
+% ----------------------------------------------------------
+
+\begin{redbox}
+\textbf{Do not add these until Role 6 has produced \texttt{rest-api-exposure-checklist.md}
+and ACF field names are confirmed.}
+\end{redbox}
+
+\begin{itemize}
+    \item[$\square$] \texttt{getPages()} / \texttt{getPage(slug)} --- \texttt{/wp-json/wp/v2/pages}
+    \item[$\square$] \texttt{getCalls(params?)} / \texttt{getCall(slug)} --- \texttt{/wp-json/wp/v2/calls}
+    \item[$\square$] \texttt{getProgrammes(params?)} / \texttt{getProgramme(slug)} --- \texttt{/wp-json/wp/v2/programmes}
+    \item[$\square$] \texttt{getResources(params?)} / \texttt{getResource(slug)} --- \texttt{/wp-json/wp/v2/resources}
+    \item[$\square$] \texttt{getStories(params?)} / \texttt{getStory(slug)} --- \texttt{/wp-json/wp/v2/stories}
+    \item[$\square$] Add taxonomy filter param support (e.g. \texttt{?audience=incoming-students}) to list helpers
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Architecture Separation Rules}
+% ----------------------------------------------------------
+
+\begin{itemize}
+    \item[\faCheckCircle] No API calls inside presentational components --- all fetching in \texttt{api/wordpress.js}
+    \item[\faCheckCircle] Routing in \texttt{App.tsx} only --- templates do not know their route
+    \item[\faCheckCircle] Templates compose organisms --- organisms do not compose templates
+    \item[$\square$] Page files (\texttt{pages/}) handle data fetching and pass data down as props --- not inline in JSX
+    \item[$\square$] Document this pattern in \texttt{component-architecture-week4.md}
+\end{itemize}
+
+% ==========================================================
+\section{Deliverables Checklist}
+% ==========================================================
+
+\subsection{Week 3 Carry-Overs (Produce First)}
+
+\begin{itemize}
+    \item[$\square$] \texttt{react-route-strategy.md} --- full route map from sitemap to React paths
+    \item[$\square$] \texttt{component-architecture-week4.md} --- component inventory, naming rules, composition model
+    \item[$\square$] \texttt{page-template-planning.md} --- template specs for HomePageTemplate and InnerPageTemplate
+\end{itemize}
+
+\subsection{Week 4 Implementation Deliverables}
+
+\begin{itemize}
+    \item[$\square$] \texttt{DocumentDownloadList} organism committed
+    \item[$\square$] \texttt{InnerPageTemplate} built and committed
+    \item[$\square$] \texttt{HomePageTemplate} built and committed
+    \item[$\square$] Full top-level route tree in \texttt{App.tsx}
+    \item[$\square$] All section routes connected to page files
+    \item[$\square$] Dynamic detail routes with \texttt{:slug} params connected to page files
+    \item[$\square$] 404 fallback route
+    \item[$\square$] \texttt{layout-template-implementation.md} --- brief notes on what each template does and which organisms it uses
+    \item[$\square$] CPT API helpers --- pending Role 6 delivering \texttt{rest-api-exposure-checklist.md}
+\end{itemize}
+
+% ==========================================================
+\section{Dependencies}
+% ==========================================================
+
+\noindent\textbf{What Role 5 needs from other roles:}
+
+\vspace{0.5em}
+\begin{longtable}{@{}p{2cm}p{6.5cm}p{3.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Role 1 & Vite vs Next.js decision & Before route tree or locale routing \\
+Role 2 & \texttt{page-template-alignment-feedback.md} & Before building InnerPageTemplate and HomePageTemplate \\
+Role 4 & LanguageSwitcher atom & Before locale routing is wired \\
+Role 6 & \texttt{rest-api-exposure-checklist.md} and confirmed CPT slugs and field names & Before any CPT API helpers are written \\
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{What other roles need from Role 5:}
+
+\vspace{0.5em}
+\begin{longtable}{@{}p{2cm}p{6.5cm}p{3.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Role 1 & \texttt{react-route-strategy.md} --- needed for frontend consistency validation & Start of week \\
+Role 2 & \texttt{component-architecture-week4.md} --- needed for UX review context & Start of week \\
+Role 6 & Confirm which CPT slug names will be used in API helpers & Before Role 6 finalises field names \\
+\end{longtable}
+
+% ==========================================================
+\section{Definition of Done}
+% ==========================================================
+
+\begin{itemize}
+    \item[$\square$] \texttt{react-route-strategy.md} committed
+    \item[$\square$] \texttt{component-architecture-week4.md} committed
+    \item[$\square$] \texttt{page-template-planning.md} committed and reviewed by Role 2
+    \item[$\square$] DocumentDownloadList, InnerPageTemplate, HomePageTemplate committed
+    \item[$\square$] Full route tree implemented in \texttt{App.tsx}
+    \item[$\square$] Locale routing strategy agreed with Role 1 and documented
+    \item[$\square$] CPT API helpers committed once Role 6 delivers the exposure checklist
+\end{itemize}
+
+\end{document}
