@@ -1,3 +1,4 @@
+import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
 import { NewsSection } from '../components/organisms/NewsSection/NewsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
@@ -7,81 +8,145 @@ import { SectionRenderer } from '../components/templates/SectionRenderer/Section
 
 import { Card } from '../components/molecules/Card/Card'
 
+import { Divider } from '../components/atoms/Divider/Divider'
+import { Icon } from '../components/atoms/Icon/Icon'
+
 import { homeSections } from '../data/homeSections'
 import { homePageData } from '../data/homePageData'
 import { announcements } from '../data/announcements'
 
-import { s } from './UnderConstruction.styles'
+import { s } from './UnderConstruction.styles.js'
 
-function UnderConstruction() {
-  return (
-    <PageTransition>
-      <PageLayout>
+function UnderConstruction(){
 
-        <SectionRenderer
-          sections={homePageData}
-        />
+const demoTabs=[
 
-        {/* Audience cards */}
-        <section className="mx-auto max-w-[1280px] px-6 py-20">
+{
+label:'Admissions',
+content:<p>Admissions info here.</p>
+},
 
-          <h2 className="mb-4 text-4xl font-bold">
-            Explore UVT Opportunities
-          </h2>
+{
+label:'Erasmus',
+content:<p>Erasmus details here.</p>
+},
 
-          <p className="mb-10 max-w-[700px] text-gray-600">
-            Navigate quickly based on your goals and find the right pathway.
-          </p>
+{
+label:'Contact',
+content:<p>Contact information here.</p>
+}
 
-          <ContentGrid columns={3}>
+]
 
-            {homeSections.map((card) => (
+return(
 
-              <Card
-                key={card.id}
-                title={card.title}
-                description={card.description}
-                buttonText={card.buttonText}
-                route={card.route}
-              />
+<PageTransition>
 
-            ))}
+<PageLayout>
 
-          </ContentGrid>
+<SectionRenderer
+sections={homePageData}
+/>
 
-        </section>
+<section className="mx-auto max-w-[1280px] px-6 py-20">
 
-        <NewsSection
-          items={announcements}
-        />
+<h2 className="mb-10 text-4xl font-bold">
 
-        <div className={s.container}>
-          <div className={s.card}>
+Explore Opportunities
 
-            <div className={s.icon}>
-              🚧
-            </div>
+</h2>
 
-            <h1 className={s.title}>
-              Site în lucru
-            </h1>
+<ContentGrid columns={3}>
 
-            <p className={s.text}>
-              Site-ul este în construcție.
-              Vă rugăm reveniți curând.
-            </p>
+{homeSections.map((card)=>(
 
-            <p className={s.subtitle}>
-              The site is under construction.
-              Please check back soon.
-            </p>
+<Card
+key={card.id}
 
-          </div>
-        </div>
+title={card.title}
 
-      </PageLayout>
-    </PageTransition>
-  )
+description={card.description}
+
+buttonText={card.buttonText}
+
+route={card.route}
+
+/>
+
+))}
+
+</ContentGrid>
+
+</section>
+
+<NewsSection
+items={announcements}
+/>
+
+<section className="bg-gray-50 py-20">
+
+<div className="mx-auto max-w-[1280px] px-6">
+
+<h2 className="mb-10 text-4xl font-bold">
+
+Student Resources
+
+</h2>
+
+<TabsSection tabs={demoTabs}/>
+
+</div>
+
+</section>
+
+<section className="mx-auto max-w-[1280px] space-y-8 px-6 py-16">
+
+<Divider/>
+
+<div className="flex gap-6 text-4xl">
+
+<Icon name="globe"/>
+
+<Icon name="graduate"/>
+
+<Icon name="mail"/>
+
+</div>
+
+</section>
+
+<div className={s.container}>
+
+<div className={s.card}>
+
+<div className={s.icon}>
+🚧
+</div>
+
+<h1 className={s.title}>
+Site în lucru
+</h1>
+
+<p className={s.text}>
+Site-ul este în construcție.
+Vă rugăm reveniți curând.
+</p>
+
+<p className={s.subtitle}>
+The site is under construction.
+Please check back soon.
+</p>
+
+</div>
+
+</div>
+
+</PageLayout>
+
+</PageTransition>
+
+)
+
 }
 
 export default UnderConstruction
