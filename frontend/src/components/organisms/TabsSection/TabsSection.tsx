@@ -17,8 +17,7 @@ export function TabsSection({
 
   return (
     <section className="py-16">
-      
-      {/* Tabs */}
+      {/* Tab Buttons */}
       <div className="flex flex-wrap gap-4 border-b border-gray-200 pb-4">
         {tabs.map((tab, index) => (
           <button
@@ -38,7 +37,7 @@ export function TabsSection({
         ))}
       </div>
 
-      {/* Content */}
+      {/* Active Content */}
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         {tabs[activeTab]?.content}
       </div>

@@ -1,19 +1,24 @@
-import { Container } from '../../../layouts/Container'
+import type { ReactNode } from 'react'
+
+import { Navbar } from '../../organisms/Navbar/Navbar'
+import { Footer } from '../../organisms/Footer/Footer'
 
 interface PageLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export function PageLayout({
   children,
 }: PageLayoutProps) {
   return (
-    <div className="min-h-screen bg-white">
-      <main className="py-16">
-        <Container>
-          {children}
-        </Container>
+    <div className="min-h-screen bg-white text-gray-900">
+      <Navbar />
+
+      <main>
+        {children}
       </main>
+
+      <Footer />
     </div>
   )
 }
