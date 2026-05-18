@@ -107,6 +107,3 @@ If any `aria-label` attributes in the Navbar component reference the old label t
 - Role 2, Week 2: *User Flows and Navigation Model* — Section 4: UX Improvements, Items 6 and 7 (Navigation label clarity)
 - ri.uvt.ro site audit (Week 1) — existing label structure documented for comparison
 
----
-
-*This document is part of the Role 2 Week 4 carry-over package. See also: `ux-validation-week3.md`, `route-hierarchy-corrections.md`, `page-template-alignment-feedback.md`, `wordpress-structure-user-flow-feedback.md`.*
