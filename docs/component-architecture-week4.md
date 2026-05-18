@@ -59,7 +59,6 @@ All components currently in `frontend/src/`:
 | `Container` | `layouts/Container.tsx` | Centres content horizontally with `max-w-[1280px]` and `px-6` padding |
 
 ---
-
 ## 2. Global vs Page-Specific Components
 
 **Global** (used on every page, not tied to any route):

@@ -2,7 +2,7 @@
 
 **File:** `docs/react-route-strategy.md`  
 **Author:** Role 5 — React Developer  
-**Week:** 4  
+**Week:** 4
 **Status:** Ready for Role 1 review
 
 ---
