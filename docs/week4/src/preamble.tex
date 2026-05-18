@@ -1,0 +1,88 @@
+% RI.UVT.RO — shared preamble (input this from each role file)
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{statusGreen}{HTML}{1A7C3E}
+\definecolor{statusAmber}{HTML}{B45309}
+\definecolor{statusRed}{HTML}{B91C1C}
+\definecolor{warnBg}{HTML}{FFF9E6}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=uvtBlue,urlcolor=uvtBlue,citecolor=uvtBlue}
+
+% ---------- Symbols & paths ----------
+\usepackage{amssymb}
+\usepackage{url}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.35}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% ---------- Icons ----------
+\usepackage{fontawesome5}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{sharp corners=south,boxrule=0pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
+
+\newtcolorbox{bluebox}{colback=uvtLightBlue,colframe=uvtBlue,borderline west={4pt}{0pt}{uvtBlue}}
+\newtcolorbox{yellowbox}{colback=warnBg,colframe=uvtYellow,borderline west={4pt}{0pt}{uvtYellow}}
+\newtcolorbox{darkbox}{colback=uvtDarkBlue,coltext=white,colframe=uvtDarkBlue}
+\newtcolorbox{rolebox}[1]{colback=uvtLightBlue,colframe=uvtBlue,borderline west={4pt}{0pt}{uvtBlue},title=\textbf{#1}}
+
+% ---------- Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{\textbf{DRI Website Redesign}}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{softGray},frame=single,rulecolor=\color{softGray},breaklines=true,columns=fullflexible}
+
+% ---------- Status macros ----------
+\newcommand{\done}{\textcolor{statusGreen}{\faCheckCircle\ Done}}
+\newcommand{\warn}{\textcolor{statusAmber}{\faExclamationTriangle\ Partial\,/\,Pending}}
+\newcommand{\missing}{\textcolor{statusRed}{\faTimes\ Not done}}
+\newcommand{\blocked}{\textcolor{statusRed}{\faBan\ Blocked}}

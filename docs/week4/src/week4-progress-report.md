@@ -44,9 +44,11 @@ A folder naming typo was also corrected (`molechules` → `molecules`).
 
 `UnderConstruction.tsx` was reworked into a full page assembly demo that integrates all new components — Navbar, HeroSection, TabsSection, ContentGrid, Card, Footer — demonstrating the complete vertical page structure.
 
-**Week 3 carry-over planning documents (3) — not written.** `react-route-strategy.md`, `component-planning.md`, and `page-template-planning.md` were due in Week 3, rolled into Week 4, and remain missing.
+**Week 3 carry-over planning documents (3) — written.** `react-route-strategy.md`, `component-architecture-week4.md` (covers component planning), and `page-template-planning.md` all delivered in Week 4.
 
-**Not started:** `DocumentDownloadList` organism, `InnerPageTemplate`, `HomePageTemplate`, full route tree, locale routing (`/ro`, `/en`).
+**Additionally delivered (documented in addition files):** `DocumentDownloadList` organism; `InnerPageTemplate`, `HomePageTemplate`, `PageTransition`, `SectionRenderer` templates; `ContentSection`, `NewsSection` organisms; `Divider`, `Icon`, `LanguageSwitcher` atoms. Full route tree written in `react-route-strategy.md` — pending wiring in `App.tsx` and Role 1 Vite/Next.js decision.
+
+**Not started:** Locale routing (`/ro`, `/en`) — blocked on Role 1 Vite/Next.js decision.
 
 ---
 
@@ -54,16 +56,14 @@ A folder naming typo was also corrected (`molechules` → `molecules`).
 
 | Item | Status |
 |------|--------|
-| Atoms: Button, Typography | Done (Week 3) |
+| Atoms: Button, Typography, Divider, Icon, LanguageSwitcher | Done |
 | Molecules: Card, SectionHeader | Done |
-| Organisms: Footer, HeroSection, Navbar, TabsSection, AccordionSection | Done |
-| Templates: ContentGrid, PageLayout | Done |
-| Organism: DocumentDownloadList | Not started |
-| Templates: InnerPageTemplate, HomePageTemplate | Not started |
-| Full route tree | Not started |
-| Locale routing | Not started |
+| Organisms: Footer, HeroSection, Navbar, TabsSection, AccordionSection, DocumentDownloadList, ContentSection, NewsSection | Done |
+| Templates: ContentGrid, PageLayout, PageTransition, SectionRenderer, HomePageTemplate, InnerPageTemplate | Done |
+| Full route tree | Written (`react-route-strategy.md`) — pending wiring in `App.tsx` + Role 1 Vite/Next.js decision |
+| Locale routing | Not started — blocked on Role 1 decision |
 | Design system color tokens | Conflicted — must resolve Role 4 vs main branch values |
-| Planning documents (3 carry-overs) | Not written |
+| Planning documents (3 carry-overs) | Done |
 
 ---
 
@@ -192,10 +192,11 @@ Full fix log: `docs/agent_memory/main/13_WP_Merge_Fixes.md`
 | # | Issue | Blocks | Owner |
 |---|-------|--------|-------|
 | 1 | Role 4 color tokens conflict with main branch `index.css` | Visual QA, design consistency | Role 4 + Role 1 decision |
-| 2 | 3 carry-over planning docs not written (route strategy, component planning, page template planning) | Route tree, InnerPageTemplate | Role 5 |
-| 3 | CPT API helpers not written | Any page consuming WP content | Role 5 |
-| 4 | CPTUI and ACF sync not yet done in WordPress admin | REST endpoint verification, test entries | Role 6 |
-| 5 | No test entries in WordPress | API response verification | Role 6 |
-| 6 | `DocumentDownloadList`, `InnerPageTemplate`, `HomePageTemplate` not built | Page assembly | Role 5 |
-| 7 | Full route tree not wired in `App.tsx` | Page navigation | Role 5 |
-| 8 | `people` CPT decision not recorded | Backend structure | Role 1 + Role 6 |
+| 2 | CPT API helpers not written | Any page consuming WP content | Role 5 |
+| 3 | CPTUI and ACF sync not yet done in WordPress admin | REST endpoint verification, test entries | Role 6 |
+| 4 | No test entries in WordPress | API response verification | Role 6 |
+| 5 | Full route tree not wired in `App.tsx` | Page navigation | Role 5 |
+| 6 | `people` CPT decision not recorded | Backend structure | Role 1 + Role 6 |
+| 7 | Vite vs Next.js not formally recorded | `App.tsx` finalization, locale routing | Role 1 |
+| 8 | Role 2 `page-template-alignment-feedback.md` not produced | Page template review gated | Role 2 |
+| 9 | `/admissions` and `/research` routes in `App.tsx` not in sitemap | Route tree accuracy | Role 1 + Role 5 |
