@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 
 const navLinks = [
   { label: 'About',                  to: '/about' },
@@ -33,13 +34,18 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Mobile menu placeholder — to be wired up */}
-        <button
-          className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
-          aria-label="Open menu"
-        >
-          ☰
-        </button>
+        {/* Right side — language switcher + mobile menu */}
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+
+          {/* Mobile menu placeholder — to be wired up */}
+          <button
+            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
 
       </div>
     </header>

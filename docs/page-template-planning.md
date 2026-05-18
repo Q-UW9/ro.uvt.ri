@@ -2,7 +2,7 @@
 
 **File:** `docs/page-template-planning.md`  
 **Author:** Role 5 — React Developer  
-**Week:** 4  
+**Week:** 4
 **Status:** Awaiting Role 2 review (`page-template-alignment-feedback.md`) before building
 
 ---
