@@ -1,0 +1,420 @@
+
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=uvtBlue,urlcolor=uvtBlue,citecolor=uvtBlue}
+\usepackage{url}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------- Symbols / Icons ----------
+\usepackage{amssymb}
+\usepackage{fontawesome5}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{sharp corners=south,boxrule=0pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
+\newtcolorbox{bluebox}{colback=uvtLightBlue,colframe=uvtBlue,borderline west={4pt}{0pt}{uvtBlue}}
+\newtcolorbox{yellowbox}{colback=uvtYellow!16,colframe=uvtYellow,borderline west={4pt}{0pt}{uvtYellow}}
+\newtcolorbox{darkbox}{colback=uvtDarkBlue,coltext=white,colframe=uvtDarkBlue}
+\newtcolorbox{rolebox}[1]{colback=uvtLightBlue,colframe=uvtBlue,borderline west={4pt}{0pt}{uvtBlue},title=\textbf{#1}}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Week 4 Progress Report}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{softGray},frame=single,rulecolor=\color{softGray},breaklines=true,columns=fullflexible}
+
+\begin{document}
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+    \vspace*{2cm}
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em] Week 4 Progress Report\par}
+    \vspace{0.8cm}
+    {\Large Direcția de Relații Internaționale\\ West University of Timișoara\par}
+    \vspace{1.5cm}
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Focus:} Progress synthesis for React frontend, API connection, and WordPress backend work completed during Week 4, including blockers carrying into Week 5.
+    \end{yellowbox}
+    \vfill
+    {\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\ Team Q-UW9}
+    \vspace{1cm}
+\end{titlepage}
+\nopagecolor
+\color{textGray}
+\tableofcontents
+\newpage
+\section*{Report Metadata}
+\textbf{Project:} RI.UVT.RO Redesign
+\textbf{Period:} Week 4
+\textbf{Compiled:} 2026-05-18
+\textbf{Scope:} React frontend, API connection, WordPress backend
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\section{1. React Frontend}
+
+\subsection{Role 4 — UI Designer}
+
+Role 4 produced three design documents that guided frontend implementation.
+
+\textbf{\path{component-handoff.md}} — Complete. Covers all 9 components needed by Role 5: Button (4 variants, 5 states), Card, SectionHeader, HeroSection, AccordionSection, DocumentDownloadList, CTA Section, Navbar, Footer. Each entry includes anatomy, layout rules, accessibility requirements, responsive rules, and Tailwind class direction. The Week 4 implementation priority order listed in the document matches the sequence Role 5 followed.
+
+\textbf{\path{wireframes.md}} — Complete. 8 layout types covered with ASCII wireframes: Homepage, Internal Page, Student Journey, Resource Listing, Contact/Support, Card Grid, Accordion Section, CTA Section. All include responsive breakpoint rules. These are text-based layouts, which is adequate for this project's markdown-first workflow.
+
+\textbf{\path{design-system-work-in-progress.md}} — Partial. Typography scale (Inter, H1–H3, body, small, button text with exact px/line-height values at each breakpoint), spacing system (section padding, container widths, card padding, grid gaps), and layout rules for homepage and internal pages are all defined. The file is explicitly marked as incomplete by the author.
+
+\begin{yellowbox}
+\textbf{Critical issue — color conflict:} Role 4 defined \texttt{\#003B71} (primary), \texttt{\#F2C94C} (secondary), \texttt{\#00A86B} (accent). The main branch \path{index.css} already has \texttt{uvt-blue: \#005BBB}, \texttt{uvt-navy: \#002147}, \texttt{uvt-gold: \#F2B705} — different values on all three. Role 5 built every component against the main branch tokens. Role 4's color system and the implemented color tokens are currently misaligned. This must be resolved before any visual QA can be done: either Role 4 adopts the existing tokens or a formal decision is made to replace them.
+\end{yellowbox}
+
+\begin{yellowbox}
+\textbf{Missing:} No Tailwind config snippet or CSS variable definitions in a format ready to paste into \path{index.css}. Values exist only in prose.
+\end{yellowbox}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\subsection{Role 5 — React Developer}
+
+Role 5 delivered the full core component library in Week 4. All changes are merged into main.
+
+\textbf{Components added (commits \texttt{8a18c8c}, \texttt{fc7e920}):}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{3.2cm}p{2.8cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Tier} & \textbf{Notes} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Tier} & \textbf{Notes} \\
+\midrule
+\endhead
+\texttt{Card} & Molecule & Title, description, optional image and button; hover lift; uses Button + Typography \\
+\texttt{SectionHeader} & Molecule & Title, subtitle, \texttt{uvt-gold} accent bar; uses Typography \\
+\texttt{Footer} & Organism & Brand column + 3 nav sections + copyright bar \\
+\texttt{HeroSection} & Organism & Title, subtitle, primary/secondary buttons \\
+\texttt{Navbar} & Organism & Sticky header, desktop nav, mobile menu button \\
+\texttt{TabsSection} & Organism & Stateful tab switcher; \texttt{aria-selected}; \texttt{uvt-blue} active state \\
+\texttt{ContentGrid} & Template & Configurable 2/3/4 column responsive grid \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+A folder naming typo was also corrected (\texttt{molechules} → \texttt{molecules}).
+
+\path{UnderConstruction.tsx} was reworked into a full page assembly demo that integrates all new components — Navbar, HeroSection, TabsSection, ContentGrid, Card, Footer — demonstrating the complete vertical page structure.
+
+\begin{yellowbox}
+\textbf{Week 3 carry-over planning documents (3) — not written.} \path{react-route-strategy.md}, \path{component-planning.md}, and \path{page-template-planning.md} were due in Week 3, rolled into Week 4, and remain missing.
+\end{yellowbox}
+
+\begin{yellowbox}
+\textbf{Not started:} \texttt{DocumentDownloadList} organism, \texttt{InnerPageTemplate}, \texttt{HomePageTemplate}, full route tree, locale routing (\path{/ro}, \path{/en}).
+\end{yellowbox}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\subsection{Frontend Status Summary}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{6.2cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+Atoms: Button, Typography & Done (Week 3) \\
+Molecules: Card, SectionHeader & Done \\
+Organisms: Footer, HeroSection, Navbar, TabsSection, AccordionSection & Done \\
+Templates: ContentGrid, PageLayout & Done \\
+Organism: DocumentDownloadList & Not started \\
+Templates: InnerPageTemplate, HomePageTemplate & Not started \\
+Full route tree & Not started \\
+Locale routing & Not started \\
+Design system color tokens & Conflicted — must resolve Role 4 vs main branch values \\
+Planning documents (3 carry-overs) & Not written \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\section{2. API Connection}
+
+\subsection{Role 5 — React Developer}
+
+The file \path{frontend/src/api/wordpress.js} remains unchanged from Week 3. It contains only \texttt{getPosts()} and \texttt{getPost(slug)}.
+
+No CPT API helpers were written. Role 5 created a \path{feature/api-setup} branch with WordPress-related commits, but this branch was excluded from the merge:
+\begin{itemize}
+\item WordPress core files were committed directly to the repo (must be gitignored)
+\item ACF plugin files were committed (same problem)
+\item The ACF JSON and CPTUI export files on this branch were confirmed copies of role6's broken versions — identical group keys prove they were not independently produced
+\item All doc stubs matched role6's verbatim
+\end{itemize}
+
+The CPT API helpers remain blocked until the ACF field names are confirmed. The frozen field name reference is now in \path{docs/agent_memory/main/13_WP_Merge_Fixes.md} and is ready to use.
+
+\textbf{API helpers required and not yet written:}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{3.2cm}p{2.8cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Function pair} & \textbf{Endpoint} & \textbf{Taxonomy filters} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Function pair} & \textbf{Endpoint} & \textbf{Taxonomy filters} \\
+\midrule
+\endhead
+\texttt{getPages()} / \texttt{getPage(slug)} & \path{/wp-json/wp/v2/pages} & — \\
+\texttt{getCalls(params?)} / \texttt{getCall(slug)} & \path{/wp-json/wp/v2/calls} & \texttt{audience}, \texttt{academic-year} \\
+\texttt{getProgrammes(params?)} / \texttt{getProgramme(slug)} & \path{/wp-json/wp/v2/programmes} & \texttt{audience}, \texttt{programme-family} \\
+\texttt{getResources(params?)} / \texttt{getResource(slug)} & \path{/wp-json/wp/v2/resources} & \texttt{audience}, \texttt{content-topic}, \texttt{academic-year} \\
+\texttt{getStories(params?)} / \texttt{getStory(slug)} & \path{/wp-json/wp/v2/stories} & \texttt{audience}, \texttt{content-topic} \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+\subsection{Role 6 — WordPress Developer}
+
+Role 6 was responsible for producing the \path{rest-api-exposure-checklist.md} that Role 5 uses as the API contract. The file committed to the role6 branch contained 4 checkbox statements with no endpoint URLs, no field names, and no query parameter documentation — unusable as a contract.
+
+The field name contract is now resolved and frozen in \path{docs/agent_memory/main/13_WP_Merge_Fixes.md} (Section 5 — Frozen Field Name Reference). Role 5 can proceed with writing API helpers against these names immediately.
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\subsection{API Connection Status Summary}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{6.2cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+\texttt{getPosts()} / \texttt{getPost(slug)} & Done (Week 3) \\
+\texttt{getPages()} / \texttt{getPage(slug)} & Not written \\
+\texttt{getCalls()} / \texttt{getCall()} & Not written \\
+\texttt{getProgrammes()} / \texttt{getProgramme()} & Not written \\
+\texttt{getResources()} / \texttt{getResource()} & Not written \\
+\texttt{getStories()} / \texttt{getStory()} & Not written \\
+Field name contract frozen & Done (by Role 1 — see \path{13_WP_Merge_Fixes.md}) \\
+\path{rest-api-exposure-checklist.md} usable & No — stub only; superseded by \path{13_WP_Merge_Fixes.md} \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\section{3. WordPress}
+
+\subsection{Role 6 — WordPress Developer}
+
+Role 6 registered 4 Custom Post Types and created 4 ACF field groups with REST enabled. These were the core deliverables and were partially complete.
+
+\textbf{Done correctly by Role 6:}
+\begin{itemize}
+\item 4 CPTs registered with \path{show_in_rest: true} (\texttt{calls}, \texttt{stories}, \texttt{resources}, \texttt{programmes})
+\item CPTUI export committed
+\item 4 ACF field groups created with \path{show_in_rest: 1}
+\item ACF Local JSON sync folder (\path{acf-json/}) in correct theme location
+\end{itemize}
+
+\textbf{Defects found and fixed before merge:}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{3.2cm}p{2.8cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Defect} & \textbf{Detail} & \textbf{Fix applied} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Defect} & \textbf{Detail} & \textbf{Fix applied} \\
+\midrule
+\endhead
+Wrong file path & \path{cptui-export.json} at repo root & Moved to \path{wordpress/ro.uvt.ri/cptui-export.json} \\
+\path{has_archive: false} on all 4 CPTs & Archive pages (\path{/calls/}, \path{/programmes/} etc.) would 404 & Set to \texttt{true} on all 4 \\
+\texttt{excerpt} missing from all CPT \texttt{supports} & Excerpt field unavailable in editor & Added to all 4 \\
+Empty \texttt{taxonomies: []} on all CPTs & Taxonomy filters would silently return no results & Attached correct taxonomies per CPT \\
+No taxonomy export & 4 taxonomies described in a doc but never exported or attached & Created \path{cptui-taxonomies.json} with all 4 taxonomy definitions \\
+Calls: \path{application_deadline} field name & Mismatched plan spec (\texttt{deadline}) & Renamed to \texttt{deadline} \\
+Calls: \texttt{eligibility}, \path{application_steps}, \texttt{documents} & Missing entirely & Added \\
+Programmes: \path{field_1:_deadline} & Broken name — CPTUI import collision prefix & Fixed to \path{application_deadline} \\
+Programmes: \texttt{duration}, \texttt{language}, \path{partner_institution} & Missing entirely & Added \\
+Resources: \path{download_url} field name & Mismatched plan spec (\path{file_url}) & Renamed \\
+Resources: \path{document_type} field name & Mismatched (\path{file_type}), malformed choices (\texttt{"PDF, DOCX, Link"} as single option) & Renamed; choices replaced with \texttt{PDF}, \texttt{DOCX}, \texttt{XLS}, \texttt{Other} \\
+Resources: \path{audience_notes} & Missing & Added \\
+Stories: \path{testimonial_author} field name & Mismatched (\texttt{author}) & Renamed \\
+Stories: \path{study_destination} & Wrong field type and purpose (text instead of date picker for story date) & Replaced with \path{story_date} (date picker) \\
+Stories: \path{pull_quote} & Missing & Added \\
+No global ACF field groups & 5 global groups required for WP Pages & Created all 5 \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+\subsection{Role 1 — Project Manager / Frontend Lead}
+
+Role 1 resolved the WordPress merge, applying all fixes and creating the following files in main:
+
+\textbf{Merged to \path{wordpress/ro.uvt.ri/}:}
+\begin{itemize}
+\item \path{cptui-export.json} — fixed post type config (4 CPTs)
+\item \path{cptui-taxonomies.json} — new taxonomy definitions (4 taxonomies)
+\item \path{acf-json/group_6a087f7aa179c.json} — Calls field group (fixed)
+\item \path{acf-json/group_6a010285605db.json} — Programme Details field group (fixed)
+\item \path{acf-json/group_6a0880749381c.json} — Resource Details field group (fixed)
+\item \path{acf-json/group_6a08815042fd6.json} — Story Details field group (fixed)
+\item \path{acf-json/group_6b1001a000001.json} — CTA Block (new global group)
+\item \path{acf-json/group_6b1001b000002.json} — Process Steps (new global group)
+\item \path{acf-json/group_6b1001c000003.json} — FAQ Section (new global group)
+\item \path{acf-json/group_6b1001d000004.json} — Contact Card (new global group)
+\item \path{acf-json/group_6b1001e000005.json} — Document Repeater (new global group)
+\end{itemize}
+
+Full fix log: \path{docs/agent_memory/main/13_WP_Merge_Fixes.md}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\subsection{WordPress Status Summary}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{6.2cm}p{6.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+4 CPTs registered with REST & Done (fixed by Role 1 before merge) \\
+\path{has_archive: true} on all CPTs & Done \\
+\texttt{excerpt} in supports on all CPTs & Done \\
+Taxonomies registered (4) & Done — \path{cptui-taxonomies.json} created \\
+Taxonomies attached to CPTs & Done \\
+ACF field groups (4 CPTs) & Done — all field names fixed, missing fields added \\
+Global ACF field groups (5) & Done — all 5 created \\
+CPTUI import into WordPress & \textbf{Pending} — requires admin to import via CPTUI \\
+ACF sync into WordPress & \textbf{Pending} — requires admin to sync via ACF → Tools \\
+Test entries per CPT & \textbf{Missing} — no published entries \\
+REST endpoint verification & \textbf{Pending} — cannot verify until CPTUI/ACF imported \\
+\texttt{people} CPT & \textbf{No decision recorded} \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+
+\medskip\noindent\textcolor{uvtYellow}{\rule{\textwidth}{1.2pt}}\medskip
+
+\section{Open Issues Carrying into Week 5}
+
+\begin{center}
+\small
+\begin{longtable}{@{}p{0.8cm}p{5.0cm}p{4.0cm}p{2.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{\#} & \textbf{Issue} & \textbf{Blocks} & \textbf{Owner} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{\#} & \textbf{Issue} & \textbf{Blocks} & \textbf{Owner} \\
+\midrule
+\endhead
+1 & Role 4 color tokens conflict with main branch \path{index.css} & Visual QA, design consistency & Role 4 + Role 1 decision \\
+2 & 3 carry-over planning docs not written (route strategy, component planning, page template planning) & Route tree, InnerPageTemplate & Role 5 \\
+3 & CPT API helpers not written & Any page consuming WP content & Role 5 \\
+4 & CPTUI and ACF sync not yet done in WordPress admin & REST endpoint verification, test entries & Role 6 \\
+5 & No test entries in WordPress & API response verification & Role 6 \\
+6 & \texttt{DocumentDownloadList}, \texttt{InnerPageTemplate}, \texttt{HomePageTemplate} not built & Page assembly & Role 5 \\
+7 & Full route tree not wired in \path{App.tsx} & Page navigation & Role 5 \\
+8 & \texttt{people} CPT decision not recorded & Backend structure & Role 1 + Role 6 \\
+\bottomrule
+\end{longtable}
+\normalsize
+\end{center}
+\end{document}

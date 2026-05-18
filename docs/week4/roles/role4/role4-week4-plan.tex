@@ -1,0 +1,491 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=0.85in]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{statusGreen}{HTML}{1B7A3A}
+\definecolor{statusRed}{HTML}{C0392B}
+\definecolor{statusOrange}{HTML}{B7580A}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=uvtBlue,
+    urlcolor=uvtBlue,
+    citecolor=uvtBlue
+}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.35em}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\renewcommand{\arraystretch}{1.3}
+
+% ---------- Icons and checkbox ----------
+\usepackage{fontawesome5}
+\usepackage{amssymb}
+
+% ---------- Boxes ----------
+\usepackage[most]{tcolorbox}
+\tcbset{
+    sharp corners=south,
+    boxrule=0pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{bluebox}{
+    colback=uvtLightBlue,
+    colframe=uvtBlue,
+    borderline west={4pt}{0pt}{uvtBlue}
+}
+
+\newtcolorbox{yellowbox}{
+    colback=uvtYellow!16,
+    colframe=uvtYellow,
+    borderline west={4pt}{0pt}{uvtYellow}
+}
+
+\newtcolorbox{darkbox}{
+    colback=uvtDarkBlue,
+    coltext=white,
+    colframe=uvtDarkBlue
+}
+
+\newtcolorbox{redbox}{
+    colback=statusRed!8,
+    colframe=statusRed,
+    borderline west={4pt}{0pt}{statusRed}
+}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uvtBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{uvtDarkBlue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{uvtBlue}}{\thesubsubsection}{0.5em}{}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{uvtBlue}{DRI Website Redesign}}
+\rhead{\textcolor{uvtBlue}{Role 4 --- Week 4 Plan}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{softGray},
+    frame=single,
+    rulecolor=\color{softGray},
+    breaklines=true,
+    columns=fullflexible
+}
+
+% Status markers
+\newcommand{\sdone}{\textcolor{statusGreen}{\faCheckCircle\ Done}}
+\newcommand{\spartial}{\textcolor{statusOrange}{\faAdjust\ Partial}}
+\newcommand{\stodo}{\textcolor{statusRed}{\faCircle[regular]\ Not started}}
+
+\color{textGray}
+
+% ==========================================================
+\begin{document}
+% ==========================================================
+
+% ---------- Cover ----------
+\begin{titlepage}
+    \pagecolor{uvtDarkBlue}
+    \color{white}
+
+    \vspace*{2cm}
+
+    {\Huge\bfseries RI.UVT.RO Redesign\\[0.25em]
+    Role 4 --- Week 4 Plan\par}
+
+    \vspace{0.8cm}
+
+    {\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+    West University of Timi\c{s}oara\par}
+
+    \vspace{1.5cm}
+
+    \begin{yellowbox}
+        \color{textGray}
+        \textbf{Role:} UI Designer + Frontend Implementer\\[0.3em]
+        \textbf{Focus:} Produce the three missing design system documents,
+        build the three unbuilt atoms (Divider, Icon, LanguageSwitcher),
+        and establish visual consistency rules across the component library.
+    \end{yellowbox}
+
+    \vfill
+
+    {\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[0.4em]
+    Team Q-UW9 \quad|\quad Week 4}
+
+    \vspace{1cm}
+\end{titlepage}
+
+\nopagecolor
+\color{textGray}
+
+% ---------- TOC ----------
+\tableofcontents
+\newpage
+
+% ==========================================================
+\section{Context Entering Week 4}
+% ==========================================================
+
+\begin{redbox}
+Role 4 produced no documents in Week 3. Design tokens exist in \texttt{tailwind.config.js}
+and base typographic styles exist in \texttt{globals.css}, but there is no design system
+document, no typography specification, no spacing rules, and no wireframes. Token
+authorship is unconfirmed --- they may have been written by Role 5.
+\end{redbox}
+
+\subsection{Current Token State in Code}
+
+\begin{longtable}{@{}llll@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Token} & \textbf{Location} & \textbf{Value} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Token} & \textbf{Location} & \textbf{Value} & \textbf{Status} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{uvt-blue} & \texttt{tailwind.config.js} & \texttt{\#005BBB} & In code, no doc \\
+\texttt{uvt-navy} & \texttt{tailwind.config.js} & \texttt{\#002147} & In code, no doc \\
+\texttt{uvt-gold} & \texttt{tailwind.config.js} & \texttt{\#F2B705} & In code, no doc \\
+\texttt{uvt-gray} & \texttt{tailwind.config.js} & \texttt{\#F5F5F5} & In code, no doc \\
+\texttt{section} spacing & \texttt{tailwind.config.js} & \texttt{6rem} & In code, no doc \\
+\texttt{container} width & \texttt{tailwind.config.js} & \texttt{1280px} & In code, no doc \\
+Heading weight & \texttt{globals.css} & \texttt{font-weight: 700} & In code, no doc \\
+Heading tracking & \texttt{globals.css} & \texttt{letter-spacing: -0.02em} & In code, no doc \\
+\end{longtable}
+
+Typography scale hardcoded in \texttt{Typography.tsx}: h1 = \texttt{text-5xl}, h2 = \texttt{text-4xl},
+h3 = \texttt{text-2xl} --- not tokenised.
+
+% ==========================================================
+\section{Priority Order This Week}
+% ==========================================================
+
+\begin{enumerate}
+    \item Produce the three carry-over documents --- blocks all implementation work
+    \item Build missing atoms: Divider, Icon, LanguageSwitcher
+    \item Document existing design tokens
+    \item Implement responsive rules and accessibility checks
+\end{enumerate}
+
+\begin{darkbox}
+No further visual implementation should proceed until the design system document exists.
+Components built without a specification drift from each other and cannot be consistently
+reviewed.
+\end{darkbox}
+
+% ==========================================================
+\section{Week 3 Carry-Overs --- Priority Zero}
+% ==========================================================
+
+% ----------------------------------------------------------
+\subsection{Design System Draft Document}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/design-system-draft.md}
+
+Formalise the visual language of the platform using existing tokens as source of truth.
+
+\vspace{0.8em}
+\noindent\textbf{Colors to document:}
+
+\begin{itemize}
+    \item Primary: \texttt{uvt-blue: \#005BBB} --- main brand, interactive elements, links
+    \item Deep: \texttt{uvt-navy: \#002147} --- backgrounds, footer, dark sections
+    \item Accent: \texttt{uvt-gold: \#F2B705} --- secondary CTA, highlights, badges
+    \item Background: \texttt{uvt-gray: \#F5F5F5} --- page backgrounds, card backgrounds
+    \item Usage rules: when to use each color, what is never allowed (e.g. gold text on white --- contrast check required)
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{Typography to document:}
+
+\begin{itemize}
+    \item Font family: specify the font stack (Tailwind default or custom)
+    \item Heading scale: h1 (\texttt{text-5xl} = 48px), h2 (\texttt{text-4xl} = 36px), h3 (\texttt{text-2xl} = 24px)
+    \item Body: \texttt{text-base} = 16px, line-height 1.75
+    \item Caption: \texttt{text-sm} = 14px, color gray-500
+    \item Button text: \texttt{text-sm} (sm), \texttt{text-base} (md), \texttt{text-lg} (lg)
+    \item Heading weight: 700, letter-spacing: -0.02em
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{Spacing to document:}
+
+\begin{itemize}
+    \item Section padding: \texttt{6rem} (96px) vertical
+    \item Container max-width: \texttt{1280px}
+    \item Card spacing: document the padding used across Card, AccordionSection, PageLayout
+    \item Grid gap: document the gap value used in ContentGrid
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{Additional:}
+
+\begin{itemize}
+    \item Elevation / shadow: document any box-shadow usage or lack thereof
+    \item Border radius: specify standard values (\texttt{rounded-xl} on cards and accordions --- confirm rule)
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Typography, Spacing, and Color Rules Document}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/typography-spacing-color-rules.md}
+
+A concise reference card formatted as tables, not a narrative. Cover:
+
+\begin{itemize}
+    \item Heading scale with pixel values, Tailwind class, and usage context
+    \item Paragraph line-height values per context
+    \item Link styles (default, hover, visited, focus)
+    \item Button text sizing per button size
+    \item Section padding values (desktop, tablet, mobile)
+    \item Card internal padding
+    \item Grid gap values per grid type
+    \item Mobile overrides (which spacing values change below \texttt{md:} breakpoint)
+    \item Color usage table: color name \textrightarrow{} hex \textrightarrow{} use case \textrightarrow{} forbidden use
+\end{itemize}
+
+This is the reference Role 5 and Role 4 use when building new components to ensure visual
+consistency.
+
+% ----------------------------------------------------------
+\subsection{Core Wireframes Notes}
+% ----------------------------------------------------------
+
+\textbf{File:} \texttt{docs/core-wireframes-notes.md}
+
+Produce wireframe descriptions (text or annotated sketches) for each layout type below.
+These do not need to be polished --- they must specify component composition and content hierarchy.
+
+\vspace{0.8em}
+\noindent\textbf{Homepage:}
+Navbar at top \textrightarrow{} HeroSection with audience-oriented CTAs \textrightarrow{} Featured content sections (news, open calls, key programmes) \textrightarrow{} Footer.
+
+\vspace{0.8em}
+\noindent\textbf{Internal section page} (e.g. Erasmus overview, About):
+Navbar \textrightarrow{} Page title + breadcrumb \textrightarrow{} Body content (static WP Page content) \textrightarrow{} Optional sidebar or CTA block \textrightarrow{} Footer.
+
+\vspace{0.8em}
+\noindent\textbf{Listing page} (Programmes / Calls / Resources):
+Navbar \textrightarrow{} SectionHeader with title and optional filter \textrightarrow{} ContentGrid of Cards \textrightarrow{} Footer.
+
+\vspace{0.8em}
+\noindent\textbf{Detail page} (single Programme / single Call):
+Navbar \textrightarrow{} Page title + metadata (deadline, language, ACF fields) \textrightarrow{} Body content \textrightarrow{} Structured sections (AccordionSection for application steps, DocumentDownloadList) \textrightarrow{} Footer.
+
+\vspace{0.8em}
+\noindent\textbf{Contact page:}
+Navbar \textrightarrow{} Contact card(s) \textrightarrow{} Form or CTA \textrightarrow{} Footer.
+
+% ==========================================================
+\section{Week 4 Implementation Tasks}
+% ==========================================================
+
+\subsection{Design Token Completion}
+
+\begin{itemize}
+    \item[\faCheckCircle] Color tokens --- \texttt{uvt-blue}, \texttt{uvt-navy}, \texttt{uvt-gold}, \texttt{uvt-gray} defined in \texttt{tailwind.config.js}
+    \item[\faAdjust] Typography tokens --- hardcoded in \texttt{Typography.tsx} as Tailwind utility classes; should be moved to custom Tailwind \texttt{fontSize} config entries
+    \item[\faAdjust] Spacing tokens --- \texttt{section} and \texttt{container} defined; card and grid spacing ad-hoc; standardise and document
+    \item[$\square$] Responsive breakpoint rules --- document which layouts change at \texttt{sm} (640px), \texttt{md} (768px), \texttt{lg} (1024px), \texttt{xl} (1280px)
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Missing UI Atoms}
+% ----------------------------------------------------------
+
+These three atoms were in the Week 3 plan and were not built.
+
+\vspace{0.8em}
+\noindent\textbf{Divider atom} (\texttt{components/atoms/Divider/Divider.tsx})
+
+\begin{itemize}
+    \item[$\square$] Horizontal rule between sections
+    \item[$\square$] Props: \texttt{variant} (solid / dashed), \texttt{className}
+    \item[$\square$] Should use a Tailwind border color that respects the design system
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{Icon atom} (\texttt{components/atoms/Icon/Icon.tsx})
+
+\begin{itemize}
+    \item[$\square$] Wrapper for SVG icons
+    \item[$\square$] Props: \texttt{name} (icon key), \texttt{size} (sm/md/lg), \texttt{className}
+    \item[$\square$] Decide on icon library --- Heroicons recommended (already compatible with Tailwind) or inline SVGs. Record the decision.
+    \item[$\square$] Must be accessible: \texttt{aria-hidden} when decorative, \texttt{aria-label} when meaningful
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{LanguageSwitcher atom}\\
+(\texttt{components/atoms/LanguageSwitcher/LanguageSwitcher.tsx})
+
+\begin{itemize}
+    \item[$\square$] Dropdown or toggle between language options (RO / EN minimum)
+    \item[$\square$] Props: \texttt{currentLocale}, \texttt{onLocaleChange}
+    \item[$\square$] Must work alongside the locale routing strategy agreed between Role 1 and Role 5
+    \item[$\square$] Do not hard-wire to a routing implementation --- accept locale value and change handler as props
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Responsive Visual Behavior}
+% ----------------------------------------------------------
+
+\begin{itemize}
+    \item[$\square$] Test Button atom at all 3 sizes across desktop / tablet / mobile
+    \item[$\square$] Test Typography atom at all 5 variants across breakpoints
+    \item[$\square$] Test Navbar collapse behavior at \texttt{md:} breakpoint
+    \item[$\square$] Test ContentGrid column collapse (4 col desktop \textrightarrow{} 2 col tablet \textrightarrow{} 1 col mobile)
+    \item[$\square$] Test AccordionSection on mobile --- verify touch targets are large enough
+    \item[$\square$] Check spacing consistency --- section padding should reduce on mobile
+    \item[$\square$] Check layout readability at 375px (iPhone SE baseline)
+\end{itemize}
+
+% ----------------------------------------------------------
+\subsection{Accessibility-Friendly Visual Patterns}
+% ----------------------------------------------------------
+
+\begin{itemize}
+    \item[\faAdjust] Visible focus states --- Button has \texttt{focus:ring-2 focus:ring-uvt-blue}. Check Navbar links, Footer links, AccordionSection trigger, and TabsSection tabs --- all interactive elements must have a visible focus indicator.
+    \item[$\square$] Contrast check --- \texttt{uvt-blue \#005BBB} on white: WCAG AA requires 4.5:1 for normal text. Verify. \texttt{uvt-gold \#F2B705} on white likely fails --- document and restrict to large text or decorative use only.
+    \item[\faAdjust] Hover states --- Navbar and Footer links have hover; check all interactive elements
+    \item[$\square$] Active states --- Button has no explicit active style; add \texttt{active:} class
+    \item[$\square$] Confirm \texttt{aria-expanded} on AccordionSection is correct
+    \item[$\square$] WCAG 2.1 AA compliance --- document target in \texttt{accessibility-implementation-standards.md} (co-authored with Role 1)
+\end{itemize}
+
+% ==========================================================
+\section{Deliverables Checklist}
+% ==========================================================
+
+\subsection{Week 3 Carry-Overs (Produce First)}
+
+\begin{itemize}
+    \item[$\square$] \texttt{design-system-draft.md} --- colors, typography, spacing, elevation, border radius
+    \item[$\square$] \texttt{typography-spacing-color-rules.md} --- concise reference tables
+    \item[$\square$] \texttt{core-wireframes-notes.md} --- 5 layout types described
+\end{itemize}
+
+\subsection{Week 4 Implementation Deliverables}
+
+\begin{itemize}
+    \item[$\square$] \texttt{design-token-implementation.md} --- current token state, tokenised vs hardcoded, what still needs tokenising
+    \item[$\square$] \texttt{ui-atoms-checklist.md} --- status of every atom: Button, Typography, Divider, Icon, LanguageSwitcher
+    \item[$\square$] Divider atom built and committed
+    \item[$\square$] Icon atom built and committed (with icon library decision recorded)
+    \item[$\square$] LanguageSwitcher atom built and committed
+    \item[$\square$] Responsive behavior tested and documented
+    \item[$\square$] \texttt{accessibility-implementation-standards.md} co-produced with Role 1
+\end{itemize}
+
+% ==========================================================
+\section{Dependencies}
+% ==========================================================
+
+\noindent\textbf{What Role 4 needs from other roles:}
+
+\vspace{0.5em}
+\begin{longtable}{@{}p{2cm}p{6.5cm}p{3.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Role 1 & Accessibility standards guidance and WCAG target & Before accessibility work \\
+Role 2 & UX feedback on wireframes and visual patterns & As wireframes are produced \\
+Role 5 & Confirmation of which Tailwind classes are in use across existing components & Before token standardisation \\
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{What other roles need from Role 4:}
+
+\vspace{0.5em}
+\begin{longtable}{@{}p{2cm}p{6.5cm}p{3.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Role} & \textbf{Needed} & \textbf{When} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Role 1 & Design system document --- needed for architectural validation & Start of week \\
+Role 5 & Typography tokens, responsive breakpoint rules, LanguageSwitcher atom & Before locale routing work \\
+Role 2 & Wireframes --- needed for page-template alignment feedback & Before Role 2 produces page-template doc \\
+\end{longtable}
+
+% ==========================================================
+\section{Definition of Done}
+% ==========================================================
+
+\begin{itemize}
+    \item[$\square$] \texttt{design-system-draft.md} committed as a standalone document
+    \item[$\square$] \texttt{typography-spacing-color-rules.md} committed
+    \item[$\square$] \texttt{core-wireframes-notes.md} committed (5 layout types covered)
+    \item[$\square$] Divider, Icon, LanguageSwitcher atoms committed and accessible
+    \item[$\square$] \texttt{ui-atoms-checklist.md} committed reflecting current state of all 5 atoms
+    \item[$\square$] Contrast check on \texttt{uvt-blue} and \texttt{uvt-gold} documented
+    \item[$\square$] All interactive elements confirmed to have visible focus states
+\end{itemize}
+
+\end{document}

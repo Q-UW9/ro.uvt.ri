@@ -1,45 +1,52 @@
-import clsx from 'clsx'
+import { Link } from 'react-router-dom'
+import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 
 const navLinks = [
-  'About',
-  'Admissions',
-  'Erasmus',
-  'Research',
-  'Contact',
+  { label: 'About',                  to: '/about' },
+  { label: 'Erasmus',                to: '/erasmus' },
+  { label: 'International Students', to: '/international-students' },
+  { label: 'Programmes',             to: '/programmes' },
+  { label: 'Partnerships',           to: '/partnerships' },
+  { label: 'News',                   to: '/news' },
+  { label: 'Contact',                to: '/contact' },
 ]
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-        
-        {/* Logo */}
-        <div className="text-xl font-bold text-uvt-blue">
-          UVT RI
-        </div>
 
-        {/* Navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Logo */}
+        <Link to="/" className="text-xl font-bold text-blue-700">
+          UVT RI
+        </Link>
+
+        {/* Nav links — desktop */}
+        <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
-              className={clsx(
-                'text-sm font-medium text-gray-700 transition-colors hover:text-uvt-blue'
-              )}
+            <Link
+              key={link.to}
+              to={link.to}
+              className="text-sm font-medium text-gray-700 transition hover:text-blue-600"
             >
-              {link}
-            </a>
+              {link.label}
+            </Link>
           ))}
         </nav>
 
-        {/* Mobile */}
-        <button
-          type="button"
-          className="rounded-lg border border-gray-200 px-4 py-2 text-sm md:hidden"
-        >
-          Menu
-        </button>
+        {/* Right side — language switcher + mobile menu */}
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+
+          {/* Mobile menu placeholder — to be wired up */}
+          <button
+            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+
       </div>
     </header>
   )

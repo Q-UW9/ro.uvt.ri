@@ -1,0 +1,250 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ---------- Checkbox ----------
+\usepackage{amssymb}
+
+% ---------- Section Headings — lighter than standard ----------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\large\bfseries\color{uvtBlue}}
+  {}
+  {0em}
+  {}
+  [\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{uvtDarkBlue}}
+  {}
+  {0em}
+  {}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 6 Final Tasks}}
+\rhead{\small\textcolor{textGray}{Week 4 / Week 5}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Thin rule between groups ----------
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+
+\color{textGray}
+
+% ==========================================================
+\begin{document}
+% ==========================================================
+
+% ---------- Inline title block (no cover page) ----------
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 6 --- Final Tasks}\\[0.4em]
+    {\small WordPress Developer \textbf{·} Team Q-UW9 \textbf{·} Week 4 / Week 5}
+\end{center}
+
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+
+% ---------- Status key ----------
+{\small
+\noindent
+\textbf{Priority order:} tasks within each group must be completed before the next group starts.
+The field name agreement with Role 5 is the single most urgent item --- everything downstream
+depends on it.
+}
+
+\vspace{1em}
+
+% ==========================================================
+\section{Group 1 --- No WordPress Required}
+% ==========================================================
+
+\textit{Do these first. No Laragon needed.}
+
+\begin{itemize}
+    \item[$\square$] Move WordPress files into \texttt{wordpress/ro.uvt.ri/} in the role fork
+    \item[$\square$] Move \texttt{cptui-export.json} to \texttt{wordpress/ro.uvt.ri/cptui-export.json}
+    \item[$\square$] \textbf{Agree ACF field names with Role 5 and freeze them} --- nothing else in Group 2 should start before this
+    \item[$\square$] Rewrite \texttt{rest-api-exposure-checklist.md} with every endpoint URL, field name, ACF flag, and query params
+    \item[$\square$] Rewrite \texttt{wordpress-content-structure-notes.md} with the full route-to-content-type table
+    \item[$\square$] Rewrite \texttt{static-vs-dynamic-content.md} covering all sitemap routes including nested and detail routes
+    \item[$\square$] Rewrite \texttt{structured-fields-setup.md} to match the agreed field names exactly
+\end{itemize}
+
+% ==========================================================
+\section{Group 2 --- Fix CPTs and ACF (Requires Laragon)}
+% ==========================================================
+
+\textit{Start only after field names are agreed with Role 5.}
+
+\vspace{0.5em}
+\noindent\textbf{Fix all 4 CPTs in CPTUI:}
+
+\begin{itemize}
+    \item[$\square$] Set \texttt{has\_archive: true} on all 4 CPTs
+    \item[$\square$] Add \texttt{excerpt} to supports on all 4 CPTs
+    \item[$\square$] Attach \texttt{audience} taxonomy to all CPTs
+    \item[$\square$] Attach \texttt{programme-family} to programmes
+    \item[$\square$] Attach \texttt{content-topic} to resources and stories
+    \item[$\square$] Attach \texttt{academic-year} to calls and resources
+    \item[$\square$] Re-export CPTUI (post types \textbf{and} taxonomies) to \texttt{wordpress/ro.uvt.ri/cptui-export.json} --- commit
+    \item[$\square$] Decide on \texttt{people} CPT with Role 1 --- register if approved
+\end{itemize}
+
+\grouprule
+
+\noindent\textbf{Fix Calls field group:}
+
+\begin{itemize}
+    \item[$\square$] Rename \texttt{application\_deadline} \textrightarrow{} \texttt{deadline}
+    \item[$\square$] Add \texttt{eligibility} (textarea)
+    \item[$\square$] Add \texttt{application\_steps} (repeater \textrightarrow{} text sub-field)
+    \item[$\square$] Add \texttt{documents} (repeater \textrightarrow{} label text + url)
+    \item[$\square$] Decide: keep or remove \texttt{financial\_support}
+\end{itemize}
+
+\grouprule
+
+\noindent\textbf{Fix Programmes field group:}
+
+\begin{itemize}
+    \item[$\square$] Fix broken name \texttt{field\_1:\_deadline} \textrightarrow{} \texttt{application\_deadline}
+    \item[$\square$] Add \texttt{duration} (text)
+    \item[$\square$] Add \texttt{language} (text)
+    \item[$\square$] Add \texttt{partner\_institution} (text)
+    \item[$\square$] Decide: keep or remove \texttt{country} and \texttt{coordinator\_email}
+\end{itemize}
+
+\grouprule
+
+\noindent\textbf{Fix Resources field group:}
+
+\begin{itemize}
+    \item[$\square$] Rename \texttt{download\_url} \textrightarrow{} \texttt{file\_url}
+    \item[$\square$] Rename \texttt{document\_type} \textrightarrow{} \texttt{file\_type} and fix select choices (PDF, DOCX, XLS, Other as separate values)
+    \item[$\square$] Add \texttt{audience\_notes} (textarea)
+\end{itemize}
+
+\grouprule
+
+\noindent\textbf{Fix Stories field group:}
+
+\begin{itemize}
+    \item[$\square$] Rename \texttt{testimonial\_author} \textrightarrow{} \texttt{author}
+    \item[$\square$] Replace \texttt{study\_destination} with \texttt{story\_date} (date picker)
+    \item[$\square$] Add \texttt{pull\_quote} (textarea)
+\end{itemize}
+
+\grouprule
+
+\noindent\textbf{After all field group changes:}
+
+\begin{itemize}
+    \item[$\square$] Re-save all 4 field groups to regenerate \texttt{acf-json/} files --- commit updated JSON
+\end{itemize}
+
+% ==========================================================
+\section{Group 3 --- Create Missing Global Field Groups}
+% ==========================================================
+
+\textit{Requires Group 2 complete. All groups must have REST enabled.}
+
+\begin{itemize}
+    \item[$\square$] Create \textbf{CTA block}: \texttt{heading} (text), \texttt{body} (textarea), \texttt{button\_label} (text), \texttt{button\_url} (url)
+    \item[$\square$] Create \textbf{Process steps}: \texttt{steps} repeater \textrightarrow{} \texttt{step\_title} (text) + \texttt{step\_description} (textarea)
+    \item[$\square$] Create \textbf{FAQ section}: \texttt{faqs} repeater \textrightarrow{} \texttt{question} (text) + \texttt{answer} (textarea)
+    \item[$\square$] Create \textbf{Contact card}: \texttt{name}, \texttt{role}, \texttt{email}, \texttt{phone}
+    \item[$\square$] Create \textbf{Document repeater}: \texttt{label} (text) + \texttt{file\_url} (url)
+    \item[$\square$] Re-save all 5 groups to write \texttt{acf-json/} files --- commit (9 JSON files total after Groups 2 and 3)
+\end{itemize}
+
+% ==========================================================
+\section{Group 4 --- Verify and Test}
+% ==========================================================
+
+\textit{Requires Groups 2 and 3 complete.}
+
+\begin{itemize}
+    \item[$\square$] Verify \texttt{/wp-json/wp/v2/calls}, \texttt{/stories}, \texttt{/resources}, \texttt{/programmes} all return 200 with \texttt{acf} key
+    \item[$\square$] Verify taxonomy terms appear in CPT REST responses
+    \item[$\square$] Verify field names in REST responses match \texttt{rest-api-exposure-checklist.md}
+    \item[$\square$] Create at least one published test entry per CPT with all fields populated
+\end{itemize}
+
+% ==========================================================
+\section{Group 5 --- Frontend API Helpers}
+% ==========================================================
+
+\textit{Can run in parallel with Group 3. Field names must be frozen first.}
+
+\begin{itemize}
+    \item[$\square$] Add \texttt{getPages()} and \texttt{getPage(slug)}
+    \item[$\square$] Add \texttt{getCalls(params?)} and \texttt{getCall(slug)}
+    \item[$\square$] Add \texttt{getProgrammes(params?)} and \texttt{getProgramme(slug)}
+    \item[$\square$] Add \texttt{getResources(params?)} and \texttt{getResource(slug)}
+    \item[$\square$] Add \texttt{getStories(params?)} and \texttt{getStory(slug)}
+    \item[$\square$] Support taxonomy filter params: \texttt{audience}, \texttt{programme-family}, \texttt{content-topic}, \texttt{academic-year}
+\end{itemize}
+
+% ==========================================================
+\section{Documentation Rewrites}
+% ==========================================================
+
+\textit{Group 1 rewrites can start immediately. \texttt{structured-fields-setup.md} must wait until field names are frozen.}
+
+\begin{itemize}
+    \item[$\square$] \texttt{rest-api-exposure-checklist.md} --- full endpoint table: URL, type, required fields, ACF flag, query params
+    \item[$\square$] \texttt{wordpress-content-structure-notes.md} --- full route-to-content-type table for all sitemap routes
+    \item[$\square$] \texttt{static-vs-dynamic-content.md} --- all routes classified: static / dynamic-list / dynamic-detail / mixed
+    \item[$\square$] \texttt{wordpress-cpt-taxonomy-setup.md} --- CPT settings + taxonomy slugs, labels, attachments
+    \item[$\square$] \texttt{structured-fields-setup.md} --- must exactly match agreed ACF field names; Role 5 uses this as a reference
+\end{itemize}
+
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+{\small\textit{PR into main is ready when all groups above are complete and the merge readiness checklist in the review document passes.}}
+
+\end{document}
