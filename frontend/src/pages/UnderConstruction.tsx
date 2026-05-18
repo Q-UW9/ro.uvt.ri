@@ -1,112 +1,152 @@
-import { Navbar } from '../components/organisms/Navbar/Navbar'
-import { HeroSection } from '../components/organisms/HeroSection/HeroSection'
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
-import { Footer } from '../components/organisms/Footer/Footer'
+import { NewsSection } from '../components/organisms/NewsSection/NewsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
+import { PageLayout } from '../components/templates/PageLayout/PageLayout'
+import { PageTransition } from '../components/templates/PageTransition/PageTransition'
+import { SectionRenderer } from '../components/templates/SectionRenderer/SectionRenderer'
+
 import { Card } from '../components/molecules/Card/Card'
+
+import { Divider } from '../components/atoms/Divider/Divider'
+import { Icon } from '../components/atoms/Icon/Icon'
+
+import { homeSections } from '../data/homeSections'
+import { homePageData } from '../data/homePageData'
+import { announcements } from '../data/announcements'
 
 import { s } from './UnderConstruction.styles.js'
 
-function UnderConstruction() {
-  const demoTabs = [
-    {
-      label: 'Admissions',
-      content: (
-        <p>
-          Admissions information will appear here.
-        </p>
-      ),
-    },
+function UnderConstruction(){
 
-    {
-      label: 'Erasmus',
-      content: (
-        <p>
-          Erasmus exchange details will appear here.
-        </p>
-      ),
-    },
+const demoTabs=[
 
-    {
-      label: 'Contact',
-      content: (
-        <p>
-          Contact information will appear here.
-        </p>
-      ),
-    },
-  ]
+{
+label:'Admissions',
+content:<p>Admissions info here.</p>
+},
 
-  const demoCards = [
-    {
-      title: 'Erasmus Opportunities',
-      description:
-        'Explore international mobility and exchange programs.',
-    },
+{
+label:'Erasmus',
+content:<p>Erasmus details here.</p>
+},
 
-    {
-      title: 'Admissions 2026',
-      description:
-        'Learn about the latest admissions requirements and deadlines.',
-    },
+{
+label:'Contact',
+content:<p>Contact information here.</p>
+}
 
-    {
-      title: 'International Students',
-      description:
-        'Resources and support for international applicants.',
-    },
-  ]
+]
 
-  return (
-    <>
-      <Navbar />
+return(
 
-      <HeroSection
-        title="Welcome to UVT RI"
-        subtitle="Building a reusable frontend architecture for the university platform."
-        primaryButtonText="Get Started"
-        secondaryButtonText="Learn More"
-      />
+<PageTransition>
 
-      <div className="mx-auto max-w-[1280px] px-6">
-        <TabsSection tabs={demoTabs} />
-      </div>
+<PageLayout>
 
-      <div className="mx-auto max-w-[1280px] px-6 py-16">
-        <ContentGrid columns={3}>
-          {demoCards.map((card) => (
-            <Card
-              key={card.title}
-              title={card.title}
-              description={card.description}
-              buttonText="Learn More"
-            />
-          ))}
-        </ContentGrid>
-      </div>
+<SectionRenderer
+sections={homePageData}
+/>
 
-      <div className={s.container}>
-        <div className={s.card}>
-          <div className={s.icon}>🚧</div>
+<section className="mx-auto max-w-[1280px] px-6 py-20">
 
-          <h1 className={s.title}>
-            Site în lucru
-          </h1>
+<h2 className="mb-10 text-4xl font-bold">
 
-          <p className={s.text}>
-            Site-ul este în construcție. Vă rugăm reveniți curând.
-          </p>
+Explore Opportunities
 
-          <p className={s.subtitle}>
-            The site is under construction. Please check back soon.
-          </p>
-        </div>
-      </div>
+</h2>
 
-      <Footer />
-    </>
-  )
+<ContentGrid columns={3}>
+
+{homeSections.map((card)=>(
+
+<Card
+key={card.id}
+
+title={card.title}
+
+description={card.description}
+
+buttonText={card.buttonText}
+
+route={card.route}
+
+/>
+
+))}
+
+</ContentGrid>
+
+</section>
+
+<NewsSection
+items={announcements}
+/>
+
+<section className="bg-gray-50 py-20">
+
+<div className="mx-auto max-w-[1280px] px-6">
+
+<h2 className="mb-10 text-4xl font-bold">
+
+Student Resources
+
+</h2>
+
+<TabsSection tabs={demoTabs}/>
+
+</div>
+
+</section>
+
+<section className="mx-auto max-w-[1280px] space-y-8 px-6 py-16">
+
+<Divider/>
+
+<div className="flex gap-6 text-4xl">
+
+<Icon name="globe"/>
+
+<Icon name="graduate"/>
+
+<Icon name="mail"/>
+
+</div>
+
+</section>
+
+<div className={s.container}>
+
+<div className={s.card}>
+
+<div className={s.icon}>
+🚧
+</div>
+
+<h1 className={s.title}>
+Site în lucru
+</h1>
+
+<p className={s.text}>
+Site-ul este în construcție.
+Vă rugăm reveniți curând.
+</p>
+
+<p className={s.subtitle}>
+The site is under construction.
+Please check back soon.
+</p>
+
+</div>
+
+</div>
+
+</PageLayout>
+
+</PageTransition>
+
+)
+
 }
 
 export default UnderConstruction
