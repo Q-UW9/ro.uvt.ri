@@ -1,0 +1,103 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 3 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 3 — Week 5 Detailed Plan}\\[0.4em]
+    {\small Information Architect \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 3 — Information Architect}
+
+\begin{quote}\itshape
+You are busy. Your task this week is one contained research job. It does not require being online at a specific time or coordinating with others.
+\end{quote}
+
+\subsection{Week 5 — Old Site Coherence Check}
+
+\textbf{Task:} Compare the old RI.UVT.RO site against the new architecture and find the gaps.
+
+\textbf{Output:} \nolinkurl{docs/week5/old-site-coherence-check.md}
+
+\textbf{What to check:}
+
+\begin{enumerate}
+\item Open the old site. Go through every section and sub-page.
+\item For each page or content area, check whether it maps to a route in \nolinkurl{01_Sitemap.md} (in \nolinkurl{docs/agent_memory/main/}).
+\item Flag anything on the old site that has no equivalent in the new sitemap.
+\item Note any content type that exists as PDFs or text blocks on the old site that should become a structured CPT entry (calls, resources, etc.) in the new site.
+\item Note any navigation item on the old site that is missing from the approved Navbar model.
+\end{enumerate}
+
+\textbf{Deliverable format:}
+
+\begin{lstlisting}
+## Missing Routes
+- [old URL or section name] -- no equivalent in new sitemap
+
+## Content That Should Be CPT Entries
+- [description] -- suggest CPT: calls / resources / programmes / stories
+
+## Navbar Gaps
+- [item on old site] -- not in new approved Navbar model
+\end{lstlisting}
+
+Deliver by end of Week 5. Role 1 will merge findings into the open issues list.
+
+\subsection{Week 6 — If available}
+
+If time allows, assist Role 6 with importing CPTUI and creating test entries in WP admin. This is a 30-minute admin task, not a coding task.
+
+\grouprule
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}

@@ -1,0 +1,572 @@
+
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Encoding ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ---------- Page ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+
+% ---------- Fonts / Style ----------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Colors ----------
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+
+% ---------- Links / Paths ----------
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+
+% ---------- Tables ----------
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+
+% ---------- Checkbox ----------
+\usepackage{amssymb}
+
+% ---------- Code Blocks ----------
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{softGray},
+    frame=single,
+    rulecolor=\color{ruleLine},
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ---------- Section Headings ----------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\large\bfseries\color{uvtBlue}}
+  {}
+  {0em}
+  {}
+  [\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{uvtDarkBlue}}
+  {}
+  {0em}
+  {}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+
+% ---------- Header / Footer ----------
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Week 5--6 Role Plan}}
+\rhead{\small\textcolor{textGray}{19 May--2 June 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---------- Thin group separator ----------
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+
+\color{textGray}
+
+\begin{document}
+
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Week 5--6 Role Plan --- Beta Sprint}\\[0.4em]
+    {\small RI.UVT.RO Redesign \textbf{·} Team Q-UW9 \textbf{·} Week 5--6 / Beta deadline: 02.06.2026}
+\end{center}
+
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\textbf{Project:} RI.UVT.RO Redesign
+\textbf{Period:} Week 5 (19–26 May) + Week 6 (26 May – 2 June)
+\textbf{Beta deadline:} 02.06.2026
+\textbf{Compiled:} 2026-05-19
+
+\grouprule
+
+\section{Context}
+
+We have two weeks to reach a beta. The component library is fully built. The WordPress backend structure is configured in the repo but not yet live in WP admin. The frontend is not connected to any real data. No UVT styling has been applied. No real content exists in WordPress.
+
+Two weeks is tight. Every blocker listed below costs a day we do not have.
+
+\grouprule
+
+\section{Week 5 Goal (by 26 May)}
+
+\begin{itemize}
+\item App.tsx wired with real routes
+\item WordPress admin: CPTUI imported, ACF synced, test entries live
+\item CPT API helpers written and tested against real WP endpoints
+\item Homepage and at least two section pages rendering real data
+\item UVT styling applied to Navbar, HeroSection, Card, SectionHeader
+\item Role 2 docs backlog cleared
+\end{itemize}
+
+\section{Week 6 Goal (by 2 June — Beta)}
+
+\begin{itemize}
+\item All sitemap routes working (static pages + CPT archives + detail pages)
+\item Real content in WP for all static pages and at least 3 entries per CPT
+\item Old site coherence gaps resolved
+\item Visual QA pass done
+\item Beta presentation ready
+\end{itemize}
+
+\grouprule
+
+\section{Dependency Map}
+
+The following sequence is the critical path. A delay at any step delays everything after it.
+
+\begin{lstlisting}
+Role 1 records Vite decision (Day 1)
+  +- Role 5 wires App.tsx routes
+
+Role 6 imports CPTUI + ACF in WP admin (Day 1-2)
+  +- Role 6 publishes test entries
+       +- Role 5 writes + tests CPT API helpers
+            +- Role 8 builds page files (src/pages/)
+                 +- Pages render real WP data
+
+Role 4 delivers UVT styling tokens
+  +- Role 5 applies to components
+\end{lstlisting}
+
+\grouprule
+
+\section{Role 1 — Project Manager}
+
+\subsection{Day 1 (19 May) — Decisions required immediately}
+
+These two items are blocking other people. Do them first, before anything else.
+
+\begin{enumerate}
+\item \textbf{Record the Vite vs Next.js decision} in \nolinkurl{docs/agent_memory/main/03_Frontend_Architecture.md}. The project runs on Vite + React Router. Write one sentence confirming this is the final choice. This unblocks Role 5's App.tsx wiring and locale routing.
+\item \textbf{Decide the \nolinkurl{people} CPT.} Tell Role 6 yes or no. If yes, Role 6 adds it this week. If no, close the issue.
+\end{enumerate}
+
+\subsection{Week 5}
+
+\begin{itemize}
+\item Review and merge Role 5's route wiring and API helper PRs once delivered
+\item Review Role 4's styling outputs on Wednesday and Friday — if Role 4 misses a component, apply the fix yourself using the same AI workflow (see Role 4 section)
+\item Resolve the color token conflict with Role 4: the main branch uses \nolinkurl{uvt-blue: #005BBB}, \nolinkurl{uvt-navy: #002147}, \nolinkurl{uvt-gold: #F2B705}. If Role 4's old-site analysis produces different values, make the call on which set wins before end of week
+\end{itemize}
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Daily merge coordination as pages come in from Role 5 and Role 8
+\item Final error-fix pass before 2 June
+\item Prepare beta presentation materials
+\end{itemize}
+
+\grouprule
+
+\section{Role 2 — UX Researcher / Frontend Contributor}
+
+\begin{quote}\itshape
+You owe 4 documents from Week 4. These are blocking Role 5's template finalization. Clear the backlog first — none of them require more than a few hours each.
+\end{quote}
+
+\subsection{Week 5 — Days 1–2: Clear the docs backlog}
+
+Deliver these four documents. Each is a review, not original research — the source material already exists.
+
+\begin{enumerate}
+\item \textbf{\nolinkurl{PageTemplateAlignment.md}} — Review Role 5's \nolinkurl{page-template-planning.md} (in \nolinkurl{docs/week4/roles/role5/addition/}). Confirm that \nolinkurl{HomePageTemplate} and \nolinkurl{InnerPageTemplate} cover all user journeys. Note any missing organism or structural gap. This unblocks template finalization.
+\item \textbf{\nolinkurl{RouteHierarchyCorrections.md}} — Review \nolinkurl{react-route-strategy.md} (same folder). Check that every route in \nolinkurl{01_Sitemap.md} is present and correctly nested. Flag any route that should redirect or that is missing.
+\item \textbf{\nolinkurl{WordPressStructureUserFlow.md}} — Match the 4 CPTs (calls, stories, resources, programmes) and the 4 taxonomies against the user flows in \nolinkurl{02_User_Flows.md}. Confirm the structures support how users browse the site.
+\item \textbf{\nolinkurl{UX Validation.md}} — Review the full component inventory in \nolinkurl{component-architecture-week4.md}. For each organism, write one sentence confirming or flagging usability. Focus on mobile and on document-heavy sections.
+\end{enumerate}
+
+\subsection{Week 5 — Days 3–5: React pages}
+
+After the backlog is cleared, implement the following page files. These are straightforward: each page fetches data from \nolinkurl{api/wordpress.js} and passes it to an existing template.
+
+\begin{itemize}
+\item \nolinkurl{src/pages/HomePage.tsx} — uses \nolinkurl{HomePageTemplate}; data from \nolinkurl{getPosts()} + hardcoded hero until WP Page API is live
+\item \nolinkurl{src/pages/AboutPage.tsx} — uses \nolinkurl{InnerPageTemplate}; data from \nolinkurl{getPage('about')}
+\item \nolinkurl{src/pages/ContactPage.tsx} — uses \nolinkurl{InnerPageTemplate}; data from \nolinkurl{getPage('contact')}
+\end{itemize}
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item UX validation pass on completed pages as they come in from Role 5 and Role 8
+\item Mobile usability check on CPT listing and detail pages
+\item Support Role 7 with content structure questions
+\end{itemize}
+
+\grouprule
+
+\section{Role 3 — Information Architect}
+
+\begin{quote}\itshape
+You are busy. Your task this week is one contained research job. It does not require being online at a specific time or coordinating with others.
+\end{quote}
+
+\subsection{Week 5 — Old Site Coherence Check}
+
+\textbf{Task:} Compare the old RI.UVT.RO site against the new architecture and find the gaps.
+
+\textbf{Output:} \nolinkurl{docs/week5/old-site-coherence-check.md}
+
+\textbf{What to check:}
+
+\begin{enumerate}
+\item Open the old site. Go through every section and sub-page.
+\item For each page or content area, check whether it maps to a route in \nolinkurl{01_Sitemap.md} (in \nolinkurl{docs/agent_memory/main/}).
+\item Flag anything on the old site that has no equivalent in the new sitemap.
+\item Note any content type that exists as PDFs or text blocks on the old site that should become a structured CPT entry (calls, resources, etc.) in the new site.
+\item Note any navigation item on the old site that is missing from the approved Navbar model.
+\end{enumerate}
+
+\textbf{Deliverable format:}
+
+\begin{lstlisting}
+## Missing Routes
+- [old URL or section name] -- no equivalent in new sitemap
+
+## Content That Should Be CPT Entries
+- [description] -- suggest CPT: calls / resources / programmes / stories
+
+## Navbar Gaps
+- [item on old site] -- not in new approved Navbar model
+\end{lstlisting}
+
+Deliver by end of Week 5. Role 1 will merge findings into the open issues list.
+
+\subsection{Week 6 — If available}
+
+If time allows, assist Role 6 with importing CPTUI and creating test entries in WP admin. This is a 30-minute admin task, not a coding task.
+
+\grouprule
+
+\section{Role 4 — UI Styling (UVT Style Application)}
+
+\begin{quote}\itshape
+You have one task this week. It is broken into three components. Do them in order. Each component is self-contained and follows the same workflow.
+\end{quote}
+
+\subsection{Your task}
+
+Apply UVT styling (from the old UVT site, with a modern twist) to React components. The components are already built. You are adding the correct look.
+
+\textbf{The workflow — follow this exactly for each component:}
+
+\begin{enumerate}
+\item Open the old UVT website. Find the equivalent of the component (e.g. for Navbar, find the old site's navigation bar).
+\item Press \nolinkurl{Ctrl+S} and save the page as a complete HTML file.
+\item Open Claude (or another AI). Paste the HTML and send this prompt:
+\end{enumerate}
+\begin{quote}\itshape
+"Analyze the styling of this HTML page. Focus on: colors, typography, spacing, border radius, shadows, and hover states. Output a markdown file documenting the visual patterns."
+\end{quote}
+\begin{enumerate}
+\item Save that markdown output.
+\item Open the React component file. Send both the styling markdown and the component code to the AI with this prompt:
+\end{enumerate}
+\begin{quote}\itshape
+"Apply this styling to the React component. Use Tailwind utility classes. Where a value matches an existing token in tailwind.config.js (\nolinkurl{uvt-blue: #005BBB}, \nolinkurl{uvt-navy: #002147}, \nolinkurl{uvt-gold: #F2B705}, \nolinkurl{uvt-gray: #F5F5F5}, \nolinkurl{uvt-white: #FFFFFF}), use the token instead of a hardcoded value. Preserve the modern layout structure. Output the updated component."
+\end{quote}
+\begin{enumerate}
+\item Replace the component file with the output.
+\item Open the local dev server (\nolinkurl{npm run dev} in \nolinkurl{frontend/}) and check the result. Fix any obvious visual errors.
+\item Save the styling markdown as a doc file (see targets below).
+\end{enumerate}
+
+\textbf{Target components and deadlines:}
+
+\begin{longtable}{@{}p{3.0cm}p{4.2cm}p{4.2cm}p{2.5cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{File} & \textbf{Styling doc output} & \textbf{Deadline} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{File} & \textbf{Styling doc output} & \textbf{Deadline} \\
+\midrule
+\endhead
+\nolinkurl{Navbar} & \nolinkurl{frontend/src/components/organisms/Navbar/Navbar.tsx} & \nolinkurl{docs/week5/styling/navbar-uvt-style.md} & Wednesday 21 May \\
+\nolinkurl{HeroSection} & \nolinkurl{frontend/src/components/organisms/HeroSection/HeroSection.tsx} & \nolinkurl{docs/week5/styling/hero-uvt-style.md} & Wednesday 21 May \\
+\nolinkurl{Card} & \nolinkurl{frontend/src/components/molecules/Card/Card.tsx} & \nolinkurl{docs/week5/styling/card-uvt-style.md} & Friday 23 May \\
+\end{longtable}
+
+\textbf{Also on Wednesday 21 May:} Resolve the color token conflict. Check whether the old UVT site uses \nolinkurl{#005BBB} or \nolinkurl{#003B71} as its primary blue. Report to Role 1 with a screenshot. Role 1 makes the final call.
+
+\subsection{Week 6 — If Week 5 targets are met}
+
+Apply the same workflow to: \nolinkurl{SectionHeader}, \nolinkurl{Footer}, \nolinkurl{AccordionSection}.
+
+\grouprule
+
+\section{Role 5 — React Developer (Lead Frontend)}
+
+You are the critical path this week. The order matters.
+
+\subsection{Week 5 — Day 1}
+
+\textbf{Fix the Navbar.} These corrections are required before any visual work or QA can proceed.
+
+Per \nolinkurl{NavigationConsistencyFeedback.md} (in \nolinkurl{docs/week4/roles/role2/deliverables/}):
+
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Current label} & \textbf{Correct label} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Current label} & \textbf{Correct label} \\
+\midrule
+\endhead
+About & About DRI \\
+Admissions & International Students \\
+Erasmus & Erasmus+ \\
+Research & Partnerships \\
+\end{longtable}
+
+Also add: \nolinkurl{Scholarships & Exchanges} and \nolinkurl{News} to the nav links.
+
+Remove \nolinkurl{/admissions} and \nolinkurl{/research} routes from \nolinkurl{App.tsx} (they do not exist in the sitemap).
+
+\subsection{Week 5 — Day 1–2: Wire App.tsx}
+
+Once Role 1 records the Vite decision:
+
+Wire the full route tree from \nolinkurl{react-route-strategy.md} into \nolinkurl{App.tsx}. Create stub page files in \nolinkurl{src/pages/} for every route. Each stub just renders the page title inside \nolinkurl{InnerPageTemplate} for now. The goal is a working route structure — not finished pages.
+
+\subsection{Week 5 — Day 2–3: CPT API helpers}
+
+The field names are confirmed in \nolinkurl{docs/agent_memory/main/13_WP_Merge_Fixes.md} Section 5. Write these in \nolinkurl{frontend/src/api/wordpress.js}:
+
+\begin{longtable}{@{}p{3.2cm}p{6.0cm}p{5.0cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Function} & \textbf{Endpoint} & \textbf{Taxonomy filter params} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Function} & \textbf{Endpoint} & \textbf{Taxonomy filter params} \\
+\midrule
+\endhead
+\nolinkurl{getPages()} / \nolinkurl{getPage(slug)} & \nolinkurl{/wp-json/wp/v2/pages} & — \\
+\nolinkurl{getCalls(params?)} / \nolinkurl{getCall(slug)} & \nolinkurl{/wp-json/wp/v2/calls} & \nolinkurl{audience}, \nolinkurl{academic-year} \\
+\nolinkurl{getProgrammes(params?)} / \nolinkurl{getProgramme(slug)} & \nolinkurl{/wp-json/wp/v2/programmes} & \nolinkurl{audience}, \nolinkurl{programme-family} \\
+\nolinkurl{getResources(params?)} / \nolinkurl{getResource(slug)} & \nolinkurl{/wp-json/wp/v2/resources} & \nolinkurl{audience}, \nolinkurl{content-topic}, \nolinkurl{academic-year} \\
+\nolinkurl{getStories(params?)} / \nolinkurl{getStory(slug)} & \nolinkurl{/wp-json/wp/v2/stories} & \nolinkurl{audience}, \nolinkurl{content-topic} \\
+\end{longtable}
+
+Add TypeScript types for each response shape in \nolinkurl{frontend/src/types/}.
+
+Test each helper against the live Laragon WP instance once Role 6 has test entries live.
+
+\subsection{Week 5 — Day 4–5: Homepage integration}
+
+Wire \nolinkurl{HomePage.tsx} to real data:
+\begin{itemize}
+\item Hero: static props (WP Page API not needed yet)
+\item Cards: static from \nolinkurl{src/data/homeSections.ts} until CPT entries exist
+\item News: \nolinkurl{getPosts()} → pass to \nolinkurl{NewsSection}
+\end{itemize}
+
+Verify it renders correctly in the browser.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Wire all CPT listing pages (calls, programmes, resources, stories) — fetch from API, render in \nolinkurl{InnerPageTemplate} with \nolinkurl{ContentGrid}
+\item Wire CPT detail pages (\nolinkurl{:slug} routes) — fetch single entry, render with \nolinkurl{InnerPageTemplate} + \nolinkurl{DocumentDownloadList} where applicable
+\item Wire static section pages (Erasmus sub-routes, International Students sub-routes) — \nolinkurl{getPage(slug)} → \nolinkurl{InnerPageTemplate}
+\item Apply UVT styling tokens from Role 4's outputs once they are merged
+\item Locale routing: implement only if Role 1 confirms it is in beta scope
+\end{itemize}
+
+\grouprule
+
+\section{Role 6 — WordPress Developer}
+
+\subsection{Week 5 — Day 1–2: WP Admin actions (required immediately)}
+
+Nothing can be tested until this is done.
+
+\begin{enumerate}
+\item \textbf{Import CPTUI} — go to WP Admin → Custom Post Types → Tools → Import. Use \nolinkurl{wordpress/ro.uvt.ri/cptui-export.json}. Verify the 4 CPTs appear (\nolinkurl{calls}, \nolinkurl{stories}, \nolinkurl{resources}, \nolinkurl{programmes}).
+\item \textbf{Import CPTUI taxonomies} — same tools panel. Use \nolinkurl{wordpress/ro.uvt.ri/cptui-taxonomies.json}. Verify the 4 taxonomies appear (\nolinkurl{audience}, \nolinkurl{programme-family}, \nolinkurl{content-topic}, \nolinkurl{academic-year}).
+\item \textbf{Sync ACF} — go to WP Admin → ACF → Tools → Sync. All 9 JSON files in \nolinkurl{acf-json/} should appear and sync. Verify 4 CPT field groups + 5 global field groups are active.
+\item \textbf{Decide \nolinkurl{people} CPT} — confirm with Role 1 (yes/no). If yes, add to CPTUI and re-export.
+\end{enumerate}
+
+\subsection{Week 5 — Day 3–4: Test entries}
+
+Create at least 2 published entries per CPT. These are for testing — content does not need to be final.
+
+\begin{itemize}
+\item \nolinkurl{calls}: title, deadline, eligibility, at least one document file link
+\item \nolinkurl{programmes}: title, duration, language, partner institution
+\item \nolinkurl{resources}: title, file URL (\nolinkurl{https://example.com/test.pdf}), file type (\nolinkurl{PDF})
+\item \nolinkurl{stories}: title, author, story date, pull quote
+\end{itemize}
+
+Assign taxonomy terms to each entry (at least one \nolinkurl{audience} term per entry).
+
+\subsection{Week 5 — Day 5: REST verification}
+
+For each CPT, open the endpoint in the browser and confirm ACF fields appear in the response:
+\begin{itemize}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/calls}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/programmes}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/resources}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/stories}
+\end{itemize}
+
+If ACF fields are missing from the response, go to ACF → field group → enable "Show in REST API" on the group.
+
+Document results in \nolinkurl{docs/week5/rest-api-verification.md}.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Create static WP Pages for every route that uses \nolinkurl{InnerPageTemplate} with a static WP Page source (\nolinkurl{/about}, \nolinkurl{/contact}, \nolinkurl{/erasmus}, all sub-pages). Titles and slugs must match the route slugs exactly.
+\item Populate pages with real content (coordinate with Role 7)
+\item Add 3–5 more entries per CPT with real content
+\item If \nolinkurl{people} CPT is approved, configure and populate it
+\end{itemize}
+
+\grouprule
+
+\section{Role 7 — Content Strategist / Content Entry}
+
+\begin{quote}\itshape
+We are placing you on content work. This is not a technical role — it requires reading, writing, and organizing.
+\end{quote}
+
+\subsection{Week 5}
+
+\textbf{Review the old RI.UVT.RO site and prepare content drafts} for the following WP Pages. These will be entered into WordPress in Week 6 once Role 6 creates the page structure.
+
+For each page, produce a short markdown file with:
+\begin{itemize}
+\item Page title
+\item One-sentence page purpose
+\item 2–3 content sections with a heading and 2–4 sentences of text each
+\item Any relevant links or documents to include
+\end{itemize}
+
+Pages to draft:
+\begin{enumerate}
+\item About DRI (\nolinkurl{/about})
+\item Contact (\nolinkurl{/contact})
+\item Erasmus landing (\nolinkurl{/erasmus})
+\item International Students landing (\nolinkurl{/international-students})
+\item Partnerships (\nolinkurl{/partnerships})
+\end{enumerate}
+
+Save drafts in \nolinkurl{docs/week5/content-drafts/}.
+
+Coordinate with Role 3's coherence check — if Role 3 flags missing content, absorb it into these drafts.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Enter all content drafts into WP admin (Work with Role 6 who creates the page structure)
+\item Draft content for Erasmus sub-pages (\nolinkurl{incoming-students}, \nolinkurl{outgoing-students}, \nolinkurl{incoming-staff}, \nolinkurl{outgoing-staff})
+\item Draft FAQ blocks for at least 2 pages (to populate \nolinkurl{AccordionSection} components)
+\end{itemize}
+
+\grouprule
+
+\section{Role 8 — API / React Data Layer}
+
+\begin{quote}\itshape
+Your job is to connect the API helpers Role 5 writes to the page templates. You are building the page files in \nolinkurl{src/pages/}. Role 5 owns the API functions and templates; you own the wiring between them.
+\end{quote}
+
+\subsection{Week 5 — Wait for Role 5's API helpers and route stubs}
+
+Role 5 will have the route stubs and CPT helpers done by Day 3. Pick them up then.
+
+\textbf{Day 3–5: Wire CPT listing pages}
+
+For each of the following, open the stub page file Role 5 created and wire it to the API:
+
+\begin{itemize}
+\item \nolinkurl{CallsPage.tsx} — call \nolinkurl{getCalls()}, render results with \nolinkurl{InnerPageTemplate} + \nolinkurl{ContentGrid} of \nolinkurl{Card} components
+\item \nolinkurl{ProgrammesPage.tsx} — call \nolinkurl{getProgrammes()}, same pattern
+\item \nolinkurl{ResourcesPage.tsx} — call \nolinkurl{getResources()}, render with \nolinkurl{ContentGrid} + \nolinkurl{DocumentDownloadList}
+\item \nolinkurl{StoriesPage.tsx} — call \nolinkurl{getStories()}, \nolinkurl{ContentGrid} of \nolinkurl{Card}
+\end{itemize}
+
+Add a loading state (\nolinkurl{<p>Loading...</p>}) and a basic error state (\nolinkurl{<p>Could not load content.</p>}) to each page. Keep it simple.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Wire CPT detail pages (\nolinkurl{CallDetailPage}, \nolinkurl{ProgrammeDetailPage}, \nolinkurl{ResourceDetailPage}, \nolinkurl{StoryDetailPage}) — use \nolinkurl{getCall(slug)} etc., render in \nolinkurl{InnerPageTemplate}, pass documents/accordion as appropriate
+\item Wire static section pages that use \nolinkurl{getPage(slug)} (\nolinkurl{AboutPage}, \nolinkurl{ContactPage}, \nolinkurl{ErasmusPage}, etc.)
+\item Coordinate with Role 5 on TypeScript type shapes if something doesn't fit
+\end{itemize}
+
+\grouprule
+
+\section{Buffer and Risk}
+
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Risk} & \textbf{Mitigation} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Risk} & \textbf{Mitigation} \\
+\midrule
+\endhead
+Role 4 delivers late or incomplete & Role 1 runs the same AI styling workflow on missed components \\
+Role 6 WP import fails & Check the JSON files manually; the fix log is in \nolinkurl{13_WP_Merge_Fixes.md} \\
+Role 2 docs backlog still not cleared & Role 1 makes a judgment call on template finalization without the review docs \\
+REST endpoints return missing ACF fields & Enable "Show in REST API" per field group in WP Admin → ACF \\
+Role 3 unavailable for coherence check & Role 1 does a manual 30-minute pass on the old site \\
+Route wiring breaks something & All route stubs are isolated page files — breaking one route does not affect others \\
+\end{longtable}
+
+\grouprule
+
+\section{Definition of Done — Beta (2 June)}
+
+\begin{itemize}
+\item[$\square$] App runs at \nolinkurl{localhost:5173} with real routes
+\item[$\square$] Homepage renders with real WP data
+\item[$\square$] At least 4 CPT listing pages working
+\item[$\square$] At least 2 CPT detail pages working
+\item[$\square$] Static pages (About, Contact, Erasmus, International Students) populated
+\item[$\square$] UVT styling applied to Navbar, HeroSection, Card, SectionHeader
+\item[$\square$] No broken routes (404 fallback in place)
+\item[$\square$] WP admin has real content across all CPTs
+\item[$\square$] Old site coherence gaps documented
+\end{itemize}
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{Beta is ready when the application runs with real routes, real WordPress data, visible UVT styling, populated static pages, CPT listings, and documented old-site coherence gaps.}}
+
+\end{document}

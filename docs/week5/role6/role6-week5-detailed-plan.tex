@@ -1,0 +1,111 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 6 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 6 — Week 5 Detailed Plan}\\[0.4em]
+    {\small WordPress Developer \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 6 — WordPress Developer}
+
+\subsection{Week 5 — Day 1–2: WP Admin actions (required immediately)}
+
+Nothing can be tested until this is done.
+
+\begin{enumerate}
+\item \textbf{Import CPTUI} — go to WP Admin → Custom Post Types → Tools → Import. Use \nolinkurl{wordpress/ro.uvt.ri/cptui-export.json}. Verify the 4 CPTs appear (\nolinkurl{calls}, \nolinkurl{stories}, \nolinkurl{resources}, \nolinkurl{programmes}).
+\item \textbf{Import CPTUI taxonomies} — same tools panel. Use \nolinkurl{wordpress/ro.uvt.ri/cptui-taxonomies.json}. Verify the 4 taxonomies appear (\nolinkurl{audience}, \nolinkurl{programme-family}, \nolinkurl{content-topic}, \nolinkurl{academic-year}).
+\item \textbf{Sync ACF} — go to WP Admin → ACF → Tools → Sync. All 9 JSON files in \nolinkurl{acf-json/} should appear and sync. Verify 4 CPT field groups + 5 global field groups are active.
+\item \textbf{Decide \nolinkurl{people} CPT} — confirm with Role 1 (yes/no). If yes, add to CPTUI and re-export.
+\end{enumerate}
+
+\subsection{Week 5 — Day 3–4: Test entries}
+
+Create at least 2 published entries per CPT. These are for testing — content does not need to be final.
+
+\begin{itemize}
+\item \nolinkurl{calls}: title, deadline, eligibility, at least one document file link
+\item \nolinkurl{programmes}: title, duration, language, partner institution
+\item \nolinkurl{resources}: title, file URL (\nolinkurl{https://example.com/test.pdf}), file type (\nolinkurl{PDF})
+\item \nolinkurl{stories}: title, author, story date, pull quote
+\end{itemize}
+
+Assign taxonomy terms to each entry (at least one \nolinkurl{audience} term per entry).
+
+\subsection{Week 5 — Day 5: REST verification}
+
+For each CPT, open the endpoint in the browser and confirm ACF fields appear in the response:
+\begin{itemize}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/calls}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/programmes}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/resources}
+\item \nolinkurl{http://ro.uvt.ri.test/wp-json/wp/v2/stories}
+\end{itemize}
+
+If ACF fields are missing from the response, go to ACF → field group → enable "Show in REST API" on the group.
+
+Document results in \nolinkurl{docs/week5/rest-api-verification.md}.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Create static WP Pages for every route that uses \nolinkurl{InnerPageTemplate} with a static WP Page source (\nolinkurl{/about}, \nolinkurl{/contact}, \nolinkurl{/erasmus}, all sub-pages). Titles and slugs must match the route slugs exactly.
+\item Populate pages with real content (coordinate with Role 7)
+\item Add 3–5 more entries per CPT with real content
+\item If \nolinkurl{people} CPT is approved, configure and populate it
+\end{itemize}
+
+\grouprule
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}

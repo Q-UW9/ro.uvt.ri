@@ -1,0 +1,128 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 8 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 8 — Week 5 Detailed Plan}\\[0.4em]
+    {\small API / React Data Layer \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 8 — API / React Data Layer}
+
+\begin{quote}\itshape
+Your job is to connect the API helpers Role 5 writes to the page templates. You are building the page files in \nolinkurl{src/pages/}. Role 5 owns the API functions and templates; you own the wiring between them.
+\end{quote}
+
+\subsection{Week 5 — Wait for Role 5's API helpers and route stubs}
+
+Role 5 will have the route stubs and CPT helpers done by Day 3. Pick them up then.
+
+\textbf{Day 3–5: Wire CPT listing pages}
+
+For each of the following, open the stub page file Role 5 created and wire it to the API:
+
+\begin{itemize}
+\item \nolinkurl{CallsPage.tsx} — call \nolinkurl{getCalls()}, render results with \nolinkurl{InnerPageTemplate} + \nolinkurl{ContentGrid} of \nolinkurl{Card} components
+\item \nolinkurl{ProgrammesPage.tsx} — call \nolinkurl{getProgrammes()}, same pattern
+\item \nolinkurl{ResourcesPage.tsx} — call \nolinkurl{getResources()}, render with \nolinkurl{ContentGrid} + \nolinkurl{DocumentDownloadList}
+\item \nolinkurl{StoriesPage.tsx} — call \nolinkurl{getStories()}, \nolinkurl{ContentGrid} of \nolinkurl{Card}
+\end{itemize}
+
+Add a loading state (\nolinkurl{<p>Loading...</p>}) and a basic error state (\nolinkurl{<p>Could not load content.</p>}) to each page. Keep it simple.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Wire CPT detail pages (\nolinkurl{CallDetailPage}, \nolinkurl{ProgrammeDetailPage}, \nolinkurl{ResourceDetailPage}, \nolinkurl{StoryDetailPage}) — use \nolinkurl{getCall(slug)} etc., render in \nolinkurl{InnerPageTemplate}, pass documents/accordion as appropriate
+\item Wire static section pages that use \nolinkurl{getPage(slug)} (\nolinkurl{AboutPage}, \nolinkurl{ContactPage}, \nolinkurl{ErasmusPage}, etc.)
+\item Coordinate with Role 5 on TypeScript type shapes if something doesn't fit
+\end{itemize}
+
+\grouprule
+
+\section{Buffer and Risk}
+
+\begin{longtable}{@{}p{6.7cm}p{7.3cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Risk} & \textbf{Mitigation} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Risk} & \textbf{Mitigation} \\
+\midrule
+\endhead
+Role 4 delivers late or incomplete & Role 1 runs the same AI styling workflow on missed components \\
+Role 6 WP import fails & Check the JSON files manually; the fix log is in \nolinkurl{13_WP_Merge_Fixes.md} \\
+Role 2 docs backlog still not cleared & Role 1 makes a judgment call on template finalization without the review docs \\
+REST endpoints return missing ACF fields & Enable "Show in REST API" per field group in WP Admin → ACF \\
+Role 3 unavailable for coherence check & Role 1 does a manual 30-minute pass on the old site \\
+Route wiring breaks something & All route stubs are isolated page files — breaking one route does not affect others \\
+\end{longtable}
+
+\grouprule
+
+\section{Definition of Done — Beta (2 June)}
+
+\begin{itemize}
+\item[$\square$] App runs at \nolinkurl{localhost:5173} with real routes
+\item[$\square$] Homepage renders with real WP data
+\item[$\square$] At least 4 CPT listing pages working
+\item[$\square$] At least 2 CPT detail pages working
+\item[$\square$] Static pages (About, Contact, Erasmus, International Students) populated
+\item[$\square$] UVT styling applied to Navbar, HeroSection, Card, SectionHeader
+\item[$\square$] No broken routes (404 fallback in place)
+\item[$\square$] WP admin has real content across all CPTs
+\item[$\square$] Old site coherence gaps documented
+\end{itemize}
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}

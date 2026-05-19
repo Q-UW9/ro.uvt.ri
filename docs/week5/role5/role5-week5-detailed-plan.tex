@@ -1,0 +1,142 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 5 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 5 — Week 5 Detailed Plan}\\[0.4em]
+    {\small React Developer (Lead Frontend) \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 5 — React Developer (Lead Frontend)}
+
+You are the critical path this week. The order matters.
+
+\subsection{Week 5 — Day 1}
+
+\textbf{Fix the Navbar.} These corrections are required before any visual work or QA can proceed.
+
+Per \nolinkurl{NavigationConsistencyFeedback.md} (in \nolinkurl{docs/week4/roles/role2/deliverables/}):
+
+\begin{longtable}{@{}p{6.7cm}p{7.3cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Current label} & \textbf{Correct label} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Current label} & \textbf{Correct label} \\
+\midrule
+\endhead
+About & About DRI \\
+Admissions & International Students \\
+Erasmus & Erasmus+ \\
+Research & Partnerships \\
+\end{longtable}
+
+Also add: \nolinkurl{Scholarships & Exchanges} and \nolinkurl{News} to the nav links.
+
+Remove \nolinkurl{/admissions} and \nolinkurl{/research} routes from \nolinkurl{App.tsx} (they do not exist in the sitemap).
+
+\subsection{Week 5 — Day 1–2: Wire App.tsx}
+
+Once Role 1 records the Vite decision:
+
+Wire the full route tree from \nolinkurl{react-route-strategy.md} into \nolinkurl{App.tsx}. Create stub page files in \nolinkurl{src/pages/} for every route. Each stub just renders the page title inside \nolinkurl{InnerPageTemplate} for now. The goal is a working route structure — not finished pages.
+
+\subsection{Week 5 — Day 2–3: CPT API helpers}
+
+The field names are confirmed in \nolinkurl{docs/agent_memory/main/13_WP_Merge_Fixes.md} Section 5. Write these in \nolinkurl{frontend/src/api/wordpress.js}:
+
+\begin{longtable}{@{}p{3.4cm}p{6.6cm}p{4.2cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Function} & \textbf{Endpoint} & \textbf{Taxonomy filter params} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Function} & \textbf{Endpoint} & \textbf{Taxonomy filter params} \\
+\midrule
+\endhead
+\nolinkurl{getPages()} / \nolinkurl{getPage(slug)} & \nolinkurl{/wp-json/wp/v2/pages} & — \\
+\nolinkurl{getCalls(params?)} / \nolinkurl{getCall(slug)} & \nolinkurl{/wp-json/wp/v2/calls} & \nolinkurl{audience}, \nolinkurl{academic-year} \\
+\nolinkurl{getProgrammes(params?)} / \nolinkurl{getProgramme(slug)} & \nolinkurl{/wp-json/wp/v2/programmes} & \nolinkurl{audience}, \nolinkurl{programme-family} \\
+\nolinkurl{getResources(params?)} / \nolinkurl{getResource(slug)} & \nolinkurl{/wp-json/wp/v2/resources} & \nolinkurl{audience}, \nolinkurl{content-topic}, \nolinkurl{academic-year} \\
+\nolinkurl{getStories(params?)} / \nolinkurl{getStory(slug)} & \nolinkurl{/wp-json/wp/v2/stories} & \nolinkurl{audience}, \nolinkurl{content-topic} \\
+\end{longtable}
+
+Add TypeScript types for each response shape in \nolinkurl{frontend/src/types/}.
+
+Test each helper against the live Laragon WP instance once Role 6 has test entries live.
+
+\subsection{Week 5 — Day 4–5: Homepage integration}
+
+Wire \nolinkurl{HomePage.tsx} to real data:
+\begin{itemize}
+\item Hero: static props (WP Page API not needed yet)
+\item Cards: static from \nolinkurl{src/data/homeSections.ts} until CPT entries exist
+\item News: \nolinkurl{getPosts()} → pass to \nolinkurl{NewsSection}
+\end{itemize}
+
+Verify it renders correctly in the browser.
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item Wire all CPT listing pages (calls, programmes, resources, stories) — fetch from API, render in \nolinkurl{InnerPageTemplate} with \nolinkurl{ContentGrid}
+\item Wire CPT detail pages (\nolinkurl{:slug} routes) — fetch single entry, render with \nolinkurl{InnerPageTemplate} + \nolinkurl{DocumentDownloadList} where applicable
+\item Wire static section pages (Erasmus sub-routes, International Students sub-routes) — \nolinkurl{getPage(slug)} → \nolinkurl{InnerPageTemplate}
+\item Apply UVT styling tokens from Role 4's outputs once they are merged
+\item Locale routing: implement only if Role 1 confirms it is in beta scope
+\end{itemize}
+
+\grouprule
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}
