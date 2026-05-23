@@ -1,0 +1,97 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 2 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 2 — Week 5 Detailed Plan}\\[0.4em]
+    {\small UX Researcher / Frontend Contributor \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 2 — UX Researcher / Frontend Contributor}
+
+\begin{quote}\itshape
+You owe 4 documents from Week 4. These are blocking Role 5's template finalization. Clear the backlog first — none of them require more than a few hours each.
+\end{quote}
+
+\subsection{Week 5 — Days 1–2: Clear the docs backlog}
+
+Deliver these four documents. Each is a review, not original research — the source material already exists.
+
+\begin{enumerate}
+\item \textbf{\nolinkurl{PageTemplateAlignment.md}} — Review Role 5's \nolinkurl{page-template-planning.md} (in \nolinkurl{docs/week4/roles/role5/addition/}). Confirm that \nolinkurl{HomePageTemplate} and \nolinkurl{InnerPageTemplate} cover all user journeys. Note any missing organism or structural gap. This unblocks template finalization.
+\item \textbf{\nolinkurl{RouteHierarchyCorrections.md}} — Review \nolinkurl{react-route-strategy.md} (same folder). Check that every route in \nolinkurl{01_Sitemap.md} is present and correctly nested. Flag any route that should redirect or that is missing.
+\item \textbf{\nolinkurl{WordPressStructureUserFlow.md}} — Match the 4 CPTs (calls, stories, resources, programmes) and the 4 taxonomies against the user flows in \nolinkurl{02_User_Flows.md}. Confirm the structures support how users browse the site.
+\item \textbf{\nolinkurl{UX Validation.md}} — Review the full component inventory in \nolinkurl{component-architecture-week4.md}. For each organism, write one sentence confirming or flagging usability. Focus on mobile and on document-heavy sections.
+\end{enumerate}
+
+\subsection{Week 5 — Days 3–5: React pages}
+
+After the backlog is cleared, implement the following page files. These are straightforward: each page fetches data from \nolinkurl{api/wordpress.js} and passes it to an existing template.
+
+\begin{itemize}
+\item \nolinkurl{src/pages/HomePage.tsx} — uses \nolinkurl{HomePageTemplate}; data from \nolinkurl{getPosts()} + hardcoded hero until WP Page API is live
+\item \nolinkurl{src/pages/AboutPage.tsx} — uses \nolinkurl{InnerPageTemplate}; data from \nolinkurl{getPage('about')}
+\item \nolinkurl{src/pages/ContactPage.tsx} — uses \nolinkurl{InnerPageTemplate}; data from \nolinkurl{getPage('contact')}
+\end{itemize}
+
+\subsection{Week 6}
+
+\begin{itemize}
+\item UX validation pass on completed pages as they come in from Role 5 and Role 8
+\item Mobile usability check on CPT listing and detail pages
+\item Support Role 7 with content structure questions
+\end{itemize}
+
+\grouprule
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}

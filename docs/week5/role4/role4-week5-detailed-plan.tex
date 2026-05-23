@@ -1,0 +1,117 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\definecolor{uvtBlue}{HTML}{003B7A}
+\definecolor{uvtDarkBlue}{HTML}{062B57}
+\definecolor{uvtLightBlue}{HTML}{EAF2FF}
+\definecolor{uvtYellow}{HTML}{FFD200}
+\definecolor{textGray}{HTML}{333333}
+\definecolor{softGray}{HTML}{F4F6F8}
+\definecolor{ruleLine}{HTML}{E0E6EF}
+\usepackage{xurl}
+\urlstyle{tt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=uvtBlue, urlcolor=uvtBlue}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.3em, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.35em, parsep=0pt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{softGray}, frame=single, rulecolor=\color{ruleLine}, breaklines=true, columns=fullflexible, keepspaces=true}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{uvtBlue}}{}{0em}{}[\vspace{-0.2em}\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}]
+\titlespacing{\section}{0pt}{1.4em}{0.6em}
+\titleformat{\subsection}{\normalsize\bfseries\color{uvtDarkBlue}}{}{0em}{}
+\titlespacing{\subsection}{0pt}{0.9em}{0.3em}
+\usepackage{fancyhdr}
+\setlength{\headheight}{24.65pt}
+\addtolength{\topmargin}{-12.65pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{uvtBlue}{RI.UVT.RO Redesign \textbf{·} Role 4 Plan}}
+\rhead{\small\textcolor{textGray}{Week 5 / 19--26 May 2026}}
+\cfoot{\small\textcolor{textGray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{uvtYellow}\leaders\hrule height \headrulewidth\hfill}}
+\newcommand{\grouprule}{\vspace{0.3em}\textcolor{ruleLine}{\rule{\linewidth}{0.4pt}}\vspace{0.3em}}
+\color{textGray}
+\begin{document}
+\begin{center}
+    {\Large\bfseries\color{uvtBlue} Role 4 — Week 5 Detailed Plan}\\[0.4em]
+    {\small UI Styling (UVT Style Application) \textbf{·} Team Q-UW9 \textbf{·} Beta deadline: 02.06.2026}
+\end{center}
+\vspace{0.3em}
+\textcolor{uvtYellow}{\rule{\linewidth}{2pt}}
+\vspace{0.8em}
+\section{Role 4 — UI Styling (UVT Style Application)}
+
+\begin{quote}\itshape
+You have one task this week. It is broken into three components. Do them in order. Each component is self-contained and follows the same workflow.
+\end{quote}
+
+\subsection{Your task}
+
+Apply UVT styling (from the old UVT site, with a modern twist) to React components. The components are already built. You are adding the correct look.
+
+\textbf{The workflow — follow this exactly for each component:}
+
+\begin{enumerate}
+\item Open the old UVT website. Find the equivalent of the component (e.g. for Navbar, find the old site's navigation bar).
+\item Press \nolinkurl{Ctrl+S} and save the page as a complete HTML file.
+\item Open Claude (or another AI). Paste the HTML and send this prompt:
+\end{enumerate}
+\begin{quote}\itshape
+"Analyze the styling of this HTML page. Focus on: colors, typography, spacing, border radius, shadows, and hover states. Output a markdown file documenting the visual patterns."
+\end{quote}
+\begin{enumerate}
+\item Save that markdown output.
+\item Open the React component file. Send both the styling markdown and the component code to the AI with this prompt:
+\end{enumerate}
+\begin{quote}\itshape
+"Apply this styling to the React component. Use Tailwind utility classes. Where a value matches an existing token in tailwind.config.js (\nolinkurl{uvt-blue: #005BBB}, \nolinkurl{uvt-navy: #002147}, \nolinkurl{uvt-gold: #F2B705}, \nolinkurl{uvt-gray: #F5F5F5}, \nolinkurl{uvt-white: #FFFFFF}), use the token instead of a hardcoded value. Preserve the modern layout structure. Output the updated component."
+\end{quote}
+\begin{enumerate}
+\item Replace the component file with the output.
+\item Open the local dev server (\nolinkurl{npm run dev} in \nolinkurl{frontend/}) and check the result. Fix any obvious visual errors.
+\item Save the styling markdown as a doc file (see targets below).
+\end{enumerate}
+
+\textbf{Target components and deadlines:}
+
+\begin{longtable}{@{}p{2.4cm}p{4.4cm}p{4.4cm}p{2.8cm}@{}}
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{File} & \textbf{Styling doc output} & \textbf{Deadline} \\
+\midrule
+\endfirsthead
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{File} & \textbf{Styling doc output} & \textbf{Deadline} \\
+\midrule
+\endhead
+\nolinkurl{Navbar} & \nolinkurl{frontend/src/components/organisms/Navbar/Navbar.tsx} & \nolinkurl{docs/week5/styling/navbar-uvt-style.md} & Wednesday 21 May \\
+\nolinkurl{HeroSection} & \nolinkurl{frontend/src/components/organisms/HeroSection/HeroSection.tsx} & \nolinkurl{docs/week5/styling/hero-uvt-style.md} & Wednesday 21 May \\
+\nolinkurl{Card} & \nolinkurl{frontend/src/components/molecules/Card/Card.tsx} & \nolinkurl{docs/week5/styling/card-uvt-style.md} & Friday 23 May \\
+\end{longtable}
+
+\textbf{Also on Wednesday 21 May:} Resolve the color token conflict. Check whether the old UVT site uses \nolinkurl{#005BBB} or \nolinkurl{#003B71} as its primary blue. Report to Role 1 with a screenshot. Role 1 makes the final call.
+
+\subsection{Week 6 — If Week 5 targets are met}
+
+Apply the same workflow to: \nolinkurl{SectionHeader}, \nolinkurl{Footer}, \nolinkurl{AccordionSection}.
+
+\grouprule
+\vspace{1.2em}
+\textcolor{uvtYellow}{\rule{\linewidth}{1.5pt}}
+
+{\small\textit{This role plan is ready when the listed Week 5 deliverables are completed, committed, and handed off to the dependent roles.}}
+\end{document}

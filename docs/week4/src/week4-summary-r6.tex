@@ -1,0 +1,171 @@
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\rhead{\textcolor{uvtBlue}{Role 6 — Week 4 Summary}}
+
+% =============================================================================
+\begin{document}
+\color{textGray}
+
+% COVER
+\begin{titlepage}
+\pagecolor{uvtDarkBlue}\color{white}
+\vspace*{2cm}
+{\Huge\bfseries RI.UVT.RO Redesign\\[0.35em]
+Week 4 Summary\par}
+\vspace{0.8cm}
+{\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+West University of Timi\c{s}oara\par}
+\vspace{1.5cm}
+\begin{yellowbox}
+\color{textGray}
+\textbf{Role 6 --- WordPress Developer.}
+4 CPTs and 4 ACF field groups delivered; defects corrected before merge
+by Role~1. Admin import, ACF sync, and test content entries carry into
+Week~5.
+\end{yellowbox}
+\vfill
+{\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[4pt]
+Team Q-UW9 \quad|\quad Compiled: 2026-05-18}
+\vspace{1cm}
+\end{titlepage}
+\nopagecolor\color{textGray}
+
+% =============================================================================
+\section{What Was Done This Week}
+
+\subsection{Custom Post Types Registered}
+
+4 Custom Post Types were registered and configured via CPTUI, with REST API
+exposure enabled. The CPTUI export was committed to the repository.
+
+\begin{longtable}{@{}L{2.8cm}L{3.8cm}L{2.8cm}L{3.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{CPT slug} & \textbf{Label} & \textbf{\texttt{show\_in\_rest}} & \textbf{\texttt{has\_archive}} \\
+\midrule
+\endhead
+\texttt{calls} & Calls / Opportunities & \textcolor{statusGreen}{\faCheckCircle\ true} & \textcolor{statusGreen}{\faCheckCircle\ true} \\
+\addlinespace
+\texttt{stories} & Student Stories & \textcolor{statusGreen}{\faCheckCircle\ true} & \textcolor{statusGreen}{\faCheckCircle\ true} \\
+\addlinespace
+\texttt{resources} & Resources & \textcolor{statusGreen}{\faCheckCircle\ true} & \textcolor{statusGreen}{\faCheckCircle\ true} \\
+\addlinespace
+\texttt{programmes} & Programmes & \textcolor{statusGreen}{\faCheckCircle\ true} & \textcolor{statusGreen}{\faCheckCircle\ true} \\
+\bottomrule
+\end{longtable}
+
+\subsection{ACF Field Groups Created}
+
+4 field groups created with \texttt{show\_in\_rest: 1}, one per CPT.
+ACF Local JSON sync folder (\path{acf-json/}) placed in the correct
+theme location.
+
+\begin{itemize}
+    \item \textbf{Calls} --- deadline, eligibility, application steps,
+          documents, funding details.
+    \item \textbf{Programme Details} --- title, duration, language,
+          partner institution, application deadline.
+    \item \textbf{Resource Details} --- file URL, file type, audience,
+          audience notes.
+    \item \textbf{Story Details} --- author, programme, story date,
+          pull quote, image.
+\end{itemize}
+
+\subsection{Defects Fixed by Role 1 Before Merge}
+
+The following issues were identified during merge review and corrected
+by Role~1. They are recorded here for accountability.
+
+\begin{longtable}{@{}L{5.6cm}L{7.6cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Issue} & \textbf{Detail} \\
+\midrule
+\endhead
+\texttt{has\_archive: false} on all 4 CPTs
+    & Archive routes (\path{/calls/} etc.) would return 404 \\
+\addlinespace
+\texttt{excerpt} missing from \texttt{supports}
+    & Excerpt field unavailable in editor \\
+\addlinespace
+\texttt{taxonomies: []} empty on all CPTs
+    & Taxonomy filters silently return no results \\
+\addlinespace
+No taxonomy export
+    & 4 taxonomies defined in docs but never created \\
+\addlinespace
+6 field name mismatches
+    & Frontend and backend using different names \\
+\addlinespace
+8 missing fields across all CPTs
+    & Key data unavailable via REST \\
+\addlinespace
+No global ACF field groups
+    & Page builder blocks unavailable on WP Pages \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.4em}
+All fixes were applied by Role~1. Field names are now frozen in\\
+\path{docs/agent_memory/main/13_WP_Merge_Fixes.md}.
+
+% =============================================================================
+\section{Deliverables Status}
+
+\begin{longtable}{@{}L{8.8cm}L{4.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+CPTs registered (4) & \done \\
+\addlinespace
+ACF field groups --- CPTs (4), corrected before merge & \done \\
+\addlinespace
+CPTUI export committed (\path{cptui-export.json}) & \done \\
+\addlinespace
+Taxonomy definitions (\path{cptui-taxonomies.json}, created by Role~1) & \done \\
+\addlinespace
+\path{rest-api-exposure-checklist.md} & \missing \\
+\addlinespace
+CPTUI imported into WP admin & \warn \\
+\addlinespace
+ACF synced in WP admin & \warn \\
+\addlinespace
+Test entries published per CPT (min.\ 1) & \missing \\
+\addlinespace
+REST endpoint verification & \blocked \\
+\addlinespace
+\texttt{people} CPT decision recorded & \missing \\
+\bottomrule
+\end{longtable}
+
+\begin{yellowbox}
+\textbf{\color{uvtDarkBlue}\faExclamationTriangle\ Critical path note}
+
+\vspace{6pt}\color{textGray}
+REST endpoint verification and API response testing by Role~5 are both
+blocked until the CPTUI import and ACF sync are completed in the local
+WordPress admin. This is the highest-priority action for Role~6 in
+Week~5.
+\end{yellowbox}
+
+% =============================================================================
+\section{Carrying into Week 5}
+
+\begin{enumerate}
+    \item \textbf{Import \path{cptui-export.json}} via CPTUI \textrightarrow\
+          Tools \textrightarrow\ Import in WP admin.
+    \item \textbf{Import \path{cptui-taxonomies.json}} via the same tool.
+    \item \textbf{Sync ACF field groups} via ACF \textrightarrow\ Tools
+          \textrightarrow\ Sync in WP admin.
+    \item \textbf{Publish at least 2 test entries per CPT} so Role~5 can
+          verify API responses end-to-end.
+    \item \textbf{Produce a usable \path{rest-api-exposure-checklist.md}}
+          with endpoint URLs, supported query parameters, and confirmed ACF
+          field names.
+    \item \textbf{Confirm or formally reject the \texttt{people} CPT}
+          with Role~1.
+\end{enumerate}
+
+\end{document}

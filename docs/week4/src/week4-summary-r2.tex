@@ -1,0 +1,145 @@
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\rhead{\textcolor{uvtBlue}{Role 2 — Week 4 Summary}}
+
+% =============================================================================
+\begin{document}
+\color{textGray}
+
+% COVER
+\begin{titlepage}
+\pagecolor{uvtDarkBlue}\color{white}
+\vspace*{2cm}
+{\Huge\bfseries RI.UVT.RO Redesign\\[0.35em]
+Week 4 Summary\par}
+\vspace{0.8cm}
+{\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+West University of Timi\c{s}oara\par}
+\vspace{1.5cm}
+\begin{yellowbox}
+\color{textGray}
+\textbf{Role 2 --- UX Researcher / Frontend Contributor.}
+Navigation consistency review completed; 4 label corrections required.
+Four UX deliverables remain outstanding and carry into Week~5.
+\end{yellowbox}
+\vfill
+{\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[4pt]
+Team Q-UW9 \quad|\quad Compiled: 2026-05-18}
+\vspace{1cm}
+\end{titlepage}
+\nopagecolor\color{textGray}
+
+% =============================================================================
+\section{What Was Done This Week}
+
+\subsection{Navigation Consistency Review}
+
+The \texttt{Navbar.tsx} component built by Role~5 was reviewed against the
+approved navigation model from Week~2. Four label mismatches were identified
+that must be corrected before the Navbar is used in any visual QA or user
+testing.
+
+\vspace{0.8em}
+\noindent\textbf{Required label corrections:}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{3.2cm}L{3.8cm}L{2.0cm}L{4.2cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Current label} & \textbf{Correct label} & \textbf{Severity} & \textbf{Route} \\
+\midrule
+\endhead
+About & \textbf{About DRI} & Medium & \path{/about/} \\
+\addlinespace
+Admissions & \textbf{International Students} & Critical & \path{/international-students/} \\
+\addlinespace
+Erasmus & \textbf{Erasmus+} & High & \path{/erasmus/} \\
+\addlinespace
+Research & \textbf{Partnerships} & Critical & \path{/partnerships/} \\
+\addlinespace
+Contact & Contact \faCheck & --- & No change needed \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.8em}
+
+\begin{yellowbox}
+\textbf{\color{uvtDarkBlue}Rationale for critical corrections}
+
+\vspace{6pt}
+\color{textGray}
+\textbf{\textit{``Admissions''}} is the wrong term. DRI does not run university
+admissions. This section serves incoming international students. Using the wrong
+label breaks their user journey from the landing page onward.
+
+\vspace{4pt}
+\textbf{\textit{``Research''}} does not correspond to any DRI function.
+Partner institutions looking for bilateral agreements will skip past it.
+This directly breaks the partner institution flow documented in Week~2.
+\end{yellowbox}
+
+\vspace{0.8em}
+
+\textbf{Correct full top-level menu order:}
+
+\vspace{0.4em}
+\begin{bluebox}
+About DRI \quad\faArrowRight\quad Erasmus+ \quad\faArrowRight\quad
+International Students \quad\faArrowRight\quad Scholarships \& Exchanges
+\quad\faArrowRight\quad Partnerships \quad\faArrowRight\quad News
+\quad\faArrowRight\quad Contact
+\end{bluebox}
+
+\vspace{0.5em}
+\texttt{Scholarships \& Exchanges} and \texttt{News} are currently missing
+from \texttt{Navbar.tsx} and must be added as placeholder links.
+
+% =============================================================================
+\section{Deliverables Status}
+
+\begin{longtable}{@{}L{8.2cm}L{5.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Document} & \textbf{Status} \\
+\midrule
+\endhead
+\path{NavigationConsistencyFeedback.md} & \done \\
+\addlinespace
+\path{PageTemplateAlignment.md} & \missing \\
+\addlinespace
+\path{RouteHierarchyCorrections.md} & \missing \\
+\addlinespace
+\path{UXValidation.md} & \missing \\
+\addlinespace
+\path{WordPressStructureUserFlow.md} & \missing \\
+\bottomrule
+\end{longtable}
+
+\begin{yellowbox}
+\textbf{\color{uvtDarkBlue}\faExclamationTriangle\ Delivery risk}
+
+\vspace{6pt}\color{textGray}
+Role~5's \path{page-template-planning.md} explicitly gates template
+finalisation on \path{PageTemplateAlignment.md} being delivered.
+Four of the five required UX documents are outstanding.
+This is the second consecutive week with incomplete delivery from Role~2.
+\end{yellowbox}
+
+% =============================================================================
+\section{Carrying into Week 5}
+
+The four outstanding documents are the sole Week~5 priority for Role~2:
+
+\begin{enumerate}
+    \item \textbf{\path{PageTemplateAlignment.md}} --- review Role~5's template
+          specs against the Week~2 user flows; unblock template finalisation.
+    \item \textbf{\path{RouteHierarchyCorrections.md}} --- validate the
+          29-route tree in \path{react-route-strategy.md} against the sitemap
+          and each user journey.
+    \item \textbf{\path{WordPressStructureUserFlow.md}} --- confirm that the WP
+          page structure and CPT taxonomy model supports each user flow.
+    \item \textbf{\path{UXValidation.md}} --- overall UX sign-off on the Week~4
+          frontend output before visual QA begins.
+\end{enumerate}
+
+\end{document}

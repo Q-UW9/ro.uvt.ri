@@ -1,0 +1,246 @@
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\rhead{\textcolor{uvtBlue}{Role 5 — Week 4 Summary}}
+
+% =============================================================================
+\begin{document}
+\color{textGray}
+
+% COVER
+\begin{titlepage}
+\pagecolor{uvtDarkBlue}\color{white}
+\vspace*{2cm}
+{\Huge\bfseries RI.UVT.RO Redesign\\[0.35em]
+Week 4 Summary\par}
+\vspace{0.8cm}
+{\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+West University of Timi\c{s}oara\par}
+\vspace{1.5cm}
+\begin{yellowbox}
+\color{textGray}
+\textbf{Role 5 --- React Developer.}
+Full component library (atoms, molecules, organisms, templates) built and
+merged into main. Five planning documents delivered.
+CPT API helpers and route wiring carry into Week~5.
+\end{yellowbox}
+\vfill
+{\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[4pt]
+Team Q-UW9 \quad|\quad Compiled: 2026-05-18}
+\vspace{1cm}
+\end{titlepage}
+\nopagecolor\color{textGray}
+
+% =============================================================================
+\section{What Was Done This Week}
+
+\subsection{Full Component Library --- Built and Merged}
+
+The entire frontend component library was built from scratch and merged into
+\texttt{main}. Every component follows the atomic design hierarchy:
+atoms \textrightarrow\ molecules \textrightarrow\ organisms \textrightarrow\
+templates.
+
+\vspace{0.8em}
+\noindent\textbf{Atoms} --- \path{src/components/atoms/}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{3.6cm}L{9.6cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Responsibility} \\
+\midrule
+\endhead
+\texttt{Button}
+    & 4 variants (primary, secondary, ghost, danger), 5 states;
+      \texttt{clsx} for conditional classes. \\
+\addlinespace
+\texttt{Typography}
+    & Semantic h1--h3, body, caption with consistent type scale. \\
+\addlinespace
+\texttt{Divider} & Horizontal rule separator. \\
+\addlinespace
+\texttt{Icon} & \texttt{react-icons} wrapper with consistent sizing. \\
+\addlinespace
+\texttt{LanguageSwitcher} & RO\,/\,EN locale toggle buttons. \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Molecules} --- \path{src/components/molecules/}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{3.6cm}L{9.6cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Responsibility} \\
+\midrule
+\endhead
+\texttt{Card}
+    & Title, description, optional link button; hover lift effect. \\
+\addlinespace
+\texttt{SectionHeader}
+    & Title, optional subtitle, gold underline accent bar. \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Organisms} --- \path{src/components/organisms/}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{3.8cm}L{9.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Responsibility} \\
+\midrule
+\endhead
+\texttt{Navbar}
+    & Sticky header, desktop nav links, mobile menu stub. \\
+\addlinespace
+\texttt{Footer}
+    & Brand column + 3 nav sections + copyright bar. \\
+\addlinespace
+\texttt{HeroSection}
+    & Full-width animated hero, title, subtitle, up to 2 CTA buttons. \\
+\addlinespace
+\texttt{AccordionSection}
+    & Accessible accordion (\texttt{aria-expanded} wired) for FAQ and
+      expandable content. \\
+\addlinespace
+\texttt{TabsSection}
+    & Stateful tab switcher (\texttt{aria-selected}, \texttt{uvt-blue}
+      active state). \\
+\addlinespace
+\texttt{DocumentDownloadList}
+    & Downloadable file list with label, file type badge, accessible links. \\
+\addlinespace
+\texttt{ContentSection}
+    & Generic rich-text content block. \\
+\addlinespace
+\texttt{NewsSection}
+    & Grid of announcement / news items. \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.8em}
+\noindent\textbf{Templates} --- \path{src/components/templates/}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{4.2cm}L{9.0cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Responsibility} \\
+\midrule
+\endhead
+\texttt{PageLayout}
+    & Global shell: Navbar + \texttt{<main>} + Footer. \\
+\addlinespace
+\texttt{ContentGrid}
+    & Responsive CSS grid --- configurable 2\,/\,3\,/\,4 columns. \\
+\addlinespace
+\texttt{PageTransition}
+    & Framer-motion fade-in wrapper. \\
+\addlinespace
+\texttt{SectionRenderer}
+    & Iterates a \texttt{sections} array and renders the correct organism
+      per \texttt{section.type}. \\
+\addlinespace
+\texttt{HomePageTemplate}
+    & Full homepage: hero \textrightarrow\ audience cards \textrightarrow\
+      news strip. \\
+\addlinespace
+\texttt{InnerPageTemplate}
+    & Inner pages: SectionHeader + content + optional accordion +
+      optional download list. \\
+\bottomrule
+\end{longtable}
+
+\vspace{0.6em}
+\texttt{UnderConstruction.tsx} was reworked into a full vertical page demo
+integrating all new components. The \texttt{molechules} folder naming typo
+was corrected to \texttt{molecules}.
+
+\subsection{Planning Documents Delivered}
+
+\begin{longtable}{@{}L{7.8cm}L{5.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Document} & \textbf{Status} \\
+\midrule
+\endhead
+\path{react-route-strategy.md} --- 29-route map, full \path{App.tsx} structure & \done \\
+\addlinespace
+\path{component-architecture-week4.md} --- full inventory, props, composition rules & \done \\
+\addlinespace
+\path{page-template-planning.md} --- data interfaces for both templates & \done \\
+\addlinespace
+\path{layout-template-implementation.md} --- composition notes & \done \\
+\addlinespace
+\path{design-system.md} --- typography, grid, nav, a11y rules & \done \\
+\bottomrule
+\end{longtable}
+
+\subsection{Architecture Rules Enforced}
+
+\begin{itemize}
+    \item No API calls inside components --- all fetching stays in
+          \path{src/api/wordpress.js}.
+    \item No routing inside templates or organisms.
+    \item Templates compose organisms; organisms do not compose templates.
+    \item Page files own data fetching and pass data down as props.
+    \item Tailwind utility classes only --- no per-component \texttt{.css}
+          files.
+\end{itemize}
+
+% =============================================================================
+\section{Deliverables Status}
+
+\begin{longtable}{@{}L{8.8cm}L{4.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+Atoms (5) & \done \\
+\addlinespace
+Molecules (2) & \done \\
+\addlinespace
+Organisms (8) & \done \\
+\addlinespace
+Templates (6) & \done \\
+\addlinespace
+Planning documents (5) & \done \\
+\addlinespace
+Route tree wired in \path{App.tsx} & \warn \\
+\addlinespace
+Locale routing (\texttt{/ro}, \texttt{/en}) & \blocked \\
+\addlinespace
+CPT API helpers (5 function pairs) & \missing \\
+\addlinespace
+Navbar label corrections (4 from Role~2) & \missing \\
+\bottomrule
+\end{longtable}
+
+\begin{bluebox}
+CPT API helpers are \textbf{now unblocked}. Field names are frozen in
+\path{docs/agent_memory/main/13_WP_Merge_Fixes.md} and ready to use.
+\end{bluebox}
+
+% =============================================================================
+\section{Carrying into Week 5}
+
+\begin{enumerate}
+    \item \textbf{Apply 4 Navbar label corrections} from Role~2's
+          \path{NavigationConsistencyFeedback.md}.
+    \item \textbf{Add \textit{Scholarships \& Exchanges} and \textit{News}}
+          as placeholder links in \texttt{Navbar.tsx}.
+    \item \textbf{Write CPT API helpers} ---
+          \texttt{getCalls}, \texttt{getProgrammes}, \texttt{getResources},
+          \texttt{getStories}, \texttt{getPages} --- using frozen field names
+          from \path{13_WP_Merge_Fixes.md}.
+    \item \textbf{Wire the route tree into \path{App.tsx}} once Role~1
+          records the Vite vs.\ Next.js decision.
+    \item \textbf{Build individual page files} in \path{src/pages/} once
+          routes are wired.
+\end{enumerate}
+
+\end{document}

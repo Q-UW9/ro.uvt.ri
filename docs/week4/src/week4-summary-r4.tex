@@ -1,0 +1,165 @@
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\rhead{\textcolor{uvtBlue}{Role 4 — Week 4 Summary}}
+
+% =============================================================================
+\begin{document}
+\color{textGray}
+
+% COVER
+\begin{titlepage}
+\pagecolor{uvtDarkBlue}\color{white}
+\vspace*{2cm}
+{\Huge\bfseries RI.UVT.RO Redesign\\[0.35em]
+Week 4 Summary\par}
+\vspace{0.8cm}
+{\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+West University of Timi\c{s}oara\par}
+\vspace{1.5cm}
+\begin{yellowbox}
+\color{textGray}
+\textbf{Role 4 --- UI Designer / Design System.}
+Component handoff and wireframes delivered.
+Design system partially complete; color token conflict with main branch
+must be resolved before Week~5 visual QA.
+\end{yellowbox}
+\vfill
+{\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[4pt]
+Team Q-UW9 \quad|\quad Compiled: 2026-05-18}
+\vspace{1cm}
+\end{titlepage}
+\nopagecolor\color{textGray}
+
+% =============================================================================
+\section{What Was Done This Week}
+
+\subsection{Component Handoff}
+
+\path{component-handoff.md} was produced covering all 9 components consumed
+by Role~5. Each entry includes anatomy, layout rules, accessibility
+requirements, responsive rules, and Tailwind class direction. The
+implementation priority order in the document matched the sequence Role~5
+followed during Week~4.
+
+\vspace{0.6em}
+
+\begin{longtable}{@{}L{3.6cm}L{2.2cm}L{7.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Component} & \textbf{Tier} & \textbf{Contents} \\
+\midrule
+\endhead
+Button & Atom & 4 variants, 5 states, Tailwind class direction, a11y focus rules \\
+\addlinespace
+Card & Molecule & Anatomy, hover rules, responsive layout \\
+\addlinespace
+SectionHeader & Molecule & Gold accent bar spec, typography pairing \\
+\addlinespace
+HeroSection & Organism & Full-width rules, CTA button placement \\
+\addlinespace
+AccordionSection & Organism & Expand/collapse layout, animation guidance \\
+\addlinespace
+DocumentDownloadList & Organism & File type badge, link accessibility \\
+\addlinespace
+CTA Section & Organism & Background contrast, button hierarchy \\
+\addlinespace
+Navbar & Organism & Sticky behaviour, mobile breakpoint \\
+\addlinespace
+Footer & Organism & Column layout, copyright bar \\
+\bottomrule
+\end{longtable}
+
+\subsection{Wireframes}
+
+\path{wireframes.md} produced with ASCII wireframes for 8 layout types.
+Each includes responsive breakpoint rules (mobile / tablet / desktop).
+
+\begin{itemize}
+    \item Homepage
+    \item Internal Page
+    \item Student Journey
+    \item Resource Listing
+    \item Contact / Support
+    \item Card Grid
+    \item Accordion Section
+    \item CTA Section
+\end{itemize}
+
+\subsection{Design System (In Progress)}
+
+\path{design-system-work-in-progress.md} covers:
+
+\begin{itemize}
+    \item \textbf{Typography scale:} Inter, H1--H3, body, small, button text
+          with exact \texttt{px} values and line-height at each breakpoint.
+    \item \textbf{Spacing system:} section padding, container widths, card
+          padding, grid gaps.
+    \item \textbf{Layout rules} for homepage and inner pages.
+\end{itemize}
+
+The file is explicitly marked incomplete by the author. Color tokens are
+unresolved (see Section~\ref{sec:conflict}).
+
+% =============================================================================
+\section{Open Issue --- Color Token Conflict}
+\label{sec:conflict}
+
+\begin{yellowbox}
+\textbf{\color{uvtDarkBlue}\faExclamationTriangle\ Blocks visual QA}
+
+\vspace{6pt}\color{textGray}
+All three token values differ between Role~4's design system and the main
+branch \path{index.css}. Role~5 built the entire component library against
+the main branch values. Visual QA cannot proceed until one set is adopted as
+canonical.
+\end{yellowbox}
+
+\vspace{0.8em}
+
+\begin{longtable}{@{}L{3.8cm}L{3.5cm}L{5.9cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Token} & \textbf{Role 4 value} & \textbf{Main branch \path{index.css} value} \\
+\midrule
+\endhead
+Primary / \texttt{uvt-blue} & \texttt{\#003B71} & \texttt{\#005BBB} \\
+\addlinespace
+Secondary / \texttt{uvt-gold} & \texttt{\#F2C94C} & \texttt{\#F2B705} \\
+\addlinespace
+Accent / \texttt{uvt-navy} & \texttt{\#00A86B} & \texttt{\#002147} \\
+\bottomrule
+\end{longtable}
+
+% =============================================================================
+\section{Deliverables Status}
+
+\begin{longtable}{@{}L{8.4cm}L{4.8cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Document} & \textbf{Status} \\
+\midrule
+\endhead
+\path{component-handoff.md} & \done \\
+\addlinespace
+\path{wireframes.md} & \done \\
+\addlinespace
+\path{design-system-work-in-progress.md} & \warn \\
+\addlinespace
+Tailwind config / CSS variable block ready to paste & \missing \\
+\bottomrule
+\end{longtable}
+
+% =============================================================================
+\section{Carrying into Week 5}
+
+\begin{enumerate}
+    \item \textbf{Resolve color token conflict with Role~1} --- agree on the
+          canonical values; document the decision.
+    \item \textbf{Complete \path{design-system-work-in-progress.md}} with the
+          agreed tokens.
+    \item \textbf{Deliver a ready-to-paste Tailwind config or CSS variable
+          block} for \path{index.css} so Role~5 can update all component
+          files in one pass.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,157 @@
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\rhead{\textcolor{uvtBlue}{Role 1 — Week 4 Summary}}
+
+% =============================================================================
+\begin{document}
+\color{textGray}
+
+% COVER
+\begin{titlepage}
+\pagecolor{uvtDarkBlue}\color{white}
+\vspace*{2cm}
+{\Huge\bfseries RI.UVT.RO Redesign\\[0.35em]
+Week 4 Summary\par}
+\vspace{0.8cm}
+{\Large Direc\c{t}ia de Rela\c{t}ii Interna\c{t}ionale\\
+West University of Timi\c{s}oara\par}
+\vspace{1.5cm}
+\begin{yellowbox}
+\color{textGray}
+\textbf{Role 1 --- Project Manager / Frontend Lead.}
+WordPress merge resolution, defect fixing, field name contract freeze,
+and open decisions carrying into Week~5.
+\end{yellowbox}
+\vfill
+{\large Technology Stack: WordPress CMS + REST API + React + Vite + TypeScript\\[4pt]
+Team Q-UW9 \quad|\quad Compiled: 2026-05-18}
+\vspace{1cm}
+\end{titlepage}
+\nopagecolor\color{textGray}
+
+% =============================================================================
+\section{What Was Done This Week}
+
+\subsection{WordPress Merge Resolution}
+
+Role~6 submitted a WordPress branch that could not be merged as-is.
+Role~1 reviewed every file, identified all defects, applied fixes,
+and merged the corrected output into \texttt{main}.
+
+\vspace{0.6em}
+\noindent\textbf{Files merged to \path{wordpress/ro.uvt.ri/}:}
+\vspace{0.4em}
+
+\begin{longtable}{@{}L{5.8cm}L{7.4cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{File} & \textbf{Description} \\
+\midrule
+\endhead
+\path{cptui-export.json} & Fixed CPT configuration --- 4 post types \\
+\addlinespace
+\path{cptui-taxonomies.json} & New file --- 4 taxonomy definitions (was missing entirely) \\
+\addlinespace
+\path{acf-json/group_6a087f7aa179c.json} & Calls field group --- corrected \\
+\addlinespace
+\path{acf-json/group_6a010285605db.json} & Programme Details field group --- corrected \\
+\addlinespace
+\path{acf-json/group_6a0880749381c.json} & Resource Details field group --- corrected \\
+\addlinespace
+\path{acf-json/group_6a08815042fd6.json} & Story Details field group --- corrected \\
+\addlinespace
+\path{acf-json/group_6b1001a000001.json} & CTA Block --- new global group \\
+\addlinespace
+\path{acf-json/group_6b1001b000002.json} & Process Steps --- new global group \\
+\addlinespace
+\path{acf-json/group_6b1001c000003.json} & FAQ Section --- new global group \\
+\addlinespace
+\path{acf-json/group_6b1001d000004.json} & Contact Card --- new global group \\
+\addlinespace
+\path{acf-json/group_6b1001e000005.json} & Document Repeater --- new global group \\
+\bottomrule
+\end{longtable}
+
+\subsection{Defects Fixed Before Merge}
+
+\begin{longtable}{@{}L{4.2cm}L{4.8cm}L{4.2cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Defect} & \textbf{Impact if not fixed} & \textbf{Fix applied} \\
+\midrule
+\endhead
+\texttt{has\_archive: false} on all 4 CPTs
+    & Archive pages (\path{/calls/}, \path{/programmes/}, etc.) would return 404
+    & Set to \texttt{true} on all 4 \\
+\addlinespace
+\texttt{excerpt} missing from all CPT \texttt{supports}
+    & Excerpt field unavailable in the editor
+    & Added to all 4 \\
+\addlinespace
+Empty \texttt{taxonomies: []} on all CPTs
+    & Taxonomy filters would silently return no results
+    & Attached correct taxonomies per CPT \\
+\addlinespace
+No taxonomy export
+    & 4 taxonomies described in docs but never created
+    & Built \path{cptui-taxonomies.json} from scratch \\
+\addlinespace
+Field name mismatches (6 fields across 4 CPTs)
+    & API responses would not match frontend expectations
+    & Renamed to match frozen spec \\
+\addlinespace
+Missing fields across all CPTs (8 fields)
+    & Key data unavailable via REST
+    & Added to field groups \\
+\addlinespace
+No global ACF field groups
+    & Page builder blocks unavailable on WP Pages
+    & Created 5 global groups \\
+\bottomrule
+\end{longtable}
+
+\subsection{Field Name Contract Frozen}
+
+ACF field names are now locked and documented in
+\path{docs/agent_memory/main/13_WP_Merge_Fixes.md} ---
+Section~5 (Frozen Field Name Reference).
+Role~5 can write CPT API helpers against these names immediately.
+
+% =============================================================================
+\section{Deliverables Status}
+
+\begin{longtable}{@{}L{9.0cm}L{4.2cm}@{}}
+\toprule
+\rowcolor{uvtLightBlue}
+\textbf{Item} & \textbf{Status} \\
+\midrule
+\endhead
+WordPress CPTs (4) merged and corrected & \done \\
+\addlinespace
+WordPress Taxonomies (4) created & \done \\
+\addlinespace
+ACF field groups --- CPTs (4) & \done \\
+\addlinespace
+ACF field groups --- Global (5) & \done \\
+\addlinespace
+Field name contract frozen in \path{13_WP_Merge_Fixes.md} & \done \\
+\addlinespace
+Vite vs.\ Next.js decision recorded & \warn \\
+\addlinespace
+\texttt{people} CPT decision recorded & \missing \\
+\bottomrule
+\end{longtable}
+
+% =============================================================================
+\section{Carrying into Week 5}
+
+\begin{enumerate}
+    \item \textbf{Record the Vite vs.\ Next.js decision} so Role~5 can wire
+          \path{App.tsx} and proceed with locale routing.
+    \item \textbf{Record the \texttt{people} CPT decision} with Role~6 ---
+          include or formally drop it.
+    \item \textbf{Resolve the color token conflict} with Role~4 --- agree on
+          which palette is canonical so visual QA can begin.
+\end{enumerate}
+
+\end{document}
