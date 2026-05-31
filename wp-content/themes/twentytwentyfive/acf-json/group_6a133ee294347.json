@@ -1,11 +1,11 @@
 {
-    "key": "group_6a08815042fd6",
-    "title": "Story Details",
+    "key": "group_6a133ee294347",
+    "title": "Global: Process Steps",
     "fields": [
         {
-            "key": "field_6a0881506960b",
-            "label": "Author",
-            "name": "author",
+            "key": "field_6a133ee237fb6",
+            "label": "Steps",
+            "name": "steps",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -24,11 +24,11 @@
             "append": ""
         },
         {
-            "key": "field_6a0881786960c",
-            "label": "Story Date",
-            "name": "story_date",
+            "key": "field_6a133f4037fb7",
+            "label": "Step Title",
+            "name": "step_title",
             "aria-label": "",
-            "type": "date_picker",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -37,16 +37,17 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "d\/m\/Y",
-            "return_format": "d\/m\/Y",
-            "first_day": 1,
-            "default_to_current_date": 0,
-            "allow_in_bindings": 0
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
-            "key": "field_6a133cb2348aa",
-            "label": "Pull Quote",
-            "name": "pull_quote",
+            "key": "field_6a133f5537fb8",
+            "label": "Step Description",
+            "name": "step_description",
             "aria-label": "",
             "type": "textarea",
             "instructions": "",
@@ -70,7 +71,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "stories"
+                "value": "page"
             }
         ]
     ],
@@ -86,5 +87,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1779645635
+    "modified": 1779646319
 }

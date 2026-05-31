@@ -1,11 +1,11 @@
 {
-    "key": "group_6a08815042fd6",
-    "title": "Story Details",
+    "key": "group_6a133f793e9aa",
+    "title": "Global: FAQ Section",
     "fields": [
         {
-            "key": "field_6a0881506960b",
-            "label": "Author",
-            "name": "author",
+            "key": "field_6a133f79b33d7",
+            "label": "FAQs",
+            "name": "faqs",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -24,31 +24,11 @@
             "append": ""
         },
         {
-            "key": "field_6a0881786960c",
-            "label": "Story Date",
-            "name": "story_date",
+            "key": "field_6a133f92b33d8",
+            "label": "Question",
+            "name": "question",
             "aria-label": "",
-            "type": "date_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "d\/m\/Y",
-            "return_format": "d\/m\/Y",
-            "first_day": 1,
-            "default_to_current_date": 0,
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_6a133cb2348aa",
-            "label": "Pull Quote",
-            "name": "pull_quote",
-            "aria-label": "",
-            "type": "textarea",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -60,9 +40,30 @@
             "default_value": "",
             "maxlength": "",
             "allow_in_bindings": 0,
-            "rows": "",
             "placeholder": "",
-            "new_lines": ""
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a133f99b33d9",
+            "label": "Answer",
+            "name": "answer",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -70,7 +71,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "stories"
+                "value": "page"
             }
         ]
     ],
@@ -86,5 +87,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1779645635
+    "modified": 1779646369
 }

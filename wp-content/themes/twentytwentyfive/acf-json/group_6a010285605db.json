@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_6a0102f0250a8",
-            "label": "Deadline",
-            "name": "field_1:_deadline",
+            "label": "Application Deadline",
+            "name": "application_deadline",
             "aria-label": "",
             "type": "date_picker",
             "instructions": "",
@@ -24,36 +24,30 @@
         },
         {
             "key": "field_6a010312f0bc3",
-            "label": "Country",
-            "name": "country",
+            "label": "Duration",
+            "name": "duration",
             "aria-label": "",
-            "type": "select",
+            "type": "text",
             "instructions": "",
-            "required": 0,
+            "required": false,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "choices": [],
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "ui": 0,
-            "ajax": 0,
+            "default_value": "",
+            "maxlength": "",
             "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_6a01032cf0bc4",
-            "label": "Coordinator Email",
-            "name": "coordinator_email",
+            "label": "Language",
+            "name": "language",
             "aria-label": "",
-            "type": "email",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -63,6 +57,28 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a133d23b0992",
+            "label": "Partner Institution",
+            "name": "partner_institution",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
@@ -90,5 +106,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778942806
+    "modified": 1779645759
 }

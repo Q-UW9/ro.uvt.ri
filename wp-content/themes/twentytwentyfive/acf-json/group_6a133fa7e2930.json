@@ -1,31 +1,11 @@
 {
-    "key": "group_6a087f7aa179c",
-    "title": "Call Details",
+    "key": "group_6a133fa7e2930",
+    "title": "Global: Contact Card",
     "fields": [
         {
-            "key": "field_6a087f7a384b4",
-            "label": "Deadline",
-            "name": "deadline",
-            "aria-label": "",
-            "type": "date_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "d\/m\/Y",
-            "return_format": "d\/m\/Y",
-            "first_day": 1,
-            "default_to_current_date": 0,
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_6a088109aabf8",
-            "label": "Eligibility",
-            "name": "eligibility",
+            "key": "field_6a133fa7d05f8",
+            "label": "Name",
+            "name": "name",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -44,9 +24,9 @@
             "append": ""
         },
         {
-            "key": "field_6a131858120cb",
-            "label": "Application",
-            "name": "application_steps",
+            "key": "field_6a133fb6d05f9",
+            "label": "Role",
+            "name": "role",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -65,9 +45,50 @@
             "append": ""
         },
         {
-            "key": "field_6a13186b9ac7e",
-            "label": "Documents",
-            "name": "documents",
+            "key": "field_6a133fbbd05fa",
+            "label": "Email",
+            "name": "email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a133fc4d05fb",
+            "label": "Phone",
+            "name": "phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a133fcad05fc",
+            "label": "",
+            "name": "",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -91,7 +112,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "calls"
+                "value": "page"
             }
         ]
     ],
@@ -107,5 +128,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1779636341
+    "modified": 1779646418
 }

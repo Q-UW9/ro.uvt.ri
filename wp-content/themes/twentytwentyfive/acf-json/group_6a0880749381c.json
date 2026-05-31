@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_6a088074a17c6",
-            "label": "Download URL",
-            "name": "download_url",
+            "label": "File URL",
+            "name": "file_url",
             "aria-label": "",
             "type": "url",
             "instructions": "",
@@ -22,8 +22,8 @@
         },
         {
             "key": "field_6a0880bca17c7",
-            "label": "Document Type",
-            "name": "document_type",
+            "label": "File Type",
+            "name": "file_type",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -70,5 +70,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778942817
+    "modified": 1779645560
 }
