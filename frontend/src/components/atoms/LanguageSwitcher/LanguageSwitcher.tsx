@@ -7,6 +7,15 @@ import {
   type Locale,
 } from '../../../context/LocaleContext'
 
+function triggerGoogleTranslate(lang: Locale) {
+  // Find the Google Translate select element and change it
+  const select = document.querySelector('.goog-te-combo') as HTMLSelectElement
+  if (select) {
+    select.value = lang
+    select.dispatchEvent(new Event('change'))
+  }
+}
+
 export function LanguageSwitcher() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -16,16 +25,17 @@ export function LanguageSwitcher() {
   function switchLocale(newLocale: Locale) {
     if (newLocale === activeLocale) return
 
-    // Replace the locale segment in the current path
-    // e.g. /ro/erasmus → /en/erasmus
+    // 1. Update the URL
     const currentPath = location.pathname
     const localeSegment = currentLocale ?? DEFAULT_LOCALE
-
     const newPath = currentPath.startsWith(`/${localeSegment}`)
       ? currentPath.replace(`/${localeSegment}`, `/${newLocale}`)
       : `/${newLocale}`
 
     navigate(newPath)
+
+    // 2. Trigger Google Translate
+    triggerGoogleTranslate(newLocale)
   }
 
   return (
