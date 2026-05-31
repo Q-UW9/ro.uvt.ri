@@ -1,29 +1,49 @@
-import { useState } from 'react'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import clsx from 'clsx'
-
-const languages = ['EN', 'RO']
+import {
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  useLocale,
+  type Locale,
+} from '../../../context/LocaleContext'
 
 export function LanguageSwitcher() {
-  const [active, setActive] =
-    useState('EN')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { locale: currentLocale } = useParams<{ locale: string }>()
+  const activeLocale = useLocale()
+
+  function switchLocale(newLocale: Locale) {
+    if (newLocale === activeLocale) return
+
+    // Replace the locale segment in the current path
+    // e.g. /ro/erasmus → /en/erasmus
+    const currentPath = location.pathname
+    const localeSegment = currentLocale ?? DEFAULT_LOCALE
+
+    const newPath = currentPath.startsWith(`/${localeSegment}`)
+      ? currentPath.replace(`/${localeSegment}`, `/${newLocale}`)
+      : `/${newLocale}`
+
+    navigate(newPath)
+  }
 
   return (
     <div className="flex rounded-xl border border-gray-200 p-1">
-      {languages.map((language) => (
+      {SUPPORTED_LOCALES.map((lang) => (
         <button
-          key={language}
+          key={lang}
           type="button"
-          onClick={() =>
-            setActive(language)
-          }
+          onClick={() => switchLocale(lang)}
+          aria-label={`Switch to ${lang.toUpperCase()}`}
           className={clsx(
-            'rounded-lg px-3 py-1 text-sm transition',
-
-            active === language &&
-              'bg-uvt-blue text-white'
+            'rounded-lg px-3 py-1 text-sm font-medium uppercase transition',
+            activeLocale === lang
+              ? 'bg-uvt-blue text-white'
+              : 'text-gray-600 hover:text-uvt-blue'
           )}
         >
-          {language}
+          {lang}
         </button>
       ))}
     </div>
