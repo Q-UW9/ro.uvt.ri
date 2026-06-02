@@ -1,25 +1,29 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 import { getStory } from '../api/wordpress'
-import type { WPStory } from '../types/wordpress'
+import type { WpStory } from '../api/types'
+import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 
-function StoryDetailPage() {
+export default function StoryDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  const [story, setStory] = useState<WPStory | null>(null)
+  const [story, setStory]     = useState<WpStory | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError]     = useState<string | null>(null)
 
   useEffect(() => {
     if (!slug) return
     getStory(slug)
-      .then(setStory)
-      .catch((err) => setError(err.message))
+      .then(data => {
+        if (!data) throw new Error('Not found')
+        setStory(data)
+      })
+      .catch(e => setError(e.message))
       .finally(() => setLoading(false))
   }, [slug])
 
-  if (loading) return <InnerPageTemplate title="Loading..."><p>Loading...</p></InnerPageTemplate>
-  if (error || !story) return <InnerPageTemplate title="Not Found"><p>Could not load this story.</p></InnerPageTemplate>
+  if (loading) return <InnerPageTemplate title="Loading…"><p /></InnerPageTemplate>
+  if (error)   return <InnerPageTemplate title="Error"><p className="text-red-600">{error}</p></InnerPageTemplate>
+  if (!story)  return null
 
   return (
     <InnerPageTemplate title={story.title.rendered} subtitle={story.acf.author}>
@@ -35,5 +39,3 @@ function StoryDetailPage() {
     </InnerPageTemplate>
   )
 }
-
-export default StoryDetailPage

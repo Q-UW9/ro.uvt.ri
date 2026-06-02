@@ -1,46 +1,48 @@
 import { useEffect, useState } from 'react'
-import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
-import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
-import { Card } from '../components/molecules/Card/Card'
+import { Link } from 'react-router-dom'
 import { getStories } from '../api/wordpress'
+import type { WpStory } from '../api/types'
+import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 import { useLocale } from '../context/LocaleContext'
-import type { WPStory } from '../types/wordpress'
 
-function StoriesPage() {
+export default function StoriesPage() {
   const locale = useLocale()
-  const [stories, setStories] = useState<WPStory[]>([])
+  const [stories, setStories] = useState<WpStory[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError]     = useState<string | null>(null)
 
   useEffect(() => {
     getStories()
       .then(setStories)
-      .catch((err) => setError(err.message))
+      .catch(e => setError(e.message))
       .finally(() => setLoading(false))
   }, [])
 
   return (
     <InnerPageTemplate title="Student Stories">
-      {loading && <p className="text-gray-500">Loading stories...</p>}
-      {error  && <p className="text-red-500">Could not load content.</p>}
+      {loading && <p className="text-gray-500">Loading…</p>}
+      {error   && <p className="text-red-600">Failed to load: {error}</p>}
       {!loading && !error && stories.length === 0 && (
-        <p className="text-gray-500">No stories available at the moment.</p>
+        <p className="text-gray-500">No stories published yet.</p>
       )}
-      {!loading && !error && stories.length > 0 && (
-        <ContentGrid columns={3}>
-          {stories.map((story) => (
-            <Card
-              key={story.id}
-              title={story.title.rendered}
-              description={story.excerpt.rendered.replace(/<[^>]+>/g, '')}
-              buttonText="Read Story"
-              route={`/${locale}/stories/${story.slug}`}
+      <ul className="space-y-6">
+        {stories.map(story => (
+          <li key={story.id} className="border-b pb-4">
+            <Link
+              to={`/${locale}/stories/${story.slug}`}
+              className="text-xl font-semibold text-blue-700 hover:underline"
+              dangerouslySetInnerHTML={{ __html: story.title.rendered }}
             />
-          ))}
-        </ContentGrid>
-      )}
+            {story.acf.author && (
+              <p className="mt-1 text-sm text-gray-500">By {story.acf.author}</p>
+            )}
+            <div
+              className="mt-2 text-gray-700"
+              dangerouslySetInnerHTML={{ __html: story.excerpt.rendered }}
+            />
+          </li>
+        ))}
+      </ul>
     </InnerPageTemplate>
   )
 }
-
-export default StoriesPage

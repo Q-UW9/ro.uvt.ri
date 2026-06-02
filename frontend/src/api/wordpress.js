@@ -1,120 +1,45 @@
-const BASE = 'http://ro.uvt.ri.test/wp-json/wp/v2'
+const BASE = import.meta.env.VITE_WP_API_BASE ?? "http://ro.uvt.ri.test/wp-json/wp/v2";
 
-// ── Utility ───────────────────────────────────────────────
-
-function buildQuery(params = {}) {
-  const query = new URLSearchParams()
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined && value !== null && value !== '') {
-      query.set(key, value)
-    }
-  })
-  const str = query.toString()
-  return str ? `?${str}` : ''
-}
+// ── Generic helpers ─────────────────────────────────────────
 
 async function fetchJSON(url) {
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`API error ${res.status}: ${url}`)
-  return res.json()
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API error ${res.status}: ${url}`);
+  return res.json();
 }
 
-// ── Pages ─────────────────────────────────────────────────
-
-export async function getPages() {
-  return fetchJSON(`${BASE}/pages`)
+function bySlug(endpoint, slug) {
+  return fetchJSON(`${BASE}/${endpoint}?slug=${slug}&_embed`).then(d => d[0] ?? null);
 }
 
-export async function getPage(slug) {
-  const data = await fetchJSON(`${BASE}/pages?slug=${slug}`)
-  return data[0] ?? null
+function list(endpoint, params = {}) {
+  const qs = new URLSearchParams({ per_page: "20", ...params }).toString();
+  return fetchJSON(`${BASE}/${endpoint}?${qs}&_embed`);
 }
 
-// ── Posts (news) ──────────────────────────────────────────
+// ── Standard posts ───────────────────────────────────────────
 
-export async function getPosts(params = {}) {
-  return fetchJSON(`${BASE}/posts${buildQuery(params)}`)
-}
+export const getPosts      = ()       => list("posts");
+export const getPost       = (slug)   => bySlug("posts", slug);
+export const getPages      = ()       => list("pages");
+export const getPage       = (slug)   => bySlug("pages", slug);
 
-export async function getPost(slug) {
-  const data = await fetchJSON(`${BASE}/posts?slug=${slug}`)
-  return data[0] ?? null
-}
+// ── CPT: Calls ───────────────────────────────────────────────
 
-// ── Calls ─────────────────────────────────────────────────
-// Taxonomy filters: audience, academic-year
+export const getCalls      = (params) => list("calls", params);
+export const getCall       = (slug)   => bySlug("calls", slug);
 
-export async function getCalls(params = {}) {
-  const { audience, 'academic-year': academicYear, ...rest } = params
-  const query = buildQuery({
-    ...(audience      ? { audience }                : {}),
-    ...(academicYear  ? { 'academic-year': academicYear } : {}),
-    ...rest,
-  })
-  return fetchJSON(`${BASE}/calls${query}`)
-}
+// ── CPT: Programmes ──────────────────────────────────────────
 
-export async function getCall(slug) {
-  const data = await fetchJSON(`${BASE}/calls?slug=${slug}`)
-  return data[0] ?? null
-}
+export const getProgrammes = (params) => list("programmes", params);
+export const getProgramme  = (slug)   => bySlug("programmes", slug);
 
-// ── Programmes ────────────────────────────────────────────
-// Taxonomy filters: audience, programme-family
+// ── CPT: Resources ───────────────────────────────────────────
 
-export async function getProgrammes(params = {}) {
-  const { audience, 'programme-family': programmeFamily, ...rest } = params
-  const query = buildQuery({
-    ...(audience        ? { audience }                          : {}),
-    ...(programmeFamily ? { 'programme-family': programmeFamily } : {}),
-    ...rest,
-  })
-  return fetchJSON(`${BASE}/programmes${query}`)
-}
+export const getResources  = (params) => list("resources", params);
+export const getResource   = (slug)   => bySlug("resources", slug);
 
-export async function getProgramme(slug) {
-  const data = await fetchJSON(`${BASE}/programmes?slug=${slug}`)
-  return data[0] ?? null
-}
+// ── CPT: Stories ─────────────────────────────────────────────
 
-// ── Resources ─────────────────────────────────────────────
-// Taxonomy filters: audience, content-topic, academic-year
-
-export async function getResources(params = {}) {
-  const {
-    audience,
-    'content-topic': contentTopic,
-    'academic-year': academicYear,
-    ...rest
-  } = params
-  const query = buildQuery({
-    ...(audience     ? { audience }                      : {}),
-    ...(contentTopic ? { 'content-topic': contentTopic } : {}),
-    ...(academicYear ? { 'academic-year': academicYear } : {}),
-    ...rest,
-  })
-  return fetchJSON(`${BASE}/resources${query}`)
-}
-
-export async function getResource(slug) {
-  const data = await fetchJSON(`${BASE}/resources?slug=${slug}`)
-  return data[0] ?? null
-}
-
-// ── Stories ───────────────────────────────────────────────
-// Taxonomy filters: audience, content-topic
-
-export async function getStories(params = {}) {
-  const { audience, 'content-topic': contentTopic, ...rest } = params
-  const query = buildQuery({
-    ...(audience     ? { audience }                      : {}),
-    ...(contentTopic ? { 'content-topic': contentTopic } : {}),
-    ...rest,
-  })
-  return fetchJSON(`${BASE}/stories${query}`)
-}
-
-export async function getStory(slug) {
-  const data = await fetchJSON(`${BASE}/stories?slug=${slug}`)
-  return data[0] ?? null
-}
+export const getStories    = (params) => list("stories", params);
+export const getStory      = (slug)   => bySlug("stories", slug);

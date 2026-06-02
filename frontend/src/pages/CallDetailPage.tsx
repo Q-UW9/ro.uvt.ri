@@ -1,60 +1,55 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 import { getCall } from '../api/wordpress'
-import type { WPCall } from '../types/wordpress'
+import type { WpCall } from '../api/types'
+import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
 
-function CallDetailPage() {
+export default function CallDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  const [call, setCall] = useState<WPCall | null>(null)
+  const [call, setCall]       = useState<WpCall | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError]     = useState<string | null>(null)
 
   useEffect(() => {
     if (!slug) return
     getCall(slug)
-      .then(setCall)
-      .catch((err) => setError(err.message))
+      .then(data => {
+        if (!data) throw new Error('Not found')
+        setCall(data)
+      })
+      .catch(e => setError(e.message))
       .finally(() => setLoading(false))
   }, [slug])
 
-  if (loading) return <InnerPageTemplate title="Loading..."><p>Loading...</p></InnerPageTemplate>
-  if (error || !call) return <InnerPageTemplate title="Not Found"><p>Could not load this call.</p></InnerPageTemplate>
-
-  // Map ACF documents to DocumentDownloadList format
-  const documents = call.acf.documents?.map((doc) => ({
-    label: doc.label,
-    url: doc.url,
-    fileType: 'PDF',
-  })) ?? []
-
-  // Map ACF application_steps to AccordionSection format
-  const accordion = call.acf.application_steps?.map((item, i) => ({
-    title: `Step ${i + 1}`,
-    content: item.step,
-  })) ?? []
+  if (loading) return <InnerPageTemplate title="Loading…"><p /></InnerPageTemplate>
+  if (error)   return <InnerPageTemplate title="Error"><p className="text-red-600">{error}</p></InnerPageTemplate>
+  if (!call)   return null
 
   return (
     <InnerPageTemplate
       title={call.title.rendered}
-      accordion={accordion}
-      documents={documents}
+      accordion={call.acf.application_steps?.map(s => ({
+        question: 'Step',
+        answer: s.step,
+      }))}
+      documents={call.acf.documents?.map(d => ({
+        label: d.label,
+        url: d.url,
+        fileType: 'PDF',
+      }))}
     >
-      {/* Deadline + eligibility */}
       {call.acf.deadline && (
         <p className="mb-4 text-sm font-medium text-gray-500">
-          Deadline: <span className="text-gray-900">{call.acf.deadline}</span>
+          Deadline: <strong>{call.acf.deadline}</strong>
         </p>
       )}
       {call.acf.eligibility && (
-        <div
-          className="mb-6 text-gray-700"
-          dangerouslySetInnerHTML={{ __html: call.acf.eligibility }}
-        />
+        <section className="mb-6">
+          <h2 className="mb-2 text-lg font-semibold">Eligibility</h2>
+          <p>{call.acf.eligibility}</p>
+        </section>
       )}
       <div dangerouslySetInnerHTML={{ __html: call.content.rendered }} />
     </InnerPageTemplate>
   )
 }
-
-export default CallDetailPage
