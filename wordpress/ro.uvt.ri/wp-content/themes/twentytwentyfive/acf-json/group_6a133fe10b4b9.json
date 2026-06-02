@@ -1,11 +1,11 @@
 {
-    "key": "group_6b1001d000004",
-    "title": "Contact Card",
+    "key": "group_6a133fe10b4b9",
+    "title": "Global: Document Repeater",
     "fields": [
         {
-            "key": "field_6b1001d000004a",
-            "label": "Name",
-            "name": "name",
+            "key": "field_6a133fe1affc2",
+            "label": "Documents",
+            "name": "documents_list",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -24,9 +24,9 @@
             "append": ""
         },
         {
-            "key": "field_6b1001d000004b",
-            "label": "Role",
-            "name": "role",
+            "key": "field_6a133ff6affc3",
+            "label": "Label",
+            "name": "label",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -45,11 +45,11 @@
             "append": ""
         },
         {
-            "key": "field_6b1001d000004c",
-            "label": "Email",
-            "name": "email",
+            "key": "field_6a133ffeaffc4",
+            "label": "File URL",
+            "name": "file_url",
             "aria-label": "",
-            "type": "email",
+            "type": "url",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -60,30 +60,7 @@
             },
             "default_value": "",
             "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6b1001d000004d",
-            "label": "Phone",
-            "name": "phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "placeholder": ""
         }
     ],
     "location": [
@@ -95,17 +72,17 @@
             }
         ]
     ],
-    "menu_order": 3,
+    "menu_order": 0,
     "position": "normal",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Contact card for use on WordPress Pages.",
+    "description": "",
     "show_in_rest": 1,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1747612800
+    "modified": 1779646475
 }

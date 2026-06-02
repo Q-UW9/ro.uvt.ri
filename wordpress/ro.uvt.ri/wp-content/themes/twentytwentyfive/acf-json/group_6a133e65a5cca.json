@@ -1,9 +1,9 @@
 {
-    "key": "group_6b1001a000001",
-    "title": "CTA Block",
+    "key": "group_6a133e65a5cca",
+    "title": "Global: CTA Block",
     "fields": [
         {
-            "key": "field_6b1001a000001a",
+            "key": "field_6a133e65ec794",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -24,7 +24,7 @@
             "append": ""
         },
         {
-            "key": "field_6b1001a000001b",
+            "key": "field_6a133ea3ec795",
             "label": "Body",
             "name": "body",
             "aria-label": "",
@@ -41,10 +41,11 @@
             "maxlength": "",
             "allow_in_bindings": 0,
             "rows": "",
-            "new_lines": "wpautop"
+            "placeholder": "",
+            "new_lines": ""
         },
         {
-            "key": "field_6b1001a000001c",
+            "key": "field_6a133ebaec796",
             "label": "Button Label",
             "name": "button_label",
             "aria-label": "",
@@ -65,7 +66,7 @@
             "append": ""
         },
         {
-            "key": "field_6b1001a000001d",
+            "key": "field_6a133ec6ec797",
             "label": "Button URL",
             "name": "button_url",
             "aria-label": "",
@@ -99,10 +100,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Call-to-action block for use on WordPress Pages.",
+    "description": "",
     "show_in_rest": 1,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1747612800
+    "modified": 1779646164
 }
