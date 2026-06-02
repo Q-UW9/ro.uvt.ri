@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom'
 import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 
 const navLinks = [
-  { label: 'About',                  to: '/about' },
-  { label: 'Erasmus',                to: '/erasmus' },
-  { label: 'International Students', to: '/international-students' },
-  { label: 'Programmes',             to: '/programmes' },
-  { label: 'Partnerships',           to: '/partnerships' },
-  { label: 'News',                   to: '/news' },
-  { label: 'Contact',                to: '/contact' },
+  { label: 'About DRI',                to: '/about' },
+  { label: 'Erasmus+',                 to: '/erasmus' },
+  { label: 'International Students',   to: '/international-students' },
+  { label: 'Scholarships & Exchanges', to: '/scholarships-exchanges' },
+  { label: 'Partnerships',             to: '/partnerships' },
+  { label: 'News',                     to: '/news' },
+  { label: 'Contact',                  to: '/contact' },
 ]
 
 export function Navbar() {
@@ -17,17 +17,17 @@ export function Navbar() {
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-blue-700">
+        <Link to="/" className="text-xl font-bold text-uvt-blue">
           UVT RI
         </Link>
 
         {/* Nav links — desktop */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className="text-sm font-medium text-gray-700 transition hover:text-blue-600"
+              className="text-sm font-medium text-gray-700 transition hover:text-uvt-blue"
             >
               {link.label}
             </Link>
@@ -40,7 +40,7 @@ export function Navbar() {
 
           {/* Mobile menu placeholder — to be wired up */}
           <button
-            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
+            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 lg:hidden"
             aria-label="Open menu"
           >
             ☰
