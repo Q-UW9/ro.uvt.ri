@@ -11,13 +11,6 @@
 
 // Adds theme support for post formats.
 if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :
-	/**
-	 * Adds theme support for post formats.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_post_format_setup() {
 		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video' ) );
 	}
@@ -26,13 +19,6 @@ add_action( 'after_setup_theme', 'twentytwentyfive_post_format_setup' );
 
 // Enqueues editor-style.css in the editors.
 if ( ! function_exists( 'twentytwentyfive_editor_style' ) ) :
-	/**
-	 * Enqueues editor-style.css in the editors.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_editor_style() {
 		add_editor_style( 'assets/css/editor-style.css' );
 	}
@@ -41,17 +27,9 @@ add_action( 'after_setup_theme', 'twentytwentyfive_editor_style' );
 
 // Enqueues the theme stylesheet on the front.
 if ( ! function_exists( 'twentytwentyfive_enqueue_styles' ) ) :
-	/**
-	 * Enqueues the theme stylesheet on the front.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_enqueue_styles() {
 		$suffix = SCRIPT_DEBUG ? '' : '.min';
 		$src    = 'style' . $suffix . '.css';
-
 		wp_enqueue_style(
 			'twentytwentyfive-style',
 			get_parent_theme_file_uri( $src ),
@@ -69,13 +47,6 @@ add_action( 'wp_enqueue_scripts', 'twentytwentyfive_enqueue_styles' );
 
 // Registers custom block styles.
 if ( ! function_exists( 'twentytwentyfive_block_styles' ) ) :
-	/**
-	 * Registers custom block styles.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_block_styles() {
 		register_block_style(
 			'core/list',
@@ -86,7 +57,6 @@ if ( ! function_exists( 'twentytwentyfive_block_styles' ) ) :
 				ul.is-style-checkmark-list {
 					list-style-type: "\2713";
 				}
-
 				ul.is-style-checkmark-list li {
 					padding-inline-start: 1ch;
 				}',
@@ -98,15 +68,7 @@ add_action( 'init', 'twentytwentyfive_block_styles' );
 
 // Registers pattern categories.
 if ( ! function_exists( 'twentytwentyfive_pattern_categories' ) ) :
-	/**
-	 * Registers pattern categories.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_pattern_categories() {
-
 		register_block_pattern_category(
 			'twentytwentyfive_page',
 			array(
@@ -114,7 +76,6 @@ if ( ! function_exists( 'twentytwentyfive_pattern_categories' ) ) :
 				'description' => __( 'A collection of full page layouts.', 'twentytwentyfive' ),
 			)
 		);
-
 		register_block_pattern_category(
 			'twentytwentyfive_post-format',
 			array(
@@ -128,13 +89,6 @@ add_action( 'init', 'twentytwentyfive_pattern_categories' );
 
 // Registers block binding sources.
 if ( ! function_exists( 'twentytwentyfive_register_block_bindings' ) ) :
-	/**
-	 * Registers the post format block binding source.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return void
-	 */
 	function twentytwentyfive_register_block_bindings() {
 		register_block_bindings_source(
 			'twentytwentyfive/format',
@@ -149,16 +103,8 @@ add_action( 'init', 'twentytwentyfive_register_block_bindings' );
 
 // Registers block binding callback function for the post format name.
 if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
-	/**
-	 * Callback function for the post format name block binding source.
-	 *
-	 * @since Twenty Twenty-Five 1.0
-	 *
-	 * @return string|void Post format name, or nothing if the format is 'standard'.
-	 */
 	function twentytwentyfive_format_binding() {
 		$post_format_slug = get_post_format();
-
 		if ( $post_format_slug && 'standard' !== $post_format_slug ) {
 			return get_post_format_string( $post_format_slug );
 		}
@@ -166,8 +112,8 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 endif;
 
 // CORS — allow React dev server to access the API
-add_action('init', function() {
-    header('Access-Control-Allow-Origin: http://localhost:5173');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-});
+add_action( 'init', function() {
+	header( 'Access-Control-Allow-Origin: http://localhost:5173' );
+	header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+	header( 'Access-Control-Allow-Headers: Content-Type' );
+} );
