@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { LocaleLayout } from './layouts/LocaleLayout'
+import { DEFAULT_LOCALE } from './context/LocaleContext'
 
 // Pages
 import HomePage                       from './pages/HomePage'
-
 import AboutPage                      from './pages/AboutPage'
 import ContactPage                    from './pages/ContactPage'
 import PartnershipsPage               from './pages/PartnershipsPage'
@@ -29,13 +30,10 @@ import IntlFreeMoversPage             from './pages/IntlFreeMoversPage'
 
 import CallsPage                      from './pages/CallsPage'
 import CallDetailPage                 from './pages/CallDetailPage'
-
 import StoriesPage                    from './pages/StoriesPage'
 import StoryDetailPage                from './pages/StoryDetailPage'
-
 import ResourcesPage                  from './pages/ResourcesPage'
 import ResourceDetailPage             from './pages/ResourceDetailPage'
-
 import ProgrammesPage                 from './pages/ProgrammesPage'
 import ProgrammeDetailPage            from './pages/ProgrammeDetailPage'
 
@@ -46,54 +44,68 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* Home */}
-        <Route path="/"                          element={<HomePage />} />
+        {/* Redirect bare "/" to default locale */}
+        <Route
+          path="/"
+          element={<Navigate to={`/${DEFAULT_LOCALE}`} replace />}
+        />
 
-        {/* Static top-level */}
-        <Route path="/about"                     element={<AboutPage />} />
-        <Route path="/partnerships"              element={<PartnershipsPage />} />
-        <Route path="/scholarships-exchanges"    element={<ScholarshipsExchangesPage />} />
-        <Route path="/contact"                   element={<ContactPage />} />
-        <Route path="/news"                      element={<NewsPage />} />
-        <Route path="/search"                    element={<SearchPage />} />
-        <Route path="/sitemap"                   element={<SitemapPage />} />
+        {/* ── Locale wrapper ─────────────────────────────────
+            All real routes live under /:locale
+            LocaleLayout validates the locale and provides context
+        ──────────────────────────────────────────────────── */}
+        <Route path="/:locale" element={<LocaleLayout />}>
 
-        {/* Erasmus+ */}
-        <Route path="/erasmus"                           element={<ErasmusPage />} />
-        <Route path="/erasmus/incoming-students"         element={<ErasmusIncomingStudentsPage />} />
-        <Route path="/erasmus/outgoing-students"         element={<ErasmusOutgoingStudentsPage />} />
-        <Route path="/erasmus/incoming-staff"            element={<ErasmusIncomingStaffPage />} />
-        <Route path="/erasmus/outgoing-staff"            element={<ErasmusOutgoingStaffPage />} />
-        <Route path="/erasmus/partner-countries"         element={<ErasmusPartnerCountriesPage />} />
-        <Route path="/erasmus/cooperation-projects"      element={<ErasmusCooperationProjectsPage />} />
+          {/* Home */}
+          <Route index element={<HomePage />} />
 
-        {/* International Students */}
-        <Route path="/international-students"                      element={<IntlStudentsPage />} />
-        <Route path="/international-students/non-eu"               element={<IntlNonEuPage />} />
-        <Route path="/international-students/eu"                   element={<IntlEuPage />} />
-        <Route path="/international-students/ukraine"              element={<IntlUkrainePage />} />
-        <Route path="/international-students/refugees"             element={<IntlRefugeesPage />} />
-        <Route path="/international-students/preparatory-year"     element={<IntlPreparatoryPage />} />
-        <Route path="/international-students/free-movers"          element={<IntlFreeMoversPage />} />
+          {/* Static top-level */}
+          <Route path="about"                  element={<AboutPage />} />
+          <Route path="partnerships"           element={<PartnershipsPage />} />
+          <Route path="scholarships-exchanges" element={<ScholarshipsExchangesPage />} />
+          <Route path="contact"                element={<ContactPage />} />
+          <Route path="news"                   element={<NewsPage />} />
+          <Route path="search"                 element={<SearchPage />} />
+          <Route path="sitemap"                element={<SitemapPage />} />
 
-        {/* CPT: Calls */}
-        <Route path="/calls"                     element={<CallsPage />} />
-        <Route path="/calls/:slug"               element={<CallDetailPage />} />
+          {/* Erasmus+ */}
+          <Route path="erasmus"                          element={<ErasmusPage />} />
+          <Route path="erasmus/incoming-students"        element={<ErasmusIncomingStudentsPage />} />
+          <Route path="erasmus/outgoing-students"        element={<ErasmusOutgoingStudentsPage />} />
+          <Route path="erasmus/incoming-staff"           element={<ErasmusIncomingStaffPage />} />
+          <Route path="erasmus/outgoing-staff"           element={<ErasmusOutgoingStaffPage />} />
+          <Route path="erasmus/partner-countries"        element={<ErasmusPartnerCountriesPage />} />
+          <Route path="erasmus/cooperation-projects"     element={<ErasmusCooperationProjectsPage />} />
 
-        {/* CPT: Stories */}
-        <Route path="/stories"                   element={<StoriesPage />} />
-        <Route path="/stories/:slug"             element={<StoryDetailPage />} />
+          {/* International Students */}
+          <Route path="international-students"                     element={<IntlStudentsPage />} />
+          <Route path="international-students/non-eu"              element={<IntlNonEuPage />} />
+          <Route path="international-students/eu"                  element={<IntlEuPage />} />
+          <Route path="international-students/ukraine"             element={<IntlUkrainePage />} />
+          <Route path="international-students/refugees"            element={<IntlRefugeesPage />} />
+          <Route path="international-students/preparatory-year"    element={<IntlPreparatoryPage />} />
+          <Route path="international-students/free-movers"         element={<IntlFreeMoversPage />} />
 
-        {/* CPT: Resources */}
-        <Route path="/resources"                 element={<ResourcesPage />} />
-        <Route path="/resources/:slug"           element={<ResourceDetailPage />} />
+          {/* CPT: Calls */}
+          <Route path="calls"                  element={<CallsPage />} />
+          <Route path="calls/:slug"            element={<CallDetailPage />} />
 
-        {/* CPT: Programmes */}
-        <Route path="/programmes"                element={<ProgrammesPage />} />
-        <Route path="/programmes/:slug"          element={<ProgrammeDetailPage />} />
+          {/* CPT: Stories */}
+          <Route path="stories"                element={<StoriesPage />} />
+          <Route path="stories/:slug"          element={<StoryDetailPage />} />
 
-        {/* 404 */}
-        <Route path="*"                          element={<NotFoundPage />} />
+          {/* CPT: Resources */}
+          <Route path="resources"              element={<ResourcesPage />} />
+          <Route path="resources/:slug"        element={<ResourceDetailPage />} />
+
+          {/* CPT: Programmes */}
+          <Route path="programmes"             element={<ProgrammesPage />} />
+          <Route path="programmes/:slug"       element={<ProgrammeDetailPage />} />
+
+        </Route>
+
+        {/* 404 fallback */}
+        <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
     </BrowserRouter>

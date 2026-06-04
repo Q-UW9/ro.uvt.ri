@@ -1,7 +1,10 @@
 # Frontend Architecture
 
+> **Decision (Week 5):** Project uses Vite + React Router. Next.js is not used.
+> This is the final architecture choice. Locale routing uses React Router nested routes.
+
 ## Stack
-- Next.js 14
+- Vite + React Router DOM v7 (confirmed — not Next.js)
 - TypeScript
 - Tailwind CSS
 - Storybook
