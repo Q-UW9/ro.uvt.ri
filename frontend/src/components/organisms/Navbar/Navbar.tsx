@@ -28,13 +28,13 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6">
         <Link
           to={`/${locale}`}
           className="flex items-center gap-2 text-xl font-bold text-uvt-blue"
         >
-          <GraduationCap className="size-7" />
+          <GraduationCap className="size-8" />
           <span className="hidden sm:inline">UVT RI</span>
           <span className="sm:hidden">UVT</span>
         </Link>
@@ -46,7 +46,7 @@ export function Navbar() {
               to={`/${locale}/${link.path}`}
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors hover:text-uvt-blue ${
-                  isActive ? 'text-uvt-blue' : 'text-gray-700'
+                  isActive ? 'text-uvt-blue' : 'text-gray-600'
                 }`
               }
             >

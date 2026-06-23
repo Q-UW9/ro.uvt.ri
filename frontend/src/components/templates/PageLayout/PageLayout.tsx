@@ -1,23 +1,17 @@
 import type { ReactNode } from 'react'
 
-import { Navbar } from '../../organisms/Navbar/Navbar'
 import { Footer } from '../../organisms/Footer/Footer'
+import { Navbar } from '../../organisms/Navbar/Navbar'
 
 interface PageLayoutProps {
   children: ReactNode
 }
 
-export function PageLayout({
-  children,
-}: PageLayoutProps) {
+export function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Navbar />
-
-      <main>
-        {children}
-      </main>
-
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   )

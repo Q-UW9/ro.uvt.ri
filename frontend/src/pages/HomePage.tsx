@@ -1,16 +1,34 @@
 import { useEffect, useState } from 'react'
-import { HomePageTemplate } from '../components/templates/HomePageTemplate/HomePageTemplate'
+
 import { getPosts } from '../api/wordpress'
-import { homeSections } from '../data/homeSections'
+import { HomePageTemplate } from '../components/templates/HomePageTemplate/HomePageTemplate'
 import { useLocale } from '../context/LocaleContext'
+import { homeSections } from '../data/homeSections'
+
+interface WordPressPost {
+  id: number
+  date: string
+  slug: string
+  title: {
+    rendered: string
+  }
+  excerpt: {
+    rendered: string
+  }
+}
+
+interface NewsItem {
+  id: number
+  title: string
+  date: string
+  excerpt: string
+  slug: string
+}
 
 function HomePage() {
   const locale = useLocale()
-  const [news, setNews] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [news, setNews] = useState<NewsItem[]>([])
 
-  // Hero buttons use locale-aware paths
   const heroData = {
     title: 'International Relations at West University of Timișoara',
     subtitle:
@@ -23,7 +41,7 @@ function HomePage() {
 
   useEffect(() => {
     getPosts({ per_page: 4 })
-      .then((data) => {
+      .then((data: WordPressPost[]) => {
         setNews(
           data.map((post) => ({
             id: post.id,
@@ -31,20 +49,15 @@ function HomePage() {
             date: post.date,
             excerpt: post.excerpt.rendered,
             slug: post.slug,
-          }))
+          })),
         )
       })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
+      .catch(() => {
+        setNews([])
+      })
   }, [])
 
-  return (
-    <HomePageTemplate
-      heroData={heroData}
-      cards={homeSections}
-      news={loading ? [] : news}
-    />
-  )
+  return <HomePageTemplate heroData={heroData} cards={homeSections} news={news} />
 }
 
 export default HomePage
