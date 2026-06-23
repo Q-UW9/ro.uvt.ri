@@ -1,55 +1,110 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { Menu, GraduationCap } from 'lucide-react'
+
 import { LanguageSwitcher } from '../../atoms/LanguageSwitcher/LanguageSwitcher'
 import { useLocale } from '../../../context/LocaleContext'
 
+import { Button } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+
 const navLinks = [
-  { label: 'About DRI',                path: 'about' },
-  { label: 'Erasmus+',                 path: 'erasmus' },
-  { label: 'International Students',   path: 'international-students' },
+  { label: 'About DRI', path: 'about' },
+  { label: 'Erasmus+', path: 'erasmus' },
+  { label: 'International Students', path: 'international-students' },
   { label: 'Scholarships & Exchanges', path: 'scholarships-exchanges' },
-  { label: 'Partnerships',             path: 'partnerships' },
-  { label: 'News',                     path: 'news' },
-  { label: 'Contact',                  path: 'contact' },
+  { label: 'Partnerships', path: 'partnerships' },
+  { label: 'News', path: 'news' },
+  { label: 'Contact', path: 'contact' },
 ]
 
 export function Navbar() {
   const locale = useLocale()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-
-        {/* Logo — goes to locale home */}
-        <Link to={`/${locale}`} className="text-xl font-bold text-uvt-blue">
-          UVT RI
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
+        {/* Logo */}
+        <Link
+          to={`/${locale}`}
+          className="flex items-center gap-2 text-xl font-bold text-uvt-blue"
+        >
+          <GraduationCap className="size-7" />
+          <span className="hidden sm:inline">UVT RI</span>
+          <span className="sm:hidden">UVT</span>
         </Link>
 
-        {/* Nav links — desktop */}
+        {/* Desktop navigation */}
         <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
-            <Link
+            <NavLink
               key={link.path}
               to={`/${locale}/${link.path}`}
-              className="text-sm font-medium text-gray-700 transition hover:text-uvt-blue"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-colors hover:text-uvt-blue ${
+                  isActive ? 'text-uvt-blue' : 'text-gray-700'
+                }`
+              }
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
-        {/* Right side — language switcher + mobile menu */}
+        {/* Right side */}
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
 
-          {/* Mobile menu placeholder — to be wired up */}
-          <button
-            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 lg:hidden"
-            aria-label="Open menu"
-          >
-            ☰
-          </button>
-        </div>
+          {/* Mobile navigation */}
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
+                aria-label="Open menu"
+              >
+                <Menu className="size-6" />
+              </Button>
+            </SheetTrigger>
 
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+
+              <nav className="mt-8 flex flex-col gap-4">
+                <Link
+                  to={`/${locale}`}
+                  onClick={() => setOpen(false)}
+                  className="mb-4 flex items-center gap-2 text-xl font-bold text-uvt-blue"
+                >
+                  <GraduationCap className="size-7" />
+                  UVT RI
+                </Link>
+
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.path}
+                    to={`/${locale}/${link.path}`}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `text-lg font-medium transition-colors hover:text-uvt-blue ${
+                        isActive ? 'text-uvt-blue' : 'text-gray-700'
+                      }`
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   )
