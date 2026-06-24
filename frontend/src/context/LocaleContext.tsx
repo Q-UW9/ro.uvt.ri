@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react'
 export type Locale = 'ro' | 'en'
 
 export const SUPPORTED_LOCALES: Locale[] = ['ro', 'en']
-export const DEFAULT_LOCALE: Locale = 'ro'
+export const DEFAULT_LOCALE: Locale = 'en'
 
 interface LocaleContextValue {
   locale: Locale
