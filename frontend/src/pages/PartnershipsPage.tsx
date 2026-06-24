@@ -1,47 +1,46 @@
-import { useEffect, useState } from 'react'
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
-import { getPage } from '../api/wordpress'
-import type { WPPage } from '../types/wordpress'
+
+const accordion = [
+  {
+    title: 'How can our institution sign a bilateral agreement with UVT?',
+    content:
+      'Please contact the DRI office at dri@e-uvt.ro with a brief description of your institution and the type of collaboration you are interested in. Our team will guide you through the agreement process.',
+  },
+  {
+    title: 'What types of agreements does UVT sign?',
+    content:
+      'UVT signs inter-institutional Erasmus+ agreements, bilateral student/staff exchange agreements, joint degree agreements, and research memoranda of understanding.',
+  },
+  {
+    title: 'How long does it take to establish a new partnership?',
+    content:
+      'The process typically takes 2–4 months from initial contact to a signed agreement, depending on administrative procedures on both sides.',
+  },
+]
 
 function PartnershipsPage() {
-  const [page, setPage] = useState<WPPage | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    getPage('partnerships')
-      .then(setPage)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
-  }, [])
-
-  // Map ACF FAQ section to accordion format
-  const accordion = page?.acf?.faqs?.map((faq) => ({
-    title: faq.question,
-    content: faq.answer,
-  })) ?? []
-
-  // Map ACF document repeater
-  const documents = page?.acf?.documents?.map((doc) => ({
-    label: doc.label,
-    url: doc.file_url,
-    fileType: 'PDF',
-  })) ?? []
-
   return (
     <InnerPageTemplate
-      title={loading ? 'Partnerships' : page?.title?.rendered ?? 'Partnerships'}
+      title="Partnerships"
+      subtitle="Global academic collaborations"
       accordion={accordion}
-      documents={documents}
     >
-      {loading && <p className="text-gray-500">Loading...</p>}
-      {error && <p className="text-red-500">Could not load content.</p>}
-      {!loading && !error && page && (
-        <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-      )}
-      {!loading && !error && !page && (
-        <p className="text-gray-500">Content coming soon.</p>
-      )}
+      <p>
+        West University of Timișoara maintains a broad network of international
+        academic partnerships spanning more than 60 countries across Europe,
+        Asia, the Americas, and Africa.
+      </p>
+      <p>
+        Our agreements enable student and staff exchanges, joint research
+        projects, dual-degree programmes, and collaborative curriculum
+        development. We are always open to establishing new partnerships with
+        high-quality institutions that share our commitment to academic
+        excellence and internationalization.
+      </p>
+      <p>
+        If your institution is interested in collaborating with UVT, please
+        reach out to the DRI office — we welcome new partnerships at any time.
+      </p>
     </InnerPageTemplate>
   )
 }

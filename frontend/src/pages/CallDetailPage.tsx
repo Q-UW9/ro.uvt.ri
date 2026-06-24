@@ -29,8 +29,8 @@ export default function CallDetailPage() {
     <InnerPageTemplate
       title={call.title.rendered}
       accordion={call.acf.application_steps?.map(s => ({
-        question: 'Step',
-        answer: s.step,
+        title: 'Step',
+        content: s.step,
       }))}
       documents={call.acf.documents?.map(d => ({
         label: d.label,

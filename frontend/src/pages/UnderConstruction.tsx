@@ -1,5 +1,4 @@
 import { TabsSection } from '../components/organisms/TabsSection/TabsSection'
-import { NewsSection } from '../components/organisms/NewsSection/NewsSection'
 
 import { ContentGrid } from '../components/templates/ContentGrid/ContentGrid'
 import { PageLayout } from '../components/templates/PageLayout/PageLayout'
@@ -13,8 +12,6 @@ import { Icon } from '../components/atoms/Icon/Icon'
 
 import { homeSections } from '../data/homeSections'
 import { homePageData } from '../data/homePageData'
-import { announcements } from '../data/announcements'
-
 import { s } from './UnderConstruction.styles.js'
 
 function UnderConstruction(){
@@ -78,10 +75,6 @@ route={card.route}
 </ContentGrid>
 
 </section>
-
-<NewsSection
-items={announcements}
-/>
 
 <section className="bg-gray-50 py-20">
 

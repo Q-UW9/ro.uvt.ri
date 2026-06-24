@@ -1,47 +1,49 @@
-import { useEffect, useState } from 'react'
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
-import { getPage } from '../api/wordpress'
-import type { WPPage } from '../types/wordpress'
+
+const contacts = [
+  { role: 'General enquiries', email: 'dri@e-uvt.ro', phone: '+40 256 592 111' },
+  { role: 'Erasmus+ outgoing students', email: 'erasmus.out@e-uvt.ro', phone: '+40 256 592 112' },
+  { role: 'Erasmus+ incoming students', email: 'erasmus.in@e-uvt.ro', phone: '+40 256 592 113' },
+  { role: 'International admissions', email: 'admissions.intl@e-uvt.ro', phone: '+40 256 592 114' },
+  { role: 'Partnerships & agreements', email: 'partnerships@e-uvt.ro', phone: '+40 256 592 115' },
+]
 
 function ContactPage() {
-  const [page, setPage] = useState<WPPage | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    getPage('contact')
-      .then(setPage)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
-  }, [])
-
-  // Map ACF FAQ section to accordion format
-  const accordion = page?.acf?.faqs?.map((faq) => ({
-    title: faq.question,
-    content: faq.answer,
-  })) ?? []
-
-  // Map ACF document repeater
-  const documents = page?.acf?.documents?.map((doc) => ({
-    label: doc.label,
-    url: doc.file_url,
-    fileType: 'PDF',
-  })) ?? []
-
   return (
     <InnerPageTemplate
-      title={loading ? 'Contact' : page?.title?.rendered ?? 'Contact'}
-      accordion={accordion}
-      documents={documents}
+      title="Contact"
+      subtitle="Get in touch with the DRI team"
     >
-      {loading && <p className="text-gray-500">Loading...</p>}
-      {error && <p className="text-red-500">Could not load content.</p>}
-      {!loading && !error && page && (
-        <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-      )}
-      {!loading && !error && !page && (
-        <p className="text-gray-500">Content coming soon.</p>
-      )}
+      <p>
+        Our office is located in <strong>Building A, Room 101</strong>, West
+        University of Timișoara, Bd. Vasile Pârvan 4, 300223 Timișoara, Romania.
+      </p>
+      <p>Office hours: Monday – Friday, 09:00 – 16:00</p>
+
+      <div className="mt-8 overflow-x-auto">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr className="bg-gray-100 text-left">
+              <th className="px-4 py-3 font-semibold text-gray-700">Department</th>
+              <th className="px-4 py-3 font-semibold text-gray-700">Email</th>
+              <th className="px-4 py-3 font-semibold text-gray-700">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((c, i) => (
+              <tr key={i} className="border-t border-gray-200 hover:bg-gray-50">
+                <td className="px-4 py-3 text-gray-800">{c.role}</td>
+                <td className="px-4 py-3">
+                  <a href={`mailto:${c.email}`} className="text-blue-600 hover:underline">
+                    {c.email}
+                  </a>
+                </td>
+                <td className="px-4 py-3 text-gray-700">{c.phone}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </InnerPageTemplate>
   )
 }

@@ -1,79 +1,59 @@
 import { motion } from 'framer-motion'
-
 import { Link } from 'react-router-dom'
-import { Button } from '../../atoms/Button/Button'
 
-interface CardProps{
-  title:string
-  description:string
-  buttonText?:string
-  route?:string
+import { Card as ShadCard, CardHeader, CardTitle, CardDescription, CardContent } from '../../ui/card'
+import { Button } from '../../ui/button'
+import { ChevronRight } from 'lucide-react'
+
+interface CardProps {
+  title: string
+  description: string
+  buttonText?: string
+  route?: string
+  icon?: React.ComponentType<{ className?: string }>
 }
 
 export function Card({
- title,
- description,
- buttonText,
- route='/'
-}:CardProps){
+  title,
+  description,
+  buttonText,
+  route = '/',
+  icon: Icon,
+}: CardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45 }}
+    >
+      <ShadCard className="h-full hover:shadow-lg transition-shadow duration-200">
 
- return(
+        <CardHeader>
+          {Icon && (
+            <div className="mb-3 inline-flex size-12 items-center justify-center rounded-lg bg-uvt-blue/10 text-uvt-blue">
+              <Icon className="size-6" />
+            </div>
+          )}
+          <CardTitle className="text-xl">{title}</CardTitle>
+        </CardHeader>
 
-<motion.div
+        <CardContent className="flex flex-col gap-4">
+          <CardDescription className="text-sm leading-6 text-gray-600">
+            {description}
+          </CardDescription>
 
-initial={{
-opacity:0,
-y:30
-}}
+          {buttonText && (
+            <Button variant="outline" size="sm" asChild className="mt-auto w-fit">
+              <Link to={route}>
+                {buttonText}
+                <ChevronRight className="ml-1 size-3.5" />
+              </Link>
+            </Button>
+          )}
+        </CardContent>
 
-whileInView={{
-opacity:1,
-y:0
-}}
-
-viewport={{
-once:true
-}}
-
-transition={{
-duration:.5
-}}
-
-className="
-rounded-2xl
-border
-border-gray-200
-bg-white
-p-8
-shadow-sm
-transition
-hover:-translate-y-2
-hover:shadow-xl
-"
->
-
-<h3 className="mb-4 text-2xl font-semibold">
-{title}
-</h3>
-
-<p className="mb-6 text-gray-600">
-{description}
-</p>
-
-{buttonText &&(
-
-<Link to={route}>
-<Button>
-
-{buttonText}
-
-</Button>
-</Link>
-
-)}
-
-</motion.div>
-
-)
-
+      </ShadCard>
+    </motion.div>
+  )
 }

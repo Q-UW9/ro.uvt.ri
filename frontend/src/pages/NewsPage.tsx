@@ -1,47 +1,43 @@
-import { useEffect, useState } from 'react'
 import { InnerPageTemplate } from '../components/templates/InnerPageTemplate/InnerPageTemplate'
-import { getPage } from '../api/wordpress'
-import type { WPPage } from '../types/wordpress'
+
+const newsItems = [
+  {
+    date: 'June 2025',
+    title: 'Erasmus+ Application Window Now Open',
+    body: 'The spring application round for Erasmus+ study and traineeship mobility for the 2025–2026 academic year is now open. Deadline: 30 June 2025.',
+  },
+  {
+    date: 'May 2025',
+    title: 'UVT Joins New European University Alliance',
+    body: 'West University of Timișoara has been accepted into a new EU-funded European University Alliance focused on sustainable development and digital transformation.',
+  },
+  {
+    date: 'April 2025',
+    title: 'Bilateral Scholarship Call — Government of Japan',
+    body: 'The Romanian Ministry of Education has announced 5 scholarships for UVT students to study at Japanese universities in 2025–2026. Applications close 15 May 2025.',
+  },
+  {
+    date: 'March 2025',
+    title: 'Welcome Day for Incoming Erasmus+ Students',
+    body: 'DRI hosted the spring Welcome Day for over 80 incoming Erasmus+ students from 25 countries. Students received information about campus services, housing, and local life in Timișoara.',
+  },
+]
 
 function NewsPage() {
-  const [page, setPage] = useState<WPPage | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    getPage('news')
-      .then(setPage)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
-  }, [])
-
-  // Map ACF FAQ section to accordion format
-  const accordion = page?.acf?.faqs?.map((faq) => ({
-    title: faq.question,
-    content: faq.answer,
-  })) ?? []
-
-  // Map ACF document repeater
-  const documents = page?.acf?.documents?.map((doc) => ({
-    label: doc.label,
-    url: doc.file_url,
-    fileType: 'PDF',
-  })) ?? []
-
   return (
     <InnerPageTemplate
-      title={loading ? 'News' : page?.title?.rendered ?? 'News'}
-      accordion={accordion}
-      documents={documents}
+      title="News"
+      subtitle="Latest updates from DRI"
     >
-      {loading && <p className="text-gray-500">Loading...</p>}
-      {error && <p className="text-red-500">Could not load content.</p>}
-      {!loading && !error && page && (
-        <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
-      )}
-      {!loading && !error && !page && (
-        <p className="text-gray-500">Content coming soon.</p>
-      )}
+      <ul className="space-y-8 list-none p-0">
+        {newsItems.map((item, i) => (
+          <li key={i} className="border-b border-gray-200 pb-6 last:border-0">
+            <p className="text-sm text-gray-500 mb-1">{item.date}</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+            <p className="text-gray-700">{item.body}</p>
+          </li>
+        ))}
+      </ul>
     </InnerPageTemplate>
   )
 }
