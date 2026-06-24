@@ -5,6 +5,8 @@ import { DEFAULT_LOCALE } from './context/LocaleContext'
 // Pages
 import HomePage                       from './pages/HomePage'
 import AboutPage                      from './pages/AboutPage'
+import MissionPage                    from './pages/MissionPage'
+import TeamPage                       from './pages/TeamPage'
 import ContactPage                    from './pages/ContactPage'
 import PartnershipsPage               from './pages/PartnershipsPage'
 import ScholarshipsExchangesPage      from './pages/ScholarshipsExchangesPage'
@@ -61,6 +63,8 @@ function App() {
 
           {/* Static top-level */}
           <Route path="about"                  element={<AboutPage />} />
+          <Route path="mission"               element={<MissionPage />} />
+          <Route path="team"                  element={<TeamPage />} />
           <Route path="partnerships"           element={<PartnershipsPage />} />
           <Route path="scholarships-exchanges" element={<ScholarshipsExchangesPage />} />
           <Route path="contact"                element={<ContactPage />} />
